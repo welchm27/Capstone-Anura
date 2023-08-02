@@ -3,6 +3,8 @@ public class Character {
     private String name;
     private int hp;
 
+    public Character(){}
+
     public Character(String name) {
         this.name = name;
     }
@@ -17,7 +19,7 @@ public class Character {
 
     }
 
-    // TODO； subject to change according to interaction with map
+    // TODO: subject to change according to interaction with map
     public void move(){
 
     }

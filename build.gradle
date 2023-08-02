@@ -24,6 +24,10 @@ repositories {
 
 dependencies {
 
+    apply plugin: 'idea'
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+
     implementation fileTree(dir: 'libs', include: '*.jar')
 
     testImplementation "org.junit.jupiter:junit-jupiter:$junit5Version"
