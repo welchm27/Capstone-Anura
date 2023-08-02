@@ -1,1 +1,8 @@
-[{"name": "large mouth bass"},{"name": "crow"},{"name": "snake"},{"name": "frog"}]
+[{"name": "large mouth bass", "attack": 10,
+  "description": "You encounter a large mouth bass, it's mouth is large and intimidating"},
+  {"name": "crow", "attack": 50,
+    "description": "Your shiny skin catches the attention of a crow. He looks hungry!"},
+  {"name": "snake", "attack":  20,
+    "description": "You see a common garter snake. It is about 50 times your size."},
+  {"name": "fish", "attack": 20,
+    "description": "It's just floating there... menacingly"}]
