@@ -1,7 +1,9 @@
+package com.anura.player;
+
+import com.anura.readjsondata.EvolutionData;
+import com.anura.main.Main;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import java.io.FileReader;
 import java.util.HashMap;

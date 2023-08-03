@@ -1,3 +1,5 @@
+package com.anura.player;
+
 public class Character {
     // fields and attributes
     private String name;
