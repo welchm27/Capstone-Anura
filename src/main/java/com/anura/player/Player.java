@@ -1,7 +1,6 @@
 package com.anura.player;
 
-import com.anura.readjsondata.EvolutionData;
-import com.anura.main.Main;
+import com.anura.readjsondata.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
@@ -22,7 +21,7 @@ public class Player extends Character {
     public Player(String name) {
         this.playerName = name;
         this.currentEvol = new EvolutionData("tadpole");
-        if(currentEvol.getEvolName() == "tadpole") {
+        if (currentEvol.getEvolName().equals("tadpole")) {
             setMaxHealth(20);
         }
         this.currentHealth = getMaxHealth();
@@ -47,7 +46,6 @@ public class Player extends Character {
             System.out.println("Item " + item + " not found in inventory!");
         }
     }
-
 
     // Method to prompt the player to enter their name
     public static String promptPlayerName() {
@@ -77,6 +75,31 @@ public class Player extends Character {
         System.out.println("Welcome, " + getName() + "!");
         System.out.println("Your Starting Level is: " + currentEvol.getEvolName());
         // Other game logic
+
+        // Start the game loop
+        movePlayer();
+    }
+
+    private void movePlayer() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please provide a direction to go >");
+        String input = scanner.nextLine();  // Prompt the player for their next move
+        String[] move = input.toLowerCase().split(" ", 2);  // Split the input into a command and an argument
+
+        if (move[0].equals("go")) {
+
+        }
+
+        }
+
+    private void go(String direction) {
+        // Check if the direction is valid from the current location
+        if (rooms.containsKey(currentRoom) && rooms.get(currentRoom).containsKey(direction)) {
+            String newRoom = rooms.get(currentRoom).get(direction);
+            currentRoom = newRoom; // Move the player to the new room
+        } else {
+            System.out.println("You can't go that way!");
+        }
     }
 
     // Getter and setter methods for playerName and currentLevel
@@ -87,8 +110,8 @@ public class Player extends Character {
     public void setInventory(Map<String, Integer> inventory) {
         this.playerInventory = inventory;
     }
-
 }
+
 
 
 

@@ -1,3 +1,44 @@
-[{"name": "pond"},{"name": "swamp"},{"name": "trail"},{"name": "wetland"},{"name": "empty plot"},{"name": "grasslands"},
-  {"name": "stream"},{"name": "lake"}
+[
+  {
+    "pond": {
+      "south": "trail",
+      "east": "swamp"
+    },
+    "swamp": {
+      "west": "pond",
+      "npc": "giraffe"
+    },
+    "trail": {
+      "north": "pond",
+      "west": "wetland",
+      "east": "log",
+      "south": "empty Plot",
+      "npc": "toad of wisdom",
+      "item": {
+        "gift": "back pack",
+        "item1": "Leaf"
+      }
+    },
+    "wetland": {
+      "east": "trail",
+      "npc": "deer"
+    },
+    "empty plot": {
+      "north": "trail",
+      "npc": "turtle"
+    },
+    "grasslands": {
+      "north": "log"
+    },
+     "stream": {
+       "north": "lake"
+     },
+    "lake": {
+      "south": "stream",
+      "notrh": "dock"
+    },
+    "dock": {
+      "south": "lake"
+    }
+  }
 ]
