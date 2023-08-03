@@ -1,7 +1,8 @@
 public class Character {
     // fields and attributes
     private String name;
-    private int hp;
+    private int maxHealth;
+    private int currentHealth;
 
     public Character(){}
 
@@ -11,7 +12,7 @@ public class Character {
 
     public Character(String name, int hp){
         super();
-        this.hp = hp;
+        this.maxHealth = hp;
     }
 
     // methods
@@ -33,12 +34,20 @@ public class Character {
         this.name = name;
     }
 
-    public int getHp() {
-        return hp;
+    public int getMaxHealth() {
+        return maxHealth;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public void setCurrentHealth(int currentHealth) {
+        this.currentHealth = currentHealth;
     }
 
     @Override
