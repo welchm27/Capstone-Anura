@@ -20,6 +20,7 @@ public class GameLogic {
             }
         }
     }
+
     public static void printHelp (String filePath, int startLine, int endLine ) throws IOException {
         try (BufferedReader reader =  new BufferedReader(new FileReader(filePath))){
             String line;
