@@ -1,7 +1,9 @@
+package com.anura.main;
+import com.anura.player.Player;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
-class Main {
+public class Main {
     public static void main(String[] args) {
 //        GameLogic gameLogic = new GameLogic();
 //        gameLogic.execute();
