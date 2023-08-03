@@ -1,3 +1,5 @@
+package com.anura.main;
+
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
