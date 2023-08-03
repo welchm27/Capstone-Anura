@@ -1,0 +1,29 @@
+{
+  "get": [
+    "bag", "capture", "catch", "collect", "grab", "nab", "obtain",
+    "secure", "seize", "snag", "snatch", "steal", "take", "yoink"
+  ],
+  "go": [
+    "advance", "bail", "depart", "escape", "evacuate", "flee", "jump", "leap", "leave",
+    "move", "relocate", "retire", "retreat", "run", "scram", "swim", "travel"
+  ],
+  "talk": [
+    "talk", "speak", "engage", "whisper", "yell", "scream", "chat", "converse", "gab", "gossip", "jabber", "flirt"
+  ],
+  "use": [
+    "apply", "bite", "chew", "consume", "deploy", "devour", "digest", "dine", "draw", "eat", "employ", "feast",
+    "give", "gnaw", "gobble", "gorge", "graze", "munch", "nibble", "snack", "snarf", "swallow", "utilize", "wield"
+  ],
+  "items": [
+    "algae", "fish eggs", "frogs", "glass bead", "insects", "leaf", "plastic cap", "veggies"
+  ],
+  "locations": [
+    "empty plot", "grasslands", "lake", "pond", "trail", "stream", "swamp", "wetland"
+  ],
+  "help": [
+    "advice", "assistance", "cheat", "hint", "how", "mentor", "tip", "what"
+  ],
+  "quit": [
+    "exit", "stop"
+  ]
+}
