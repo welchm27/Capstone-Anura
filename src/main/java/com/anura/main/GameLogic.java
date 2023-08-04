@@ -72,8 +72,13 @@ public class GameLogic {
             // Split the input into a command and an argument
             String[] moveInput = userInput.toLowerCase().split(" ", 2);
 
-            if(userInput.equals("quit")){
-                break;
+            if(moveInput.length < 2){
+                if(userInput.equals("quit")){
+                    break;
+                }else if(userInput.equals("help")){
+                    Helper.printFile("Help.txt", Ansi.Color.GREEN);
+                    continue;
+                }
             }
             else if(moveInput.length != 2){
                 Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south)\n", Ansi.Color.RED);
