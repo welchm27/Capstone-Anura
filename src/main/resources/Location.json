@@ -11,7 +11,7 @@
       "north": "pond",
       "west": "wetland",
       "east": "log",
-      "south": "empty Plot",
+      "south": "empty plot",
       "npc": "toad of wisdom",
       "item": {
         "gift": "back pack",
@@ -25,6 +25,9 @@
     "empty plot": {
       "north": "trail",
       "npc": "turtle"
+    },
+    "log":{
+      "west": "trail"
     },
     "grasslands": {
       "north": "log"

@@ -1,11 +1,14 @@
 package com.anura.readjsondata;
 
+import com.anura.main.Helper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.FileReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +42,9 @@ public class EvolutionData {
     public JsonArray readJsonData() {
         try {
             Gson gson = new Gson();
-            FileReader fileReader = new FileReader("src/main/resources/Evolution.json");
+
+            // TODO: to be modified
+            String fileReader = Helper.readFromResourceFile("Evolution.json");
             return gson.fromJson(fileReader, JsonArray.class);
         } catch (Exception e) {
             e.printStackTrace();
