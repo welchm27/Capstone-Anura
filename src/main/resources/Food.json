@@ -2,7 +2,7 @@
   "algae": {
     "HP": "10",
     "desc": "You see algae. It doesn't look very delicious, but it sure is easy to get!",
-    "location": ["pond", "stream", "lake"]
+    "location": "pond"
   },
   "fish eggs": {
     "HP": "30",

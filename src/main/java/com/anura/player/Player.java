@@ -1,5 +1,6 @@
 package com.anura.player;
 
+import com.anura.GameObject;
 import com.anura.main.Helper;
 import com.anura.readjsondata.*;
 import com.google.gson.Gson;
@@ -36,7 +37,7 @@ public class Player extends Character {
         this.exp = 0;
         this.playerInventory = new HashMap<>();
         this.currentLocation = "pond";
-        initializePlayer();
+        //initializePlayer();
     }
 
     public void addToInventory(String item, int count) {
@@ -64,17 +65,28 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
-    private JsonArray initializePlayer() {
-        try {
-            Gson gson = new Gson();
-//            FileReader foodInv = new FileReader("src/main/resources/Food.json");
-            String foodInv = Helper.readFromResourceFile("Food.json");
-            return gson.fromJson(foodInv, JsonArray.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void look(String itemType) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the " + itemType + " you want to look at: ");
+        String itemName = scanner.nextLine().trim().toLowerCase();
+
+        GameObject gameObject = new GameObject(itemType,itemName);
+        String description = gameObject.getDescription();
+
+        System.out.println("Description: " + description);
     }
+
+//    private JsonArray initializePlayer() {
+//        try {
+//            Gson gson = new Gson();
+////            FileReader foodInv = new FileReader("src/main/resources/Food.json");
+//            String foodInv = Helper.readFromResourceFile("Food.json");
+//            return gson.fromJson(foodInv, JsonArray.class);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     // Method to start the game
     public void startGame() {

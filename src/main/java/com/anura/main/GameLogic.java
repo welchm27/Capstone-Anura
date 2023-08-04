@@ -35,7 +35,7 @@ public class GameLogic {
                 + Ansi.ansi().fgBlue().a("[Save]").reset() + " to load saved game:");
         String userInput = scanner.nextLine().trim().toLowerCase();
 
-        if(userInput.equals("new")){
+        if (userInput.equals("new")) {
             stat = new String[]{};
 
             // Create a new player and prompt for their name
@@ -45,7 +45,7 @@ public class GameLogic {
             // Start the game
             player.startGame();
 
-        }else{
+        } else {
             // load saved json stat file
 
             // TODO: place holder TO BE replaced and deleted
@@ -56,7 +56,7 @@ public class GameLogic {
         // get Map data
         JsonObject mapData = GameMap.getMap();
 
-        while(!userInput.equals("quit")){
+        while (!userInput.equals("quit")) {
 
             String currentLocation = player.getCurrentLocation();
             JsonObject updatedLocation = mapData.get(currentLocation).getAsJsonObject();
@@ -77,27 +77,34 @@ public class GameLogic {
             // Split the input into a command and an argument
             String[] moveInput = userInput.toLowerCase().split(" ", 2);
 
-            if(moveInput.length != 2){
-                if(userInput.equals("quit")){
+            if (moveInput.length != 2) {
+                if (userInput.equals("quit")) {
                     break;
-                }else if(userInput.equals("help")){
+                } else if (userInput.equals("help")) {
                     Helper.printFile("Help.txt", Ansi.Color.GREEN);
                     continue;
-                }else if(userInput.equals("map")){
+                } else if (userInput.equals("map")) {
                     Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
                     continue;
-                }else{
+                } else {
                     Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south)\n" +
                             "Enter to continue..\n", Ansi.Color.RED);
                     scanner.nextLine();
                     continue;
                 }
             }
+            if (userInput.toLowerCase().startsWith("look")) {
+                String[] inputParts = userInput.split(" ");
+                String itemType = inputParts[1];
+                player.look(itemType);
 
-            player.move(moveInput[1].toLowerCase(), mapData);
+
+            } else {
+                System.out.println("Invalid command. Usage: Look <Item/Location/food>");
+            }
+            //player.move(moveInput[1].toLowerCase(), mapData);
         }
 
         Helper.printColor("\nBye!", Ansi.Color.MAGENTA);
     }
-
 }
