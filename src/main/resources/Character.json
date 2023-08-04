@@ -1,6 +1,38 @@
-[{"name": "wisdom toad", "location": "trail"},{"name": "gluten free turtle", "location": "stream"},
-  {"name": "Buckley", "location": "wetland"},{"name": "Sting", "location": "grasslands"},
-  {"name": "Dawei", "location": "pond"},{"name": "Teta", "location": "pond"},{"name": "Tallulah", "location": "swamp"},
-  {"name": "Violet", "location": "lake"},{"name": "Triton", "location": "empty plot"},
-  {"name": "Destiny", "location": "lake"},{"name": "Karen", "location": "lake"}
-]
+{
+  "wisdom toad": {
+    "location": "trail",
+    "desc": "Your path is blocked by a big, fat toad eating a sandwich.  He offers you a backpack, saying it's convenient."
+  },
+  "triton": {
+    "location": "empty plot",
+    "desc": "You see a tire-looking turtle.  Don't worry about him eating you, he's gluten-free and frogs make him feel bloated."
+  },
+  "buckley": {
+    "location": "wetland",
+    "desc": "You see a majestic stag sloshing around in the mud.  He looks lost..."
+  },
+  "sting": {
+    "location": "grasslands",
+    "desc": "You encounter a sneaky scorpion.  This story sounds familiar, but you can't put your webbed finger on it."
+  },
+  "dawei": {
+    "location": "pond",
+    "desc": "There's another tadpole over there.  They eye you off and say you look ridiculously pink.  How rude!"
+  },
+  "tallulah": {
+    "location": "swamp",
+    "desc": "You see a glorious giraffe, queen among herbivores.  She tells you that the lake is off to the east, but you can't get there from here."
+  },
+  "violet": {
+    "location": "dock",
+    "desc": "You witness the move beautiful frog in the world.  It's love at first sight and you know you're meant for each other."
+  },
+  "destiny": {
+    "location": "dock",
+    "desc": "You croak at a local frog and she doesn't even give you the time of day.  You're used to it, but it still hurts a little."
+  },
+  "karen": {
+    "location": "dock",
+    "desc": "You croak at her and she asks to see your manager.  You don't have one because, well, you're a frog."
+  }
+}
