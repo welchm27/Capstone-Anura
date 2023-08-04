@@ -3,7 +3,10 @@ package com.anura.player;
 import com.anura.readjsondata.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -16,6 +19,7 @@ public class Player extends Character {
     private Map<String, Integer> playerInventory;
     private EvolutionData currentEvol;
     private int currentHealth;
+    private String currentLocation;
 
     // constructors
     public Player(String name) {
@@ -27,6 +31,7 @@ public class Player extends Character {
         this.currentHealth = getMaxHealth();
         this.exp = 0;
         this.playerInventory = new HashMap<>();
+        this.currentLocation = "pond";
         initializePlayer();
     }
 
@@ -52,7 +57,7 @@ public class Player extends Character {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name: ");
         String playerName = scanner.nextLine();
-        return playerName.trim().isEmpty() ? "Freg" : playerName;
+        return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
     private JsonArray initializePlayer() {
@@ -76,29 +81,25 @@ public class Player extends Character {
         System.out.println("Your Starting Level is: " + currentEvol.getEvolName());
         // Other game logic
 
-        // Start the game loop
-        movePlayer();
     }
 
-    private void movePlayer() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please provide a direction to go >");
-        String input = scanner.nextLine();  // Prompt the player for their next move
-        String[] move = input.toLowerCase().split(" ", 2);  // Split the input into a command and an argument
+    public String move(String direction) throws FileNotFoundException {
 
-        if (move[0].equals("go")) {
+        Gson gson = new Gson();
+        FileReader fileReader = new FileReader("src/main/resources/Location.json");
+        JsonObject locationData = gson.fromJson(fileReader, JsonObject.class);
 
-        }
+        JsonObject currentLocationJson = locationData.get(currentLocation).getAsJsonObject();
+        if(currentLocationJson.has(direction)){
+            this.currentLocation = currentLocationJson.get(direction).getAsString();
+            System.out.printf("You are at %s\n", currentLocation);
 
-        }
-
-    private void go(String direction) {
-        // Check if the direction is valid from the current location
-        if (rooms.containsKey(currentRoom) && rooms.get(currentRoom).containsKey(direction)) {
-            String newRoom = rooms.get(currentRoom).get(direction);
-            currentRoom = newRoom; // Move the player to the new room
-        } else {
-            System.out.println("You can't go that way!");
+            JsonObject updatedLocation = locationData.get(currentLocation).getAsJsonObject();
+            System.out.println(updatedLocation);
+            return currentLocation;
+        }else{
+            System.out.println("Invalid direction, please try another one.");
+            return null;
         }
     }
 

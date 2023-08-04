@@ -1,10 +1,13 @@
 package com.anura.main;
 
 import com.anura.player.Player;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class GameLogic {
@@ -14,62 +17,52 @@ public class GameLogic {
 
     public void execute() throws IOException {
 
+        Player player;
         String[] stat;
 
         Scanner scanner = new Scanner(System.in);
-        String userInput = "";
 
-        // Game Running Logic
-        while(!userInput.equals("Quit")){
+        // Welcome Banner & user instructions
+        Helper.printSplashPage(filePath);
+        Helper.printHelp(filePath, 28, 31);
 
-            // Welcome Banner
-            printSplashPage(filePath);
-            // User Instructions
-            printHelp(filePath, 28, 31);
+        // ask for new game or saved game
+        System.out.println("Enter [New] for new game or [Save] to load saved game:");
+        String userInput = scanner.nextLine().trim().toLowerCase();
 
-            // ask for new game or saved game
-            System.out.println("Enter [New] for new game or [Save] to load saved game:");
-            userInput = scanner.nextLine();
+        if(userInput.equals("new")){
+            stat = new String[]{};
 
-            if(userInput.equals("New")){
-                stat = new String[]{};
+            // Create a new player and prompt for their name
+            String playerName = Player.promptPlayerName();
+            player = new Player(playerName);
 
-                // Create a new player and prompt for their name
-                String playerName = Player.promptPlayerName();
-                Player player = new Player(playerName);
-                // Start the game
-                player.startGame();
-                System.out.println();
-            }
+            // Start the game
+            player.startGame();
+
+        }else{
+            // load saved json stat file
+
+            // TODO: place holder TO BE replaced and deleted
+            String playerName = Player.promptPlayerName();
+            player = new Player(playerName);
         }
 
+        while(!userInput.equals("quit")){
+            // move in the map
+            System.out.println("\nPlease provide a direction to go >");
+            userInput = scanner.nextLine();  // Prompt the player for their next move
 
-    }
-    public static void printSplashPage(String filePath) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null){
-                System.out.println(line);
+            // Split the input into a command and an argument
+            String[] moveInput = userInput.toLowerCase().split(" ", 2);
+            if(moveInput.length != 2){
+                System.out.println("Invalid input! Please enter one action and one direction(i.e. go south)\n");
+                continue;
             }
+
+            player.move(moveInput[1].toLowerCase());
         }
+
     }
 
-    public static void printHelp (String filePath, int startLine, int endLine ) throws IOException {
-        try (BufferedReader reader =  new BufferedReader(new FileReader(filePath))){
-            String line;
-            int lineNumber = 0;
-
-            while((line = reader.readLine()) != null) {
-                if (lineNumber >= startLine && lineNumber <=endLine) {
-                    System.out.println(line);
-                }
-                lineNumber++;
-                if(lineNumber > endLine){
-                    break;
-                }
-            }
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

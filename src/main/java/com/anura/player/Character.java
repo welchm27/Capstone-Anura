@@ -22,11 +22,6 @@ public class Character {
 
     }
 
-    // TODO: subject to change according to interaction with map
-    public void move(){
-
-    }
-
     // getter and setter
     public String getName() {
         return name;
