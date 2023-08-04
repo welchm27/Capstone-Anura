@@ -1,11 +1,14 @@
 package com.anura.player;
 
+import com.anura.main.Helper;
 import com.anura.readjsondata.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.fusesource.jansi.Ansi;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
@@ -63,7 +66,8 @@ public class Player extends Character {
     private JsonArray initializePlayer() {
         try {
             Gson gson = new Gson();
-            FileReader foodInv = new FileReader("src/main/resources/Food.json");
+//            FileReader foodInv = new FileReader("src/main/resources/Food.json");
+            String foodInv = Helper.readFromResourceFile("Food.json");
             return gson.fromJson(foodInv, JsonArray.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -83,27 +87,30 @@ public class Player extends Character {
 
     }
 
-    public String move(String direction) throws FileNotFoundException {
+    public String move(String direction, JsonObject mapData) {
 
-        Gson gson = new Gson();
-        FileReader fileReader = new FileReader("src/main/resources/Location.json");
-        JsonObject locationData = gson.fromJson(fileReader, JsonObject.class);
+        JsonObject currentLocationJson = mapData.get(currentLocation).getAsJsonObject();
 
-        JsonObject currentLocationJson = locationData.get(currentLocation).getAsJsonObject();
         if(currentLocationJson.has(direction)){
             this.currentLocation = currentLocationJson.get(direction).getAsString();
-            System.out.printf("You are at %s\n", currentLocation);
-
-            JsonObject updatedLocation = locationData.get(currentLocation).getAsJsonObject();
-            System.out.println(updatedLocation);
             return currentLocation;
         }else{
-            System.out.println("Invalid direction, please try another one.");
+            Helper.printColor("\nInvalid direction, please try another one.\n", Ansi.Color.RED);
             return null;
         }
     }
 
-    // Getter and setter methods for playerName and currentLevel
+    // Getter and setter methods
+
+
+    public String getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
     public Map<String, Integer> getInventory() {
         return playerInventory;
     }
