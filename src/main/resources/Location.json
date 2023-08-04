@@ -1,5 +1,4 @@
-[
-  {
+{
     "pond": {
       "south": "trail",
       "east": "swamp"
@@ -35,10 +34,9 @@
      },
     "lake": {
       "south": "stream",
-      "notrh": "dock"
+      "north": "dock"
     },
     "dock": {
       "south": "lake"
     }
-  }
-]
+}
