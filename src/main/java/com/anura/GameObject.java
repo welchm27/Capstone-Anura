@@ -1,12 +1,15 @@
 package com.anura;
 
+import com.anura.main.Helper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.anura.*;
+import org.fusesource.jansi.Ansi;
 
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class GameObject {
     // fields and attributes
@@ -24,15 +27,9 @@ public class GameObject {
         try {
             Gson gson = new Gson();
             FileReader fileReader = new FileReader(getJsonFilePath(name));
-            JsonArray jsonArray = gson.fromJson(fileReader, JsonArray.class);
+            JsonObject jsonObject = gson.fromJson(fileReader, JsonObject.class);
 
-            for (JsonElement jsonElement : jsonArray) {
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                String itemName = jsonObject.get("name").getAsString();
-                if (itemName.equalsIgnoreCase(item)) {
-                    return jsonObject.get("description").getAsString();
-                }
-            }
+            return jsonObject.get(item).getAsJsonObject().get("desc").getAsString();
 
         } catch (Exception e) {
             e.printStackTrace();
