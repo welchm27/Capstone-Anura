@@ -74,7 +74,7 @@ public class Helper {
         if (inputStream != null) {
             // Resource is found (in JAR), process the input stream as needed
             try {
-                // Example: Read content from the resource
+                // Read content from the resource
                 byte[] resourceBytes = inputStream.readAllBytes();
                 fileContent = new String(resourceBytes);
             } catch (IOException e) {
@@ -88,7 +88,7 @@ public class Helper {
 //            if (file.exists() && file.isFile()) {
 //                // File is found (in file system), process the file as needed
 //                try {
-//                    // Example: Read content from the file
+//                    // Read content from the file
 //                    fileContent = Files.readString(file.toPath());
 //                } catch (IOException e) {
 //                    e.printStackTrace();

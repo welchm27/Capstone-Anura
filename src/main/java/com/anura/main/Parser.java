@@ -1,13 +1,24 @@
 package com.anura.main;
+//  BY Lilly, stashing away for future reference
+//  import org.json.JSONArray;
+//  This is utlizing JSON-java lib: https://github.com/stleary/JSON-java
+//  https://mvnrepository.com/artifact/org.json/json
+//  gradle dependencies: implementation 'org.json:json:20230618'
 
 //T0D0: my IntelliJ will not let me import the any of the jsons that i need (see above)..
 // there is also a chunk of code below that i attempted to adapt to this file but i cannot confirm functionalitiy..
 
 
-    public class Parser {
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonToken;
+
+import java.io.InputStream;
+import java.util.Set;
+
+public class Parser {
 //        public static void main(String[] args) {
 //            // read the parse file
-//            JSONObject jData = loadJSONData("Parse.json");
+//            JsonObject jData = loadJSONData("Parse.json");
 //            // "Check if it's there/null" -paraphrasing Nadra
 //            if (jData == null) {
 //                System.out.println("NOTE: An error occurred while loading required .json file(s), please try again.");
@@ -65,13 +76,13 @@ package com.anura.main;
 //                System.out.println("You do not currently have that item");
 //            }
 //        }
-////BELOW IS THE PORTION THAT I DO NOT UNDERSTAND THE FUNCTIONALITY OF, but is apparently needed?
-//        // is this if we want to add shit in-game??
-//        private static JSONObject loadJSONData(String fileName) {
+
+
+//        private static JsonObject loadJSONData(String fileName) {
 //            try {
-//                InputStream inputStream = CommandParser.class.getResourceAsStream(fileName);
-//                JSONTokener tokener = new JSONTokener(inputStream);
-//                return new JSONObject(tokener);
+//                InputStream inputStream = Parser.class.getResourceAsStream(fileName);
+//                JsonToken token = new JsonToken();
+//                return new JsonObject(token);
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //                return null;
@@ -85,6 +96,6 @@ package com.anura.main;
 //            }
 //            return items;
 //        }
-//    }
+//
 
 }

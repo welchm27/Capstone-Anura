@@ -14,6 +14,7 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Player extends Character {
     // Additional attributes specific to the player
@@ -95,7 +96,10 @@ public class Player extends Character {
             this.currentLocation = currentLocationJson.get(direction).getAsString();
             return currentLocation;
         }else{
-            Helper.printColor("\nInvalid direction, please try another one.\n", Ansi.Color.RED);
+            Helper.printColor("\nInvalid direction, please try another one.\n" +
+                    "Enter to continue..\n", Ansi.Color.RED);
+            Scanner scanner = new Scanner(System.in);
+            scanner.nextLine();
             return null;
         }
     }
