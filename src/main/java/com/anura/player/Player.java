@@ -108,7 +108,7 @@ public class Player extends Character {
             this.currentLocation = currentLocationJson.get(direction).getAsString();
             return currentLocation;
         }else{
-            Helper.printColor("\nInvalid direction, please try another one.\n" +
+            Helper.printColor("\nInvalid action, please try another one.\n" +
                     "Enter to continue..\n", Ansi.Color.RED);
             Scanner scanner = new Scanner(System.in);
             scanner.nextLine();
