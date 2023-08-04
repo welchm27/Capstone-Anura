@@ -61,6 +61,11 @@ public class GameLogic {
             String currentLocation = player.getCurrentLocation();
             JsonObject updatedLocation = mapData.get(currentLocation).getAsJsonObject();
 
+            // clear screen
+            System.out.print(Ansi.ansi().eraseScreen());
+            System.out.print(Ansi.ansi().cursor(5, 0));
+            Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
+
             System.out.println("\nYou are at " + Ansi.ansi().fgBrightGreen().a(currentLocation).reset()
                     + ". Here is the info of this location:");
             Helper.printColor(updatedLocation.toString(), Ansi.Color.MAGENTA);
@@ -72,7 +77,7 @@ public class GameLogic {
             // Split the input into a command and an argument
             String[] moveInput = userInput.toLowerCase().split(" ", 2);
 
-            if(moveInput.length < 2){
+            if(moveInput.length != 2){
                 if(userInput.equals("quit")){
                     break;
                 }else if(userInput.equals("help")){
@@ -81,18 +86,18 @@ public class GameLogic {
                 }else if(userInput.equals("map")){
                     Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
                     continue;
+                }else{
+                    Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south)\n" +
+                            "Enter to continue..\n", Ansi.Color.RED);
+                    scanner.nextLine();
+                    continue;
                 }
-            }
-            else if(moveInput.length != 2){
-                Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south)\n", Ansi.Color.RED);
-                continue;
             }
 
             player.move(moveInput[1].toLowerCase(), mapData);
         }
 
         Helper.printColor("\nBye!", Ansi.Color.MAGENTA);
-        scanner.nextLine();
     }
 
 }
