@@ -82,27 +82,25 @@ public class GameLogic {
                     break;
                 } else if (userInput.equals("help")) {
                     Helper.printFile("Help.txt", Ansi.Color.GREEN);
-                    continue;
                 } else if (userInput.equals("map")) {
                     Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
-                    continue;
                 } else {
-                    Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south)\n" +
-                            "Enter to continue..\n", Ansi.Color.RED);
+                    Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
+                            Ansi.Color.RED);
+                }
+                System.out.println("Enter to continue..");
+                scanner.nextLine();
+            }else{
+                if (userInput.toLowerCase().startsWith("look")) {
+                    String[] inputParts = userInput.split(" ");
+                    String itemType = inputParts[1];
+                    player.look(itemType);
+                    System.out.println("Enter to continue..");
                     scanner.nextLine();
-                    continue;
+                } else{
+                    player.move(moveInput[1].toLowerCase(), mapData);
                 }
             }
-            if (userInput.toLowerCase().startsWith("look")) {
-                String[] inputParts = userInput.split(" ");
-                String itemType = inputParts[1];
-                player.look(itemType);
-
-
-            } else {
-                System.out.println("Invalid command. Usage: Look <Item/Location/food>");
-            }
-            //player.move(moveInput[1].toLowerCase(), mapData);
         }
 
         Helper.printColor("\nBye!", Ansi.Color.MAGENTA);

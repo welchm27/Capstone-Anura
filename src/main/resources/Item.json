@@ -4,7 +4,7 @@
     "desc":  "You see a single glass bead. It is shiny and beautiful. Should you take it?",
     "location": "wetland"},
   "leaf":
-{
+  {
   "desc":  "You find a leaf that is big enough to cover your whole body! What a helpful thing to find!",
   "location": "trail"}
 }
