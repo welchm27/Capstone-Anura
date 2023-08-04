@@ -78,6 +78,9 @@ public class GameLogic {
                 }else if(userInput.equals("help")){
                     Helper.printFile("Help.txt", Ansi.Color.GREEN);
                     continue;
+                }else if(userInput.equals("map")){
+                    Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
+                    continue;
                 }
             }
             else if(moveInput.length != 2){
