@@ -11,7 +11,7 @@
   },
   "snake": {
     "attack": 20,
-    "desc": "You see a common garter snake. It is about 50 times your size.",
+    "desc": "You see a common garter snake. It is about 50 times your size",
     "location": ""
   },
   "fish": {

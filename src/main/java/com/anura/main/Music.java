@@ -12,9 +12,9 @@ class Music {
                 try {
                     Clip clip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            //Main.class.getResourceAsStream("/src/main/resources/ShumbaTest.wav"));
+                            //Main.class.getResourceAsStream("/src/main/resources/ShumbaTest.wav"));  //OG format
                             Objects.requireNonNull(Main.class.getResourceAsStream(
-                                    "/src/main/resources/Shumba2.wav")));
+                                    "/src/main/resources/ShumbaTest.wav")));
                     clip.open(inputStream);
                     clip.start();
                 } catch (Exception e) {
