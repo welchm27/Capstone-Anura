@@ -34,5 +34,9 @@
   "karen": {
     "location": "dock",
     "desc": "You croak at her and she asks to see your manager.  You don't have one because, well, you're a frog."
+  },
+  "trevin": {
+    "location": "lake",
+    "desc": "You see a tadpole swimming in circles and crying a lot.  You COULD reach out..."
   }
 }

@@ -66,6 +66,7 @@
       "south": "stream",
       "north": "dock",
       "desc": "A massive lake home to many creatures.  You see a dock at the north end.",
+      "npc": "trevin",
       "food": {
         "food1": "algae",
         "food2": "plastic cap"
