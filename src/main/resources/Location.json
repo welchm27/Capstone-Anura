@@ -56,6 +56,7 @@
        "north": "lake",
        "south": "log",
        "desc": "You feel the current pulling you north.",
+       "item": "plastic cap",
        "food": {
          "food1": "fish eggs",
          "food2": "algae"

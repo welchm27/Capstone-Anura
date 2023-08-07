@@ -6,5 +6,9 @@
   "leaf":
   {
   "desc":  "You find a leaf that is big enough to cover your whole body! What a helpful thing to find!",
-  "location": "trail"}
+  "location": "trail"},
+  "plastic cap": {
+    "desc": "You see a soda bottle cap floating down stream.  What a shame...",
+    "location": "stream"
+  }
 }
