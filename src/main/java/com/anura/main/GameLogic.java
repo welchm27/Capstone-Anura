@@ -80,6 +80,10 @@ public class GameLogic {
                     Helper.printFile("Help.txt", Ansi.Color.GREEN);
                 } else if (userInput.equals("map")) {
                     Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
+                } else if (userInput.equals("inventory")) {
+                    player.displayInventory();
+                    System.out.println("Enter to continue..");
+                    scanner.nextLine();
                 } else {
                     Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
                             Ansi.Color.RED);
