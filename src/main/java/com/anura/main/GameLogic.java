@@ -156,10 +156,10 @@ public class GameLogic {
             Music.playSound("/src/main/resources/ShumbaTest.wav");
 //        } else if (musicCommand.equalsIgnoreCase("stop")) {
 //            Music.stopBackgroundMusic();
-//        } else if (musicCommand.equalsIgnoreCase("volume")) {
-//            System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
-//            float volume = Float.parseFloat(scanner.nextLine());
-//            Music.setVolume(volume);
+        } else if (musicCommand.equalsIgnoreCase("volume")) {
+            System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
+            float volume = Float.parseFloat(scanner.nextLine());
+            Music.setVolume(volume);
         } else {
             System.out.println("Invalid music command.");
         }
