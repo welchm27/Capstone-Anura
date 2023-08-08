@@ -18,8 +18,7 @@ class Music {
                     stopBackgroundMusic();
                     backgroundClip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Objects.requireNonNull(Main.class.getResourceAsStream(
-                                    "/src/main/resources/ShumbaTest.wav")));
+                            Objects.requireNonNull(GameLogic.class.getResourceAsStream("/ShumbaTest.wav")));
                     backgroundClip.open(inputStream);
                     setVolume(volume);
                     backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -46,49 +45,3 @@ class Music {
         }
     }
 }
-/*
-Merge the following into Game Logic ~ quit,  help, map
-
-        while (!userInput.equals("quit")) {
-        // ATM Above line is L59, below line is L80
-
-        if (moveInput.length != 2) {
-        if (userInput.equals("quit")) {
-        break;
-        } else if (userInput.equals("help")) {
-        Helper.printFile("Help.txt", Ansi.Color.GREEN);
-        } else if (userInput.equals("map")) {
-        Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
-        } else if (userInput.equals("music")) {
-        handleMusicControls(scanner);
-        } else {
-        // ATM above line is L87, below is L91
-        }
-        System.out.println("Enter to continue..");
-        scanner.nextLine();
-        } else {
-        // ATM above line is L93, below is L103
-        }
-        }
-
-        // Helper print line
-        }
-//Add the following chunk to the code, commenting out sections for ticket matching.
-private void handleMusicControls(Scanner scanner) {
-        System.out.println("What would you like to do with the background music? (start/stop/volume)\n ");
-        String musicCommand = scanner.nextLine();
-
-        if (musicCommand.equalsIgnoreCase("start")) {
-        Music.playSound("/src/main/resources/ShumbaTest.wav");
-        } else if (musicCommand.equalsIgnoreCase("stop")) {
-        Music.stopBackgroundMusic();
-        } else if (musicCommand.equalsIgnoreCase("volume")) {
-        System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
-        float volume = Float.parseFloat(scanner.nextLine());
-        Music.setVolume(volume);
-        } else {
-        System.out.println("Invalid music command.");
-        }
-        }
-        }
- */
