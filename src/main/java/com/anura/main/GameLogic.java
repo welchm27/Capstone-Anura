@@ -2,16 +2,13 @@ package com.anura.main;
 
 import com.anura.GameMap;
 import com.anura.player.Player;
-import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.fusesource.jansi.Ansi;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
 
 public class GameLogic {
@@ -22,7 +19,6 @@ public class GameLogic {
 
         Player player;
         String[] stat;
-
         Scanner scanner = new Scanner(System.in);
 
         // Welcome Banner & user instructions
@@ -90,19 +86,57 @@ public class GameLogic {
                 }
                 System.out.println("Enter to continue..");
                 scanner.nextLine();
-            }else{
-                if (userInput.toLowerCase().startsWith("look")) {
-                    String[] inputParts = userInput.split(" ");
-                    String itemType = inputParts[1];
-                    player.look(itemType);
-                    System.out.println("Enter to continue..");
-                    scanner.nextLine();
-                } else{
-                    player.move(moveInput[1].toLowerCase(), mapData);
+            } else if (userInput.toLowerCase().startsWith("look")) {
+                String[] inputParts = userInput.split(" ");
+                String itemType = inputParts[1];
+                player.look(itemType);
+                System.out.println("Enter to continue..");
+                scanner.nextLine();
+            } else if (userInput.startsWith("get")) {
+                String[] inputParts = userInput.split(" ", 2);
+                if(inputParts.length == 2) {
+                    String itemName = inputParts[1];
+                    get(player, itemName, mapData);
+                }else {
+                    System.out.println("Please provided an item name after 'get'.");
                 }
+            } else {
+                player.move(moveInput[1].toLowerCase(), mapData);
             }
         }
 
         Helper.printColor("\nBye!", Ansi.Color.MAGENTA);
     }
+
+    public void get(Player player, String itemName, JsonObject mapData) {
+        itemName = itemName.toLowerCase();
+        JsonObject locationData = mapData.get(player.getCurrentLocation()).getAsJsonObject();
+
+        if (locationData.has("item")) {
+            JsonArray itemsInLocation = locationData.getAsJsonArray("item");
+            JsonArray updatedItems = new JsonArray();
+            boolean itemFound = false;
+
+            for (JsonElement itemElement : itemsInLocation) {
+                String itemNameInLocation = itemElement.getAsString();
+
+                if (!itemName.equals(itemNameInLocation)) {
+                    updatedItems.add(itemElement);
+                } else {
+                    player.addToInventory(itemName, 1);
+                    System.out.println("You picked up " + itemName + ".");
+                    itemFound = true;
+                }
+            }
+
+            if (itemFound) {
+                locationData.add("item", updatedItems);
+            } else {
+                System.out.println("Cannot find " + itemName + " here.");
+            }
+        } else {
+            System.out.println("There are no items to pick up here.");
+        }
+    }
+
 }

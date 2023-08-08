@@ -4,16 +4,13 @@
       "east": "swamp",
       "npc": "dawei",
       "desc": "The homey, shallow pond where you were born.  There's a carp swimming around here.",
-      "food": {
-        "food1": "insects",
-        "food2": "algae"
-      }
+      "food": ["insects", "algae"]
     },
     "swamp": {
       "west": "pond",
       "npc": "tallulah",
       "desc": "The water here is murky, but you see a towering giraffe.",
-      "food": "insects"
+      "food": ["insects"]
     },
     "trail": {
       "north": "pond",
@@ -21,10 +18,7 @@
       "east": "log",
       "south": "empty plot",
       "npc": "wisdom toad",
-      "item": {
-        "gift": "back pack",
-        "item1": "leaf"
-      },
+      "item": ["leaf", "back pack"],
       "desc": "This well-worn path is marked with many adventures.  You see a pudgy toad."
     },
     "wetland": {
@@ -32,13 +26,13 @@
       "npc": "buckley",
       "desc": "The many disconnected pools are separated by reeds and mud.  You see a deer struggling to move.",
       "food": "insects",
-      "item": "glass bead"
+      "item": ["glass bead"]
     },
     "empty plot": {
       "north": "trail",
       "npc": "triton",
       "desc": "An unused plot of land.  You see a turtle basking in the sun.",
-      "food": "veggies"
+      "food": ["veggies"]
     },
     "log":{
       "west": "trail",
@@ -50,27 +44,22 @@
       "north": "log",
       "npc": "sting",
       "desc": "A wide sea of grass stretching to the horizon.  You see a sneaky scorpion hiding here.",
-      "food": "frogs"
+      "food": ["frogs"]
     },
      "stream": {
        "north": "lake",
        "south": "log",
        "desc": "You feel the current pulling you north.",
-       "item": "plastic cap",
-       "food": {
-         "food1": "fish eggs",
-         "food2": "algae"
-       }
+       "item": ["plastic cap"],
+       "food": ["fish eggs", "algae"]
+
      },
     "lake": {
       "south": "stream",
       "north": "dock",
       "desc": "A massive lake home to many creatures.  You see a dock at the north end.",
       "npc": "trevin",
-      "food": {
-        "food1": "algae",
-        "food2": "plastic cap"
-      }
+      "food": ["algae", "plastic cap"]
     },
     "dock": {
       "south": "lake",
