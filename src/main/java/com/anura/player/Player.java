@@ -76,6 +76,20 @@ public class Player extends Character {
         System.out.println("Description: " + description);
     }
 
+    public void displayInventory() {
+        System.out.println("╔════════════════════╗");
+        System.out.println("║       Backpack       ║");
+        System.out.println("╟──────────────────────╢");
+
+        for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
+            String itemName = entry.getKey();
+            int itemCount = entry.getValue();
+            System.out.printf("║ %-18s %-3d║%n", itemName, itemCount);
+        }
+
+        System.out.println("╚════════════════════╝");
+    }
+
 //    private JsonArray initializePlayer() {
 //        try {
 //            Gson gson = new Gson();
