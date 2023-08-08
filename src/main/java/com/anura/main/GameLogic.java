@@ -26,6 +26,9 @@ public class GameLogic {
 //        Helper.printHelp("SplashPage.txt", 28, 31);
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
+        Music.playSound("/src/main/resources/ShumbaTest.wav");
+        Music.setVolume(0.3f);
+
         // ask for new game or saved game
         System.out.println("Enter " + Ansi.ansi().fgBrightGreen().a("[New]").reset() + " for new game or "
                 + Ansi.ansi().fgBlue().a("[Save]").reset() + " to load saved game:");
@@ -84,6 +87,8 @@ public class GameLogic {
                     player.displayInventory();
                     System.out.println("Enter to continue..");
                     scanner.nextLine();
+                } else if (userInput.equals("music")) {
+                    handleMusicControls(scanner);
                 } else {
                     Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
                             Ansi.Color.RED);
@@ -143,4 +148,20 @@ public class GameLogic {
         }
     }
 
+    private void handleMusicControls(Scanner scanner) {
+        System.out.println("What would you like to do with the background music? (start/stop/volume)\n ");
+        String musicCommand = scanner.nextLine();
+
+        if (musicCommand.equalsIgnoreCase("start")) {
+            Music.playSound("/src/main/resources/ShumbaTest.wav");
+        } else if (musicCommand.equalsIgnoreCase("stop")) {
+            Music.stopBackgroundMusic();
+        } else if (musicCommand.equalsIgnoreCase("volume")) {
+            System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
+            float volume = Float.parseFloat(scanner.nextLine());
+            Music.setVolume(volume);
+        } else {
+            System.out.println("Invalid music command.");
+        }
+    }
 }
