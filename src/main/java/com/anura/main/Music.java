@@ -9,7 +9,7 @@ import java.util.Objects;
 class Music {
 
     private static Clip backgroundClip;
-    private static Float volume = 1.0f; // Default volume
+    private static Float volume = 1.0f; // Default max volume min is 0.0/stop
 
     public static synchronized void playSound(final String url) {
         new Thread(new Runnable() {
