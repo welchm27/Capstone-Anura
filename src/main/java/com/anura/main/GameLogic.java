@@ -27,7 +27,8 @@ public class GameLogic {
 //        Helper.printHelp("SplashPage.txt", 28, 31);
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
-        Music.playSound("/src/main/resources/ShumbaTest.wav");
+        //Background music starts here
+        Music.playBGMusic("/src/main/resources/ShumbaTest.wav");
         Music.setVolume(0.3f);
 
         // ask for new game or saved game
@@ -120,6 +121,15 @@ public class GameLogic {
                 scanner.nextLine();
             }else {
                 player.move(moveInput[1].toLowerCase(), mapData);
+                //Sound effect (FX) music starts here
+                Music.playFX("/src/main/resources/Good.wav"); // Play the sound effect
+                try {
+                    Thread.sleep(990); // Wait for the sound effect to finish playing
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
+                Music.setVolume(0.3f); // Set background music volume
             }
         }
 
@@ -184,7 +194,7 @@ public class GameLogic {
         String musicCommand = scanner.nextLine();
 
         if (musicCommand.equalsIgnoreCase("start")) {
-            Music.playSound("/src/main/resources/ShumbaTest.wav");
+            Music.playBGMusic("/src/main/resources/ShumbaTest.wav");
         } else if (musicCommand.equalsIgnoreCase("stop")) {
             Music.stopBackgroundMusic();
         } else if (musicCommand.equalsIgnoreCase("volume")) {
