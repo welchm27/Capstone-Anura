@@ -9,6 +9,7 @@ import org.fusesource.jansi.Ansi;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GameLogic {
@@ -26,7 +27,8 @@ public class GameLogic {
 //        Helper.printHelp("SplashPage.txt", 28, 31);
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
-        Music.playSound("/src/main/resources/ShumbaTest.wav");
+        //Background music starts here
+        Music.playBGMusic("/src/main/resources/ShumbaTest.wav");
         Music.setVolume(0.3f);
 
         // ask for new game or saved game
@@ -87,8 +89,6 @@ public class GameLogic {
                     Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
                 } else if (userInput.equals("inventory")) {
                     player.displayInventory();
-                    System.out.println("Enter to continue..");
-                    scanner.nextLine();
                 } else if (userInput.equals("music")) {
                     handleMusicControls(scanner);
                 } else {
@@ -111,8 +111,27 @@ public class GameLogic {
                 }else {
                     System.out.println("Please provided an item name after 'get'.");
                 }
-            } else {
+            } else if(userInput.startsWith("drop")) {
+                String[] inputParts = userInput.split(" ", 2);
+                String itemName = inputParts[1];
+                drop(player, itemName, mapData);
+            }  else if(userInput.toLowerCase().startsWith("talk")) {
+                String[] inputParts = userInput.split(" ");
+                String npcName = inputParts[1];
+                player.talk(npcName);
+                System.out.println("Enter to continue...");
+                scanner.nextLine();
+            }else {
                 player.move(moveInput[1].toLowerCase(), mapData);
+                //Sound effect (FX) music starts here
+                Music.playFX("/src/main/resources/Good.wav"); // Play the sound effect
+                try {
+                    Thread.sleep(990); // Wait for the sound effect to finish playing
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
+                Music.setVolume(0.3f); // Set background music volume
             }
         }
 
@@ -150,12 +169,34 @@ public class GameLogic {
         }
     }
 
+    public void drop(Player player, String itemName, JsonObject mapData) {
+        itemName = itemName.toLowerCase();
+        JsonObject locationData = mapData.get(player.getCurrentLocation()).getAsJsonObject();
+        JsonArray newItems = locationData.getAsJsonArray("item");
+        if (newItems == null) {
+            newItems = new JsonArray();
+            locationData.add("item", newItems); // Set the new JsonArray in the locationData
+        }
+        boolean itemFound = false;
+        Map<String, Integer> inventory = player.getInventory();
+        if (!inventory.containsKey(itemName)) {
+            System.out.println("You do not have this item in inventory");
+        }else {
+            newItems.add(itemName);
+            inventory.remove(itemName);
+            itemFound = true;
+        }
+        if(itemFound){
+            locationData.add("item", newItems);
+        }
+    }
+
     private void handleMusicControls(Scanner scanner) {
         System.out.println("What would you like to do with the background music? (start/stop/volume)\n ");
         String musicCommand = scanner.nextLine();
 
         if (musicCommand.equalsIgnoreCase("start")) {
-            Music.playSound("/src/main/resources/ShumbaTest.wav");
+            Music.playBGMusic("/src/main/resources/ShumbaTest.wav");
         } else if (musicCommand.equalsIgnoreCase("stop")) {
             Music.stopBackgroundMusic();
         } else if (musicCommand.equalsIgnoreCase("volume")) {

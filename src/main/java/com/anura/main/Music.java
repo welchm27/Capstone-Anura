@@ -11,7 +11,7 @@ class Music {
     private static Clip backgroundClip;
     private static Float volume = 1.0f; // Default max volume min is 0.0/stop
 
-    public static synchronized void playSound(final String url) {
+    public static synchronized void playBGMusic(final String url) {
         new Thread(new Runnable() {
             public void run() {
                 try {
@@ -22,6 +22,24 @@ class Music {
                     backgroundClip.open(inputStream);
                     setVolume(volume);
                     backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+                } catch (Exception e) {
+                    System.err.println(e.getMessage());
+                }
+            }
+        }).start();
+    }
+
+    public static synchronized void playFX(final String url) {
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    stopBackgroundMusic();
+                    backgroundClip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                            Objects.requireNonNull(GameLogic.class.getResourceAsStream("/Good.wav")));
+                    backgroundClip.open(inputStream);
+                    setVolume(volume);
+                    backgroundClip.start();
                 } catch (Exception e) {
                     System.err.println(e.getMessage());
                 }

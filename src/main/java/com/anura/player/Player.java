@@ -65,6 +65,13 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
+    public void talk(String npc){
+        NPC character = new NPC(npc);
+        String dialog = character.getDialog();
+
+        System.out.println(dialog);
+    }
+
     public void look(String itemType) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the " + itemType + " you want to look at: ");
@@ -78,7 +85,7 @@ public class Player extends Character {
 
     public void displayInventory() {
         System.out.println("╔════════════════════╗");
-        System.out.println("║       Backpack       ║");
+        System.out.println("║       INVENTORY      ║");
         System.out.println("╟──────────────────────╢");
 
         for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
