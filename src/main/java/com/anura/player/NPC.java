@@ -1,5 +1,6 @@
 package com.anura.player;
 
+import com.anura.main.Helper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -15,29 +16,25 @@ public class NPC {
 
     public NPC(String npc) {
         this.npc = npc;
-        this.name = "src/main/resources/Character.json";
+        this.name = "Character.json";
         this.dialog = readDialogFromJsonFile();
     }
 
 
     private String[] readDialogFromJsonFile(){
-        try {
-            Gson gson = new Gson();
-            InputStream inputStream = new FileInputStream(name);
-            JsonObject jsonObject = gson.fromJson(new InputStreamReader(inputStream), JsonObject.class);
+        Gson gson = new Gson();
+//            InputStream inputStream = new FileInputStream(name);
+        String content = Helper.readFromResourceFile(name);
+        JsonObject jsonObject = gson.fromJson(content, JsonObject.class);
 
-            JsonArray dialogArray =  jsonObject.get(npc).getAsJsonObject().getAsJsonArray("dialog");
-            String[] dialogOptions = new String[dialogArray.size()];
-            for(int i = 0; i < dialogArray.size(); i++){
-                dialogOptions[i] = dialogArray.get(i).getAsString();
-            }
-
-            return dialogOptions;
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        JsonArray dialogArray =  jsonObject.get(npc).getAsJsonObject().getAsJsonArray("dialog");
+        String[] dialogOptions = new String[dialogArray.size()];
+        for(int i = 0; i < dialogArray.size(); i++){
+            dialogOptions[i] = dialogArray.get(i).getAsString();
         }
-        return new String[0];
+
+        return dialogOptions;
+
     }
 
 
