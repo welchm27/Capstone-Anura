@@ -2,20 +2,14 @@ package com.anura.player;
 
 import com.anura.GameObject;
 import com.anura.main.Helper;
-import com.anura.readjsondata.*;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.anura.readjsondata.EvolutionData;
 import com.google.gson.JsonObject;
 import org.fusesource.jansi.Ansi;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashMap;
-import java.util.Scanner;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Player extends Character {
     // Additional attributes specific to the player
@@ -65,11 +59,19 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
-    public void talk(String npc){
-        NPC character = new NPC(npc);
-        String dialog = character.getDialog();
+    public void talk(String npcName){
+        NPC character = new NPC(npcName);
+        String[] dialogOptions = character.getDialog();
 
-        System.out.println(dialog);
+        if (dialogOptions.length > 0){
+            Random random = new Random();
+            int randomIndex = random.nextInt(dialogOptions.length);
+            String selectedDialog = dialogOptions[randomIndex];
+
+            System.out.println(selectedDialog);
+        }else{
+            System.out.println("The character can't talk!");
+        }
     }
 
     public void look(String itemType) {
@@ -84,9 +86,9 @@ public class Player extends Character {
     }
 
     public void displayInventory() {
-        System.out.println("╔════════════════════╗");
-        System.out.println("║       INVENTORY      ║");
-        System.out.println("╟──────────────────────╢");
+        System.out.println("|----------------------|");
+        System.out.println("|       INVENTORY      |");
+        System.out.println("|----------------------|");
 
         for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
             String itemName = entry.getKey();
@@ -94,20 +96,8 @@ public class Player extends Character {
             System.out.printf("║ %-18s %-3d║%n", itemName, itemCount);
         }
 
-        System.out.println("╚════════════════════╝");
+        System.out.println("|--------------------|");
     }
-
-//    private JsonArray initializePlayer() {
-//        try {
-//            Gson gson = new Gson();
-////            FileReader foodInv = new FileReader("src/main/resources/Food.json");
-//            String foodInv = Helper.readFromResourceFile("Food.json");
-//            return gson.fromJson(foodInv, JsonArray.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     // Method to start the game
     public void startGame() {
