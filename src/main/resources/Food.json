@@ -1,0 +1,32 @@
+{
+  "algae": {
+    "HP": "10",
+    "desc": "You see algae. It doesn't look very delicious, but it sure is easy to get!",
+    "location": "pond"
+  },
+  "fish eggs": {
+    "HP": "30",
+    "desc": "You found fish eggs! They would make a very nutritious snack!",
+    "location": "stream"
+  },
+  "frogs": {
+    "HP": "25",
+    "desc": "You see a group of strange frog species. They are small as tadpoles, but shaped like frogs.. Hmm..",
+    "location": "grasslands"
+  },
+  "insects": {
+    "HP": "20",
+    "desc": "You have found some tasty looking small insects! Are they as tasty as they look?",
+    "location": ["pond", "swamp", "wetland"]
+  },
+  "plastic cap": {
+    "HP": "-30",
+    "desc": "You see a big bright red object. You've never seen anything like it. Is it edible?",
+    "location": "lake"
+  },
+  "veggies": {
+    "HP": "25",
+    "desc": "You found chunks of a leafy green plant. It doesn't look like a plant you've seen yet. Is it edible?",
+    "location": "empty plot"
+  }
+}

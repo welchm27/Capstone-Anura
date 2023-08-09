@@ -1,6 +1,11 @@
 plugins {
-    id 'com.github.johnrengelman.shadow' version "$shadowVersion"
+    id 'com.github.johnrengelman.shadow' version "8.1.1"
     id 'application'
+    id 'java'
+}
+
+shadowJar {
+    mergeServiceFiles()
 }
 
 java {
@@ -23,6 +28,13 @@ repositories {
 }
 
 dependencies {
+
+//    apply plugin: 'idea'
+    implementation 'org.fusesource.jansi:jansi:2.4.0'
+
+    implementation 'org.jline:jline:3.23.0'
+
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     implementation fileTree(dir: 'libs', include: '*.jar')
 
