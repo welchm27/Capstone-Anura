@@ -112,7 +112,13 @@ public class GameLogic {
                 String[] inputParts = userInput.split(" ", 2);
                 String itemName = inputParts[1];
                 drop(player, itemName, mapData);
-            } else {
+            }  else if(userInput.toLowerCase().startsWith("talk")) {
+                String[] inputParts = userInput.split(" ");
+                String npcName = inputParts[1];
+                player.talk(npcName);
+                System.out.println("Enter to continue...");
+                scanner.nextLine();
+            }else {
                 player.move(moveInput[1].toLowerCase(), mapData);
             }
         }
