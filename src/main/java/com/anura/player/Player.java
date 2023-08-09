@@ -65,6 +65,13 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
+    public void talk(String npc){
+        NPC character = new NPC(npc);
+        String dialog = character.getDialog();
+
+        System.out.println(dialog);
+    }
+
     public void look(String itemType) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the " + itemType + " you want to look at: ");
