@@ -29,7 +29,7 @@ public class GameLogic {
 
         //Background music starts here
         Music.playBGMusic("/src/main/resources/ShumbaTest.wav");
-        Music.setVolume(0.3f);
+        Music.setBGMVolume(0.3f);
 
         // ask for new game or saved game
         System.out.println("Enter " + Ansi.ansi().fgBrightGreen().a("[New]").reset() + " for new game or "
@@ -89,6 +89,8 @@ public class GameLogic {
                     player.displayInventory();
                 } else if (userInput.equals("music")) {
                     handleMusicControls(scanner);
+                }else if (userInput.equals("fx")) {
+                    handleFXControls(scanner);
                 } else {
                     Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
                             Ansi.Color.RED);
@@ -129,7 +131,7 @@ public class GameLogic {
                     e.printStackTrace();
                 }
                 Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
-                Music.setVolume(0.3f); // Set background music volume
+                Music.setBGMVolume(0.3f); // Set background music volume
             }
         }
 
@@ -200,7 +202,21 @@ public class GameLogic {
         } else if (musicCommand.equalsIgnoreCase("volume")) {
             System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
             float volume = Float.parseFloat(scanner.nextLine());
-            Music.setVolume(volume);
+            Music.setBGMVolume(volume);
+        } else {
+            System.out.println("Invalid music command.");
+        }
+    }
+
+    private void handleFXControls(Scanner scanner) {
+        System.out.println("What would you like to do with the sound effects? (off/volume)\n ");
+        String musicCommand = scanner.nextLine();
+        if (musicCommand.equalsIgnoreCase("off")) {
+            Music.stopFX(); // Stop sound effects
+        } else if (musicCommand.equalsIgnoreCase("volume")) {
+            System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
+            float volume = Float.parseFloat(scanner.nextLine());
+            Music.setFXVolume(volume); // Set sound effects volume
         } else {
             System.out.println("Invalid music command.");
         }
