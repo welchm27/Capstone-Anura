@@ -124,14 +124,14 @@ public class GameLogic {
             }else {
                 player.move(moveInput[1].toLowerCase(), mapData);
                 //Sound effect (FX) music starts here
-                Music.playFX("/src/main/resources/Good.wav"); // Play the sound effect
-                try {
-                    Thread.sleep(990); // Wait for the sound effect to finish playing
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
-                Music.setBGMVolume(0.3f); // Set background music volume
+//                Music.playFX("/src/main/resources/Good.wav"); // Play the sound effect
+//                try {
+////                    Thread.sleep(990); // Wait for the sound effect to finish playing
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
+//                Music.setBGMVolume(0.3f); // Set background music volume
             }
         }
 
