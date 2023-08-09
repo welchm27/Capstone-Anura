@@ -78,7 +78,7 @@ public class Player extends Character {
 
     public void displayInventory() {
         System.out.println("╔════════════════════╗");
-        System.out.println("║       Backpack       ║");
+        System.out.println("║       INVENTORY      ║");
         System.out.println("╟──────────────────────╢");
 
         for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
