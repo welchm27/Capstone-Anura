@@ -69,6 +69,8 @@ public class GameLogic {
                     + ". Here is the info of this location:");
             Helper.printColor(updatedLocation.toString(), Ansi.Color.MAGENTA);
 
+            player.displayInventory();
+
             // move in the map
             System.out.println("\n\nPlease provide a direction to go >");
             userInput = scanner.nextLine().toLowerCase();  // Prompt the player for their next move

@@ -132,7 +132,6 @@ public class Player extends Character {
 
     // Getter and setter methods
 
-
     public String getCurrentLocation() {
         return currentLocation;
     }
