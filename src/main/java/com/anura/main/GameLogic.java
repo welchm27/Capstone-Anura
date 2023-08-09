@@ -9,6 +9,7 @@ import org.fusesource.jansi.Ansi;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class GameLogic {
@@ -85,8 +86,6 @@ public class GameLogic {
                     Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
                 } else if (userInput.equals("inventory")) {
                     player.displayInventory();
-                    System.out.println("Enter to continue..");
-                    scanner.nextLine();
                 } else if (userInput.equals("music")) {
                     handleMusicControls(scanner);
                 } else {
@@ -109,6 +108,10 @@ public class GameLogic {
                 }else {
                     System.out.println("Please provided an item name after 'get'.");
                 }
+            } else if(userInput.startsWith("drop")) {
+                String[] inputParts = userInput.split(" ", 2);
+                String itemName = inputParts[1];
+                drop(player, itemName, mapData);
             } else {
                 player.move(moveInput[1].toLowerCase(), mapData);
             }
@@ -145,6 +148,28 @@ public class GameLogic {
             }
         } else {
             System.out.println("There are no items to pick up here.");
+        }
+    }
+
+    public void drop(Player player, String itemName, JsonObject mapData) {
+        itemName = itemName.toLowerCase();
+        JsonObject locationData = mapData.get(player.getCurrentLocation()).getAsJsonObject();
+        JsonArray newItems = locationData.getAsJsonArray("item");
+        if (newItems == null) {
+            newItems = new JsonArray();
+            locationData.add("item", newItems); // Set the new JsonArray in the locationData
+        }
+        boolean itemFound = false;
+        Map<String, Integer> inventory = player.getInventory();
+        if (!inventory.containsKey(itemName)) {
+            System.out.println("You do not have this item in inventory");
+        }else {
+            newItems.add(itemName);
+            inventory.remove(itemName);
+            itemFound = true;
+        }
+        if(itemFound){
+            locationData.add("item", newItems);
         }
     }
 
