@@ -32,24 +32,24 @@ public class GameObject {
     }
 
     private String getJsonFilePath(String objectType) {
-        String basePath = "src/main/resources/";
+        // String basePath = "src/main/resources/";
         String itemName;
 
-        switch (objectType) {
+        switch (objectType.toLowerCase()) {
             case "item":
-                itemName = "item.json";
+                itemName = "Item.json";
                 break;
             case "location":
-                itemName = "Location.json";
+                itemName = "location.json";
                 break;
-            case "npc":
-                itemName = "npcs.json";
+            case "food":
+                itemName = "food.json";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid object type: " + objectType);
         }
 
-        return basePath + itemName;
+        return itemName;
     }
 
     // Getter for the description
