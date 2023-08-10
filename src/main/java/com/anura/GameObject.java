@@ -1,15 +1,9 @@
 package com.anura;
 
-import com.anura.main.Helper;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.anura.*;
-import org.fusesource.jansi.Ansi;
 
 import java.io.FileReader;
-import java.util.Scanner;
 
 public class GameObject {
     // fields and attributes
