@@ -1,9 +1,8 @@
 package com.anura;
 
+import com.anura.main.Helper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import java.io.FileReader;
 
 public class GameObject {
     // fields and attributes
@@ -20,8 +19,8 @@ public class GameObject {
     private String readDescriptionFromJsonFile() {
         try {
             Gson gson = new Gson();
-            FileReader fileReader = new FileReader(getJsonFilePath(name));
-            JsonObject jsonObject = gson.fromJson(fileReader, JsonObject.class);
+            String contentFile = Helper.readFromResourceFile(getJsonFilePath(name));
+            JsonObject jsonObject = gson.fromJson(contentFile, JsonObject.class);
 
             return jsonObject.get(item).getAsJsonObject().get("desc").getAsString();
 
@@ -32,24 +31,24 @@ public class GameObject {
     }
 
     private String getJsonFilePath(String objectType) {
-        String basePath = "src/main/resources/";
+        // String basePath = "src/main/resources/";
         String itemName;
 
-        switch (objectType) {
+        switch (objectType.toLowerCase()) {
             case "item":
-                itemName = "item.json";
+                itemName = "Item.json";
                 break;
             case "location":
-                itemName = "Location.json";
+                itemName = "location.json";
                 break;
-            case "npc":
-                itemName = "npcs.json";
+            case "food":
+                itemName = "food.json";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid object type: " + objectType);
         }
 
-        return basePath + itemName;
+        return itemName;
     }
 
     // Getter for the description
