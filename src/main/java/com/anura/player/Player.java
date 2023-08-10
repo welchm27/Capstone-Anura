@@ -82,7 +82,7 @@ public class Player extends Character {
 
         System.out.println("Description: " + description);
     }
-
+    // Display's player's inventory
     public void displayInventory() {
         System.out.println("\n\n========================");
         System.out.println("|       INVENTORY       |");
