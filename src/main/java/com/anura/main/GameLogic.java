@@ -24,13 +24,12 @@ public class GameLogic {
         Scanner scanner = new Scanner(System.in);
 
         // Welcome Banner & user instructions
-//        Helper.printSplashPage("SplashPage.txt");
-//        Helper.printHelp("SplashPage.txt", 28, 31);
+        System.out.println(Ansi.ansi().eraseScreen());
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
         //Background music starts here
-//        Music.playBGMusic("random String");
-//        Music.setBGMVolume(0.3f);
+        Music.playBGMusic("random String");
+        Music.setBGMVolume(0.3f);
 
         // ask for new game or saved game
         System.out.println("Enter " + Ansi.ansi().fgBrightGreen().a("[New]").reset() + " for new game or "
