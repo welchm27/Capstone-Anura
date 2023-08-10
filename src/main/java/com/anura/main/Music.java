@@ -47,14 +47,14 @@ class Music {
         }
     }
 
-    public static synchronized void playFX(final String url) {
+    public static synchronized void playFX(String fileName) {
         new Thread(new Runnable() {
             public void run() {
                 try {
                     stopFX();
                     FXClip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Objects.requireNonNull(GameLogic.class.getResourceAsStream("/Good.wav")));
+                            new BufferedInputStream(GameLogic.class.getResourceAsStream("/" + fileName)));
                     FXClip.open(inputStream);
                     // Move this line here
                     setFXVolume(FXVolume);
