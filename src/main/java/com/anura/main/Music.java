@@ -4,6 +4,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import java.io.BufferedInputStream;
 import java.util.Objects;
 
 class Music {
@@ -13,14 +14,14 @@ class Music {
     private static Clip FXClip;
     private static Float FXVolume = 1.0f;
 
-    public static synchronized void playBGMusic(final String url) {
+    public static synchronized void playBGMusic(String fileName) {
         new Thread(new Runnable() {
             public void run() {
                 try {
                     stopBackgroundMusic();
                     backgroundClip = AudioSystem.getClip();
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-                            Objects.requireNonNull(GameLogic.class.getResourceAsStream("/ShumbaTest.wav")));
+                            new BufferedInputStream(GameLogic.class.getResourceAsStream("/" + fileName)));
                     backgroundClip.open(inputStream);
                     setBGMVolume(volume);
                     backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -34,7 +35,6 @@ class Music {
     public static void stopBackgroundMusic() {
         if (backgroundClip != null && backgroundClip.isRunning()) {
             backgroundClip.stop();
-            backgroundClip.close();
         }
     }
 
