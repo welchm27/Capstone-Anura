@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -65,11 +66,19 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
-    public void talk(String npc){
-        NPC character = new NPC(npc);
-        String dialog = character.getDialog();
+    public void talk(String npcName){
+        NPC character = new NPC(npcName);
+        String[] dialogOptions = character.getDialog();
 
-        System.out.println(dialog);
+        if (dialogOptions.length > 0){
+            Random random = new Random();
+            int randomIndex = random.nextInt(dialogOptions.length);
+            String selectedDialog = dialogOptions[randomIndex];
+
+            System.out.println(selectedDialog);
+        }else{
+            System.out.println("The character can't talk!");
+        }
     }
 
     public void look(String itemType) {
@@ -96,18 +105,6 @@ public class Player extends Character {
 
         System.out.println("_________________________");
     }
-
-//    private JsonArray initializePlayer() {
-//        try {
-//            Gson gson = new Gson();
-////            FileReader foodInv = new FileReader("src/main/resources/Food.json");
-//            String foodInv = Helper.readFromResourceFile("Food.json");
-//            return gson.fromJson(foodInv, JsonArray.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     // Method to start the game
     public void startGame() {
