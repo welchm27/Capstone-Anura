@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import org.fusesource.jansi.Ansi;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 
 public class GameMap {
@@ -28,7 +27,7 @@ public class GameMap {
     public static JsonObject getMap(){
         Gson gson = new Gson();
 
-        String fileReader = Helper.readFromResourceFile("Location.json");
+        String fileReader = Helper.readFromResourceFile("location.json");
         return gson.fromJson(fileReader, JsonObject.class);
     }
 

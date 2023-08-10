@@ -1,9 +1,8 @@
 package com.anura;
 
+import com.anura.main.Helper;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import java.io.FileReader;
 
 public class GameObject {
     // fields and attributes
@@ -20,8 +19,8 @@ public class GameObject {
     private String readDescriptionFromJsonFile() {
         try {
             Gson gson = new Gson();
-            FileReader fileReader = new FileReader(getJsonFilePath(name));
-            JsonObject jsonObject = gson.fromJson(fileReader, JsonObject.class);
+            String contentFile = Helper.readFromResourceFile(getJsonFilePath(name));
+            JsonObject jsonObject = gson.fromJson(contentFile, JsonObject.class);
 
             return jsonObject.get(item).getAsJsonObject().get("desc").getAsString();
 
