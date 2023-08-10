@@ -84,17 +84,17 @@ public class Player extends Character {
     }
 
     public void displayInventory() {
-        System.out.println("╔════════════════════╗");
-        System.out.println("║       INVENTORY      ║");
-        System.out.println("╟──────────────────────╢");
+        System.out.println("\n\n========================");
+        System.out.println("|       INVENTORY       |");
+        System.out.println("-------------------------");
 
         for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
             String itemName = entry.getKey();
             int itemCount = entry.getValue();
-            System.out.printf("║ %-18s %-3d║%n", itemName, itemCount);
+            System.out.printf("| %-18s %-3d|%n", itemName, itemCount);
         }
 
-        System.out.println("╚════════════════════╝");
+        System.out.println("_________________________");
     }
 
 //    private JsonArray initializePlayer() {

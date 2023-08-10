@@ -9,8 +9,7 @@ import org.fusesource.jansi.Ansi;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class GameLogic {
 
@@ -20,6 +19,8 @@ public class GameLogic {
 
         Player player;
         String[] stat;
+        HashSet<String> visitedLocations = new HashSet<>();
+
         Scanner scanner = new Scanner(System.in);
 
         // Welcome Banner & user instructions
@@ -28,8 +29,8 @@ public class GameLogic {
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
         //Background music starts here
-        Music.playBGMusic("/src/main/resources/ShumbaTest.wav");
-        Music.setBGMVolume(0.3f);
+//        Music.playBGMusic("random String");
+//        Music.setBGMVolume(0.3f);
 
         // ask for new game or saved game
         System.out.println("Enter " + Ansi.ansi().fgBrightGreen().a("[New]").reset() + " for new game or "
@@ -59,13 +60,19 @@ public class GameLogic {
 
         while (!userInput.equals("quit")) {
 
+            // update current location
             String currentLocation = player.getCurrentLocation();
             JsonObject updatedLocation = mapData.get(currentLocation).getAsJsonObject();
+
+            // add current location to visited locations list
+            visitedLocations.add(currentLocation);
 
             // clear screen
             System.out.print(Ansi.ansi().eraseScreen());
             System.out.print(Ansi.ansi().cursor(5, 0));
-            Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
+            // print map of visited locations
+            GameMap.printLocations(visitedLocations);
+            System.out.println(Ansi.ansi().cursor(28, 0));
 
             System.out.println("\nYou are at " + Ansi.ansi().fgBrightGreen().a(currentLocation).reset()
                     + ". Here is the info of this location:");
@@ -126,14 +133,14 @@ public class GameLogic {
             }else {
                 player.move(moveInput[1].toLowerCase(), mapData);
                 //Sound effect (FX) music starts here
-                Music.playFX("/src/main/resources/Good.wav"); // Play the sound effect
-                try {
-                    Thread.sleep(990); // Wait for the sound effect to finish playing
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
-                Music.setBGMVolume(0.3f); // Set background music volume
+//                Music.playFX("/src/main/resources/Good.wav"); // Play the sound effect
+//                try {
+//                    Thread.sleep(990); // Wait for the sound effect to finish playing
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                Music.playBGMusic("/src/main/resources/ShumbaTest.wav"); // Resume background music
+//                Music.setBGMVolume(0.3f); // Set background music volume
             }
         }
 
