@@ -211,11 +211,14 @@ public class GameLogic {
     }
 
     private void handleFXControls(Scanner scanner) {
-        System.out.println("What would you like to do with the sound effects? (off/volume)\n ");
+        System.out.println("What would you like to do with the sound effects? (on/off/volume)\n ");
         String musicCommand = scanner.nextLine();
-        if (musicCommand.equalsIgnoreCase("off")) {
-            Music.stopFX(); // Stop sound effects
-        } else if (musicCommand.equalsIgnoreCase("volume")) {
+        if (musicCommand.equalsIgnoreCase("on")) {
+            Music.setFXVolume(0.5f); // Turn on sound effects
+        } else if(musicCommand.equalsIgnoreCase("off")) {
+            Music.setFXVolume(0.0f); // Turn off sound effects
+        }
+        else if (musicCommand.equalsIgnoreCase("volume")) {
             System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
             float volume = Float.parseFloat(scanner.nextLine());
             Music.setFXVolume(volume); // Set sound effects volume
