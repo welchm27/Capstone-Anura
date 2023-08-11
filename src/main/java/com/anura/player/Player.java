@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -65,6 +66,21 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
+    public void talk(String npcName){
+        NPC character = new NPC(npcName);
+        String[] dialogOptions = character.getDialog();
+
+        if (dialogOptions.length > 0){
+            Random random = new Random();
+            int randomIndex = random.nextInt(dialogOptions.length);
+            String selectedDialog = dialogOptions[randomIndex];
+
+            System.out.println(selectedDialog);
+        }else{
+            System.out.println("The character can't talk!");
+        }
+    }
+
     public void look(String itemType) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the " + itemType + " you want to look at: ");
@@ -75,32 +91,20 @@ public class Player extends Character {
 
         System.out.println("Description: " + description);
     }
-
+    // Display's player's inventory
     public void displayInventory() {
-        System.out.println("╔════════════════════╗");
-        System.out.println("║       Backpack       ║");
-        System.out.println("╟──────────────────────╢");
+        System.out.println("\n\n========================");
+        System.out.println("|       INVENTORY       |");
+        System.out.println("-------------------------");
 
         for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
             String itemName = entry.getKey();
             int itemCount = entry.getValue();
-            System.out.printf("║ %-18s %-3d║%n", itemName, itemCount);
+            System.out.printf("| %-18s %-3d|%n", itemName, itemCount);
         }
 
-        System.out.println("╚════════════════════╝");
+        System.out.println("_________________________");
     }
-
-//    private JsonArray initializePlayer() {
-//        try {
-//            Gson gson = new Gson();
-////            FileReader foodInv = new FileReader("src/main/resources/Food.json");
-//            String foodInv = Helper.readFromResourceFile("Food.json");
-//            return gson.fromJson(foodInv, JsonArray.class);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
     // Method to start the game
     public void startGame() {
@@ -131,7 +135,6 @@ public class Player extends Character {
     }
 
     // Getter and setter methods
-
 
     public String getCurrentLocation() {
         return currentLocation;

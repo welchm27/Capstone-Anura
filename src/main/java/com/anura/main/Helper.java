@@ -1,14 +1,11 @@
 package com.anura.main;
 
 import org.fusesource.jansi.Ansi;
-import org.fusesource.jansi.AnsiConsole;
 
-import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Helper {
 
@@ -58,10 +55,14 @@ public class Helper {
         printColor(fileContent, Ansi.Color.BLACK);
     }
 
+    // print String in color at cursor location (x, y)
+    public static void printColor(String string, Ansi.Color color, int x, int y) {
+        System.out.print(Ansi.ansi().cursor(y, x).fg(color).a(string + "\n").reset());
+    }
+
     // print String in bright color
     public static void printColor(String string, Ansi.Color color) {
-        Ansi ansi = new Ansi();
-        System.out.print(ansi.fgBright(color).a(string).reset());
+        System.out.print(Ansi.ansi().fgBright(color).a(string).reset());
     }
 
     public static String readFromResourceFile(String fileName) {

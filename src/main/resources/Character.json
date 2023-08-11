@@ -1,42 +1,92 @@
 {
-  "wisdom toad": {
+  "toad": {
     "location": "trail",
-    "desc": "Your path is blocked by a big, fat toad eating a sandwich.  He offers you a backpack, saying it's convenient."
+    "desc": "Your path is blocked by a big, fat toad eating a sandwich.  He offers you a backpack, saying it's convenient.",
+    "dialog": [
+      "This backpack might be helpful if you find anything that you can't eat.",
+      "You should try using the leaf.  I don't think any predators could see you if you cover up with that bad boy.",
+      "I got a gym membership, but I think I'm just lying to myself..."
+    ]
   },
   "triton": {
     "location": "empty plot",
-    "desc": "You see a tire-looking turtle.  Don't worry about him eating you, he's gluten-free and frogs make him feel bloated."
+    "desc": "You see a tire-looking turtle.  Don't worry about him eating you, he's gluten-free and frogs make him feel bloated.",
+    "dialog": [
+      "I can't stress enough how much I genuinely don't want to eat you.  You're slimy and gross.",
+      "People think I'm always late because I'm a turtle.  It's true, but I still don't appreciate it.",
+      "You've seen a painted turtle, but have you ever seen a turtle paint?"
+    ]
   },
   "buckley": {
     "location": "wetland",
-    "desc": "You see a majestic stag sloshing around in the mud.  He looks lost..."
+    "desc": "You see a majestic stag sloshing around in the mud.  He looks lost...",
+    "dialog": [
+      "Oh thank goodness, could you go get help for me?  I'm lost and I'm pretty sure you couldn't get me out of this mud",
+      "My antlers are coming in pretty well this year, but they ITCH SO BADLY!",
+      "If you see any doe, could you tell them I'm over here?"
+    ]
   },
   "sting": {
     "location": "grasslands",
-    "desc": "You encounter a sneaky scorpion.  This story sounds familiar, but you can't put your webbed finger on it."
+    "desc": "You encounter a sneaky scorpion.  This story sounds familiar, but you can't put your webbed finger on it.",
+    "dialog": [
+      "Look, I'll be honest... I'm just here to eat smaller frogs.  They're delicious.",
+      "You're definitely going to have to jump over that log to get to the stream.",
+      "I feel like I should sting you, but maybe I'm just hangry..."
+    ]
   },
   "dawei": {
     "location": "pond",
-    "desc": "There's another tadpole over there.  They eye you off and say you look ridiculously pink.  How rude!"
+    "desc": "There's another tadpole over there.  They eye you off.  How rude!",
+    "dialog": [
+      "I don't know how you expect me to take you seriously when you're so pink.",
+      "Ew is your tongue...purple?  Are you sick or something?",
+      "Don't expect to find a mate looking like a all sunburned like that."
+    ]
   },
   "tallulah": {
     "location": "swamp",
-    "desc": "You see a glorious giraffe, queen among herbivores.  She tells you that the lake is off to the east, but you can't get there from here."
+    "desc": "You see a glorious giraffe, queen among herbivores.",
+    "dialog": [
+      "Hey there, shorty!  It looks like there's a lake to the East, but you can't get there from here.",
+      "My blood has to get from my heart to my brain just like yours.  Isn't it crazy that I don't pass out randomly?",
+      "Everyone asks me how tall I am, but nobody asks me how tall I FEEL..."
+    ]
   },
   "violet": {
     "location": "dock",
-    "desc": "You witness the move beautiful frog in the world.  It's love at first sight and you know you're meant for each other."
+    "desc": "You witness the move beautiful frog in the world.  It's love at first sight and you know you're meant for each other.",
+    "dialog": [
+      "I know this sounds crazy, but don't you think we're a perfect match?  You're a frog... I'm a frog...it makes sense!",
+      "Were all the regular, green frogs mean to you too?",
+      "Oh is your tongue PURPLE?  That's so cool!!!"
+    ]
   },
   "destiny": {
     "location": "dock",
-    "desc": "You croak at a local frog and she doesn't even give you the time of day.  You're used to it, but it still hurts a little."
+    "desc": "You croak at a local frog and she doesn't even give you the time of day.  You're used to it, but it still hurts a little.",
+    "dialog": [
+      "I don't think we'd be a good match.  We're both aquarius, but you're honestly gross.",
+      "Pink is my least favorite color.  By, like, a significant margin.",
+      "Your tongue makes you look like some gross kid's toy."
+    ]
   },
   "karen": {
     "location": "dock",
-    "desc": "You croak at her and she asks to see your manager.  You don't have one because, well, you're a frog."
+    "desc": "A generally unpleasant frog with very poor manners and a warped sense of reality.",
+    "dialog": [
+      "This is unacceptable.  I want to see your manager.",
+      "I need a frog that's pulling in at LEAST 1,000 insects a DAY!",
+      "Other frogs just don't understand me.  It's not me.  It's everyone else that's the problem."
+    ]
   },
   "trevin": {
     "location": "lake",
-    "desc": "You see a tadpole swimming in circles and crying a lot.  You COULD reach out..."
+    "desc": "You see a frog swimming in circles and crying a lot.  You COULD reach out...",
+    "dialog": [
+      "I can't seem to find the dock and some gross old toad told me that's where I can find a mate!",
+      "I'm NOT crying!  I'm just croaking a lot and it sounds like I'm sad.  I'm fine.",
+      "At this rate, I'll never find a mate!"
+    ]
   }
 }
