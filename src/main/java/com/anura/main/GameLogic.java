@@ -181,7 +181,7 @@ public class GameLogic {
         System.out.println("What would you like to do with the sound effects? (off/volume)\n ");
         String musicCommand = scanner.nextLine();
         if (musicCommand.equalsIgnoreCase("off")) {
-            Music.stopFX(); // Stop sound effects
+            Music.stopFX(); // Stop sound effects (volume = 0.0)
         } else if (musicCommand.equalsIgnoreCase("volume")) {
             System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
             float volume = Float.parseFloat(scanner.nextLine());
