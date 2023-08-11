@@ -216,7 +216,7 @@ public class GameLogic {
         if (musicCommand.equalsIgnoreCase("on")) {
             Music.setFXVolume(0.5f); // Turn on sound effects
         } else if(musicCommand.equalsIgnoreCase("off")) {
-            Music.setFXVolume(0.0f); // Turn off sound effects
+            Music.setFXVolume(0.0f); // Turn off sound effects (via volume 0.0)
         }
         else if (musicCommand.equalsIgnoreCase("volume")) {
             System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
