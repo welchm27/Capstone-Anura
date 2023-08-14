@@ -1,4 +1,4 @@
 package com.anura.readjsondata;
 
-class itemData {
+class ItemData {
 }
