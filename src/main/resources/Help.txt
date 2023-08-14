@@ -1,4 +1,4 @@
                         CONTROLS
-SWIM[DIRECTION]     WALK[DIRECTION]     JUMP[DIRECTION]
-GET[ITEM]           LOOK[LOCATION, ITEM, NPC, ENEMY]
-EAT[FOOD ITEM]      HELP         QUIT          MAP
+GO[DIRECTION]       TALK[NPC]     HIDE
+GET[ITEM]           LOOK[LOCATION, ITEM, NPC]
+HELP                QUIT          MAP
