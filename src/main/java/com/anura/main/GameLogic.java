@@ -157,6 +157,18 @@ public class GameLogic {
                     String[] inputParts = userInput.split(" ");
                     String npcName = inputParts[1];
                     player.talk(npcName);
+                    if("violet".equalsIgnoreCase(npcName)){
+                        if(player.hasItem("glass bead")){
+                            Helper.printColor("What a beautiful bead!  Is that a gift for me?", Ansi.Color.MAGENTA);
+                            System.out.println();
+                            Helper.printColor("You give violet the bead, and the two of you run off to start your life together...", Ansi.Color.GREEN);
+                            System.out.println();
+                            Helper.printColor("CONGRATULATIONS!  YOU WON!", Ansi.Color.GREEN);
+                            break;
+                        } else {
+                            Helper.printColor("Violet seems to want a gift from you to prove that you love her...", Ansi.Color.YELLOW);
+                        }
+                    }
                     System.out.println("Enter to continue...");
                     scanner.nextLine();
                 } else {
