@@ -62,6 +62,7 @@ public class GameLogic {
             // update current location
             String currentLocation = player.getCurrentLocation();
             JsonObject updatedLocation = mapData.get(currentLocation).getAsJsonObject();
+            boolean enemyPresent = updatedLocation.has("enemy");
 
             // add current location to visited locations list
             visitedLocations.add(currentLocation);
@@ -86,54 +87,84 @@ public class GameLogic {
             // Split the input into a command and an argument
             String[] moveInput = userInput.toLowerCase().split(" ", 2);
 
-            if (moveInput.length != 2) {
-                if (userInput.equals("quit")) {
-                    break;
-                } else if (userInput.equals("help")) {
-                    Helper.printFile("Help.txt", Ansi.Color.GREEN);
-                } else if (userInput.equals("map")) {
-                    Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
-                } else if (userInput.equals("inventory")) {
-                    player.displayInventory();
-                } else if (userInput.equals("music")) {
-                    handleMusicControls(scanner);
-                }else if (userInput.equals("fx")) {
-                    handleFXControls(scanner);
-                } else {
-                    Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
-                            Ansi.Color.RED);
-                }
-                System.out.println("Enter to continue..");
-                scanner.nextLine();
-            } else if (userInput.toLowerCase().startsWith("look")) {
-                String[] inputParts = userInput.split(" ");
-                String itemType = inputParts[1];
-                player.look(itemType);
-                System.out.println("Enter to continue..");
-                scanner.nextLine();
-            } else if (userInput.startsWith("get")) {
-                String[] inputParts = userInput.split(" ", 2);
-                if(inputParts.length == 2) {
-                    String itemName = inputParts[1];
-                    get(player, itemName, mapData);
-                }else {
-                    System.out.println("Please provided an item name after 'get'.");
-                }
-            } else if(userInput.startsWith("drop")) {
-                String[] inputParts = userInput.split(" ", 2);
-                String itemName = inputParts[1];
-                drop(player, itemName, mapData);
-            }  else if(userInput.toLowerCase().startsWith("talk")) {
-                String[] inputParts = userInput.split(" ");
-                String npcName = inputParts[1];
-                player.talk(npcName);
-                System.out.println("Enter to continue...");
-                scanner.nextLine();
-            }else {
-                player.move(moveInput[1].toLowerCase(), mapData);
+            if (enemyPresent) {
+                System.out.println("Any enemy is here!  You must hide or die!");
+                if (player.hasItem("leaf")) {  // Checking if the player has a leaf in the inventory
+                    System.out.println("You can use a leaf to hide! Enter 'hide' to hide or any other move to continue at your own risk.");
 
-                // Sound effect (FX) music starts here
-                Music.playFX("Good.wav"); // Play the sound effect
+                    userInput = scanner.nextLine().toLowerCase();
+
+                    if (userInput.equals("hide")) {
+                        String enemyName = updatedLocation.get("enemy").getAsString();
+                        boolean hidSuccessfully = player.hide(enemyName);
+
+                        if (hidSuccessfully) {
+                            System.out.println("You hide. It's safe to continue now...");
+                            JsonObject locationInMapData = mapData.getAsJsonObject(currentLocation);
+                            locationInMapData.remove("enemy");
+                            mapData.add(currentLocation, locationInMapData);
+                        } else {
+                            Helper.printColor("You couldn't hide in time...YOU DIED.", Ansi.Color.RED);
+                            break;
+                        }
+                    } else {
+                        Helper.printColor("You chose not to hide...YOU DIED.", Ansi.Color.RED);
+                        break;
+                    }
+                } else {
+                    Helper.printColor("There's no place to hide without the leaf...YOU DIED.", Ansi.Color.RED);
+                    break;
+                }
+            } else {
+                if (moveInput.length != 2) {
+                    if (userInput.equals("quit")) {
+                        break;
+                    } else if (userInput.equals("help")) {
+                        Helper.printFile("Help.txt", Ansi.Color.GREEN);
+                    } else if (userInput.equals("map")) {
+                        Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
+                    } else if (userInput.equals("inventory")) {
+                        player.displayInventory();
+                    } else if (userInput.equals("music")) {
+                        handleMusicControls(scanner);
+                    } else if (userInput.equals("fx")) {
+                        handleFXControls(scanner);
+                    } else {
+                        Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
+                                Ansi.Color.RED);
+                    }
+                    System.out.println("Enter to continue..");
+                    scanner.nextLine();
+                } else if (userInput.toLowerCase().startsWith("look")) {
+                    String[] inputParts = userInput.split(" ");
+                    String itemType = inputParts[1];
+                    player.look(itemType);
+                    System.out.println("Enter to continue..");
+                    scanner.nextLine();
+                } else if (userInput.startsWith("get")) {
+                    String[] inputParts = userInput.split(" ", 2);
+                    if (inputParts.length == 2) {
+                        String itemName = inputParts[1];
+                        get(player, itemName, mapData);
+                    } else {
+                        System.out.println("Please provided an item name after 'get'.");
+                    }
+                } else if (userInput.startsWith("drop")) {
+                    String[] inputParts = userInput.split(" ", 2);
+                    String itemName = inputParts[1];
+                    drop(player, itemName, mapData);
+                } else if (userInput.toLowerCase().startsWith("talk")) {
+                    String[] inputParts = userInput.split(" ");
+                    String npcName = inputParts[1];
+                    player.talk(npcName);
+                    System.out.println("Enter to continue...");
+                    scanner.nextLine();
+                } else {
+                    player.move(moveInput[1].toLowerCase(), mapData);
+
+                    // Sound effect (FX) music starts here
+                    Music.playFX("Good.wav"); // Play the sound effect
+                }
             }
         }
 

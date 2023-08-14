@@ -2,21 +2,14 @@ package com.anura.player;
 
 import com.anura.GameObject;
 import com.anura.main.Helper;
-import com.anura.readjsondata.*;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
+import com.anura.readjsondata.EvolutionData;
 import com.google.gson.JsonObject;
 import org.fusesource.jansi.Ansi;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class Player extends Character {
     // Additional attributes specific to the player
@@ -90,6 +83,18 @@ public class Player extends Character {
         String description = gameObject.getDescription();
 
         System.out.println("Description: " + description);
+    }
+    public boolean hasItem(String itemName){
+        return playerInventory.containsKey(itemName);
+    }
+
+    public boolean hide(String enemyName){
+        if(playerInventory.containsKey("leaf")){
+            return true;
+        }else{
+            System.out.println("You need the leaf to hide!");
+            return false;
+        }
     }
     // Display's player's inventory
     public void displayInventory() {
