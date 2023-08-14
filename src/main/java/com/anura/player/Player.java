@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Player extends Character {
     // Additional attributes specific to the player
-    private final String playerName;
+    private String playerName;
     private int exp;
     private Map<String, Integer> playerInventory;
     private EvolutionData currentEvol;
@@ -84,19 +84,31 @@ public class Player extends Character {
 
         System.out.println("Description: " + description);
     }
+    public boolean hasItem(String itemName){
+        return playerInventory.containsKey(itemName);
+    }
 
+    public boolean hide(String enemyName){
+        if(playerInventory.containsKey("leaf")){
+            return true;
+        }else{
+            System.out.println("You need the leaf to hide!");
+            return false;
+        }
+    }
+    // Display's player's inventory
     public void displayInventory() {
-        System.out.println("|----------------------|");
-        System.out.println("|       INVENTORY      |");
-        System.out.println("|----------------------|");
+        System.out.println("\n\n========================");
+        System.out.println("|       INVENTORY       |");
+        System.out.println("-------------------------");
 
         for (Map.Entry<String, Integer> entry : playerInventory.entrySet()) {
             String itemName = entry.getKey();
             int itemCount = entry.getValue();
-            System.out.printf("║ %-18s %-3d║%n", itemName, itemCount);
+            System.out.printf("| %-18s %-3d|%n", itemName, itemCount);
         }
 
-        System.out.println("|--------------------|");
+        System.out.println("_________________________");
     }
 
     // Method to start the game
@@ -129,6 +141,15 @@ public class Player extends Character {
 
     // Getter and setter methods
 
+    @Override
+    public void setName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    @Override
+    public String getName() {
+        return this.playerName;
+    }
 
     public String getCurrentLocation() {
         return currentLocation;

@@ -1,0 +1,76 @@
+{
+  "pond": {
+    "south": "trail",
+    "east": "swamp",
+    "npc": "dawei",
+    "desc": "The homey, shallow pond where you were born.  There's a tadpole swimming around here named dawei.",
+    "food": ["insects", "algae"]
+  },
+  "swamp": {
+    "west": "pond",
+    "npc": "tallulah",
+    "desc": "The water here is murky, but you see a towering giraffe named tallulah.",
+    "food": ["insects"]
+  },
+  "trail": {
+    "north": "pond",
+    "west": "wetland",
+    "east": "log",
+    "south": "empty plot",
+    "npc": "toad",
+    "item": ["leaf", "back pack"],
+    "desc": "This well-worn path is marked with many adventures.  You see a pudgy toad named toad."
+  },
+  "wetland": {
+    "east": "trail",
+    "npc": "buckley",
+    "desc": "The many disconnected pools are separated by reeds and mud.  You see a deer struggling to move named buckley.",
+    "food": "insects",
+    "item": ["glass bead"]
+  },
+  "empty plot": {
+    "north": "trail",
+    "npc": "triton",
+    "desc": "An unused plot of land.  You triton the turtle basking in the sun.",
+    "food": ["veggies"]
+  },
+  "log":{
+    "west": "trail",
+    "south": "grasslands",
+    "east": "stream",
+    "desc": "A gigantic tree has fallen here.  It's too big to simply walk over."
+  },
+  "grasslands": {
+    "north": "log",
+    "npc": "sting",
+    "desc": "A wide sea of grass stretching to the horizon.  You see sting, the sneaky scorpion hiding here, as well as snake in the grass.",
+    "food": ["frogs"],
+    "enemy": "snake"
+  },
+  "stream": {
+    "north": "lake",
+    "south": "log",
+    "desc": "You feel the current pulling you north.",
+    "item": ["plastic cap"],
+    "food": ["fish eggs", "algae"]
+
+  },
+  "lake": {
+    "south": "stream",
+    "north": "dock",
+    "desc": "A massive lake home to many creatures including a large bass. You see a dock at the north end. There is a frog named trevin here",
+    "npc": "trevin",
+    "food": ["algae", "plastic cap"],
+    "enemy": "bass"
+  },
+  "dock": {
+    "south": "lake",
+    "npc": {
+      "npc1": "destiny",
+      "npc2": "karen",
+      "npc3": "violet"
+    },
+    "desc": "An ancient oak dock. You hear the croaks of other frogs trying to find a mate as well as some pretty lady-frogs, named destiny, karen & violet. But there is a crow awfully close by",
+    "enemy": "crow"
+  }
+}

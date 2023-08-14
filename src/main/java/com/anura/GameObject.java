@@ -1,15 +1,22 @@
 package com.anura;
 
+import com.anura.main.Helper;
+import com.anura.player.Player;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import java.io.FileReader;
 
 public class GameObject {
     // fields and attributes
     private String name;
     private String item;
     private String description;
+    private String newLocDesc;
+    Player player;
+
+    public GameObject(String location) {
+        this.newLocDesc = location;
+        this.description = LocationDescriptionFromJsonFile();
+    }
 
     public GameObject(String type, String item) {
         this.name = type;
@@ -20,8 +27,8 @@ public class GameObject {
     private String readDescriptionFromJsonFile() {
         try {
             Gson gson = new Gson();
-            FileReader fileReader = new FileReader(getJsonFilePath(name));
-            JsonObject jsonObject = gson.fromJson(fileReader, JsonObject.class);
+            String contentFile = Helper.readFromResourceFile(getJsonFilePath(name));
+            JsonObject jsonObject = gson.fromJson(contentFile, JsonObject.class);
 
             return jsonObject.get(item).getAsJsonObject().get("desc").getAsString();
 
@@ -31,25 +38,43 @@ public class GameObject {
         return "Description not found!";
     }
 
+    private String LocationDescriptionFromJsonFile() {
+        try {
+            Gson gson = new Gson();
+            String contentFile = Helper.readFromResourceFile(getJsonFilePath("location"));
+            JsonObject jsonObject = gson.fromJson(contentFile, JsonObject.class);
+
+            if (jsonObject.has(newLocDesc)) {
+                return jsonObject.get(newLocDesc).getAsJsonObject().get("desc").getAsString();
+            } else {
+                return "Location description not found!";
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "Description not found!";
+    }
+
     private String getJsonFilePath(String objectType) {
-        String basePath = "src/main/resources/";
+        // String basePath = "src/main/resources/";
         String itemName;
 
-        switch (objectType) {
+        switch (objectType.toLowerCase()) {
             case "item":
-                itemName = "item.json";
+                itemName = "Item.json";
                 break;
             case "location":
-                itemName = "Location.json";
+                itemName = "location.json";
                 break;
-            case "npc":
-                itemName = "npcs.json";
+            case "food":
+                itemName = "food.json";
                 break;
             default:
                 throw new IllegalArgumentException("Invalid object type: " + objectType);
         }
 
-        return basePath + itemName;
+        return itemName;
     }
 
     // Getter for the description
