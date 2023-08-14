@@ -141,7 +141,13 @@ public class Player extends Character {
 
     // Getter and setter methods
 
-    public String getPlayerName() {
+    @Override
+    public void setName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    @Override
+    public String getName() {
         return this.playerName;
     }
 
