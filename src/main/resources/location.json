@@ -1,73 +1,76 @@
 {
-    "pond": {
-      "south": "trail",
-      "east": "swamp",
-      "npc": "dawei",
-      "desc": "The homey, shallow pond where you were born.  There's a carp swimming around here.",
-      "food": ["insects", "algae"]
-    },
-    "swamp": {
-      "west": "pond",
-      "npc": "tallulah",
-      "desc": "The water here is murky, but you see a towering giraffe.",
-      "food": ["insects"]
-    },
-    "trail": {
-      "north": "pond",
-      "west": "wetland",
-      "east": "log",
-      "south": "empty plot",
-      "npc": "wisdom toad",
-      "item": ["leaf", "back pack"],
-      "desc": "This well-worn path is marked with many adventures.  You see a pudgy toad."
-    },
-    "wetland": {
-      "east": "trail",
-      "npc": "buckley",
-      "desc": "The many disconnected pools are separated by reeds and mud.  You see a deer struggling to move.",
-      "food": "insects",
-      "item": ["glass bead"]
-    },
-    "empty plot": {
-      "north": "trail",
-      "npc": "triton",
-      "desc": "An unused plot of land.  You see a turtle basking in the sun.",
-      "food": ["veggies"]
-    },
-    "log":{
-      "west": "trail",
-      "south": "grasslands",
-      "east": "stream",
-      "desc": "A gigantic tree has fallen here.  It's too big to simply walk over."
-    },
-    "grasslands": {
-      "north": "log",
-      "npc": "sting",
-      "desc": "A wide sea of grass stretching to the horizon.  You see a sneaky scorpion hiding here.",
-      "food": ["frogs"]
-    },
-     "stream": {
-       "north": "lake",
-       "south": "log",
-       "desc": "You feel the current pulling you north.",
-       "item": ["plastic cap"],
-       "food": ["fish eggs", "algae"]
+  "pond": {
+    "south": "trail",
+    "east": "swamp",
+    "npc": "dawei",
+    "desc": "The homey, shallow pond where you were born.  There's a carp swimming around here.",
+    "food": ["insects", "algae"]
+  },
+  "swamp": {
+    "west": "pond",
+    "npc": "tallulah",
+    "desc": "The water here is murky, but you see a towering giraffe.",
+    "food": ["insects"]
+  },
+  "trail": {
+    "north": "pond",
+    "west": "wetland",
+    "east": "log",
+    "south": "empty plot",
+    "npc": "wisdom toad",
+    "item": ["leaf", "back pack"],
+    "desc": "This well-worn path is marked with many adventures.  You see a pudgy toad."
+  },
+  "wetland": {
+    "east": "trail",
+    "npc": "buckley",
+    "desc": "The many disconnected pools are separated by reeds and mud.  You see a deer struggling to move.",
+    "food": "insects",
+    "item": ["glass bead"]
+  },
+  "empty plot": {
+    "north": "trail",
+    "npc": "triton",
+    "desc": "An unused plot of land.  You see a turtle basking in the sun.",
+    "food": ["veggies"]
+  },
+  "log":{
+    "west": "trail",
+    "south": "grasslands",
+    "east": "stream",
+    "desc": "A gigantic tree has fallen here.  It's too big to simply walk over."
+  },
+  "grasslands": {
+    "north": "log",
+    "npc": "sting",
+    "desc": "A wide sea of grass stretching to the horizon.  You see a sneaky scorpion hiding here.",
+    "food": ["frogs"],
+    "enemy": "snake"
+  },
+  "stream": {
+    "north": "lake",
+    "south": "log",
+    "desc": "You feel the current pulling you north.",
+    "item": ["plastic cap"],
+    "food": ["fish eggs", "algae"]
 
-     },
-    "lake": {
-      "south": "stream",
-      "north": "dock",
-      "desc": "A massive lake home to many creatures.  You see a dock at the north end.",
-      "npc": "trevin",
-      "food": ["algae", "plastic cap"]
+  },
+  "lake": {
+    "south": "stream",
+    "north": "dock",
+    "desc": "A massive lake home to many creatures.  You see a dock at the north end.",
+    "npc": "trevin",
+    "food": ["algae", "plastic cap"],
+    "enemy": "bass"
+  },
+  "dock": {
+    "south": "lake",
+    "npc": {
+      "npc1": "destiny",
+      "npc2": "karen",
+      "npc3": "violet"
     },
-    "dock": {
-      "south": "lake",
-      "npc": {
-        "npc1": "destiny",
-        "npc2": "karen",
-        "npc3": "violet"
-      },
-      "desc": "An ancient oak dock.  You hear the croaks of other frogs trying to find a mate."
-    }
+    "desc": "An ancient oak dock.  You hear the croaks of other frogs trying to find a mate.",
+    "enemy": "crow"
+  }
 }

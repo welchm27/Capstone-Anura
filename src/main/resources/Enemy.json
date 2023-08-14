@@ -1,22 +1,29 @@
 {
-  "large mouth bass": {
-    "attack": 10,
+  "bass": {
     "desc": "You encounter a large mouth bass, it's mouth is large and intimidating",
-    "location": ""
+    "location": "lake",
+    "dialog": [
+      "I almost got you into my large mouth!",
+      "If only I learned how to swim faster to get things into my large mouth",
+      "What's the point of having a large mouth if I can't put anything in it?"
+    ]
   },
   "crow": {
-    "attack": 50,
     "desc": "Your shiny skin catches the attention of a crow. He looks hungry!",
-    "location": ""
+    "location": "dock",
+    "dialog": [
+      "I'm as smart as a six year old human!  How did I NOT catch you?",
+      "CAW CAW CAW CAW",
+      "I know you're here, but I can't see you!"
+    ]
   },
   "snake": {
-    "attack": 20,
     "desc": "You see a common garter snake. It is about 50 times your size",
-    "location": ""
-  },
-  "fish": {
-    "attack": 20,
-    "desc": "It's just floating there... menacingly",
-    "location": ""
+    "location": "grasslands",
+    "dialog": [
+      "Ssssstupid ssssscorpion gave me away!",
+      "Come back!  Pleaasssse?",
+      "Guesssss I'll order chinessssse..."
+    ]
   }
 }
