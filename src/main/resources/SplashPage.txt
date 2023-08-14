@@ -25,5 +25,6 @@ Navigate around friends and foes to find someone to love!
 GO[DIRECTION]       TALK[NPC]     HIDE
 GET[ITEM]           LOOK[LOCATION, ITEM, NPC]
 HELP                QUIT          MAP
+MUSIC               FX
 
                Good luck, little creature...
