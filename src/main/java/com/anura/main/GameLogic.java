@@ -1,7 +1,9 @@
 package com.anura.main;
 
 import com.anura.GameMap;
+import com.anura.GameObject;
 import com.anura.player.Player;
+import com.anura.readjsondata.LocationData;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -74,11 +76,13 @@ public class GameLogic {
             GameMap.printLocations(visitedLocations);
             System.out.println(Ansi.ansi().cursor(28, 0));
 
-            System.out.println("\nYou are at " + Ansi.ansi().fgBrightGreen().a(currentLocation).reset()
-                    + ". Here is the info of this location:");
-            Helper.printColor(updatedLocation.toString(), Ansi.Color.MAGENTA);
+//            System.out.println("\nYou are at " + Ansi.ansi().fgBrightGreen().a(currentLocation).reset()
+//                    + ". Here is the info of this location:");
+//            Helper.printColor(updatedLocation.toString(), Ansi.Color.MAGENTA);
 
-            player.displayInventory();
+            System.out.println();
+            printStatusBoard(player,mapData);
+            printDescription(player);
 
             // move in the map
             System.out.println("\n\nPlease provide a direction to go >");
@@ -269,4 +273,46 @@ public class GameLogic {
             System.out.println("Invalid music command.");
         }
     }
+
+    private void printStatusBoard(Player player, JsonObject mapData) {
+
+        // Print the status board with player information
+        System.out.println("=== Status Board ===");
+        System.out.println("Player: " + player.getName());
+        System.out.println("Location: " + player.getCurrentLocation());
+
+        // Print inventory
+        System.out.println("Inventory:");
+        String italicStyle = "\u001B[3m";
+        String resetColor = "\u001B[0m";
+        String magenta = "\u001B[35m";
+        for (Map.Entry<String, Integer> entry : player.getInventory().entrySet()) {
+            String itemName = entry.getKey();
+            int itemCount = entry.getValue();
+            System.out.printf(" - %-18s: %-2d%n", magenta + itemName + resetColor, itemCount);
+        }
+
+        // Print location items
+        LocationData locationData = new LocationData(player.getCurrentLocation(), mapData);
+        List<String> locationItems = locationData.getLocationItems();
+        if(locationItems.isEmpty()) {
+            locationItems.add("No Items");
+            String item = locationItems.get(0);
+            System.out.println("Location Items: " + item);
+        }else {
+            System.out.println("Location Items: " + locationItems);
+        }
+        // Add more information as needed
+
+        System.out.println("====================");
+
+
+    }
+
+    private void printDescription(Player player) {
+        String currentLocation = player.getCurrentLocation();
+        GameObject locationDesc = new GameObject(currentLocation);
+        System.out.println("Location Description: " + locationDesc.getDescription());
+    }
+
 }
