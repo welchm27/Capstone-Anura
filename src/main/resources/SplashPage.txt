@@ -22,8 +22,8 @@ You're born into this dangerous world as a tiny pink tadpole.
 You need to eat, evolve, and survive long enough to find a mate.
 Navigate around friends and foes to find someone to love!
                         CONTROLS
-SWIM[DIRECTION]     WALK[DIRECTION]     JUMP[DIRECTION]
-GET[ITEM]           LOOK[LOCATION, ITEM, NPC, ENEMY]
-EAT[FOOD ITEM]      HELP         QUIT          MAP
+GO[DIRECTION]       TALK[NPC]     HIDE
+GET[ITEM]           LOOK[LOCATION, ITEM, NPC]
+HELP                QUIT          MAP
 
                Good luck, little creature...
