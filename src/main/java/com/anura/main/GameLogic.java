@@ -58,7 +58,8 @@ public class GameLogic {
             player.setCurrentLocation(loadedGameStat.get("currentLocation").getAsString());
             player.setName(loadedGameStat.get("playerName").getAsString());
 
-            Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
+            Type type = new TypeToken<HashMap<String, Integer>>() {
+            }.getType();
             player.setInventory(gson.fromJson(loadedGameStat.get("inventory").getAsString(), type));
         }
 
@@ -84,7 +85,7 @@ public class GameLogic {
 //            Helper.printColor(updatedLocation.toString(), Ansi.Color.MAGENTA);
 
             System.out.println();
-            printStatusBoard(player,mapData);
+            printStatusBoard(player, mapData);
             printDescription(player);
 
             // move in the map
@@ -150,7 +151,7 @@ public class GameLogic {
 
                         Helper.writeToExternalFile(gson.toJson(savedData), "game-stat.sav");
 
-                    }else {
+                    } else {
                         Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
                                 Ansi.Color.RED);
                     }
@@ -178,8 +179,8 @@ public class GameLogic {
                     String[] inputParts = userInput.split(" ");
                     String npcName = inputParts[1];
                     player.talk(npcName);
-                    if("violet".equalsIgnoreCase(npcName)){
-                        if(player.hasItem("glass bead")){
+                    if ("violet".equalsIgnoreCase(npcName)) {
+                        if (player.hasItem("glass bead")) {
                             Helper.printColor("What a beautiful bead!  Is that a gift for me?", Ansi.Color.MAGENTA);
                             System.out.println();
                             Helper.printColor("You give violet the bead, and the two of you run off to start your life together...", Ansi.Color.GREEN);
@@ -247,12 +248,12 @@ public class GameLogic {
         Map<String, Integer> inventory = player.getInventory();
         if (!inventory.containsKey(itemName)) {
             System.out.println("You do not have this item in inventory");
-        }else {
+        } else {
             newItems.add(itemName);
             inventory.remove(itemName);
             itemFound = true;
         }
-        if(itemFound){
+        if (itemFound) {
             locationData.add("item", newItems);
         }
     }
@@ -279,10 +280,9 @@ public class GameLogic {
         String musicCommand = scanner.nextLine();
         if (musicCommand.equalsIgnoreCase("on")) {
             Music.setFXVolume(0.5f); // Turn on sound effects
-        } else if(musicCommand.equalsIgnoreCase("off")) {
+        } else if (musicCommand.equalsIgnoreCase("off")) {
             Music.setFXVolume(0.0f); // Turn off sound effects (via volume 0.0)
-        }
-        else if (musicCommand.equalsIgnoreCase("volume")) {
+        } else if (musicCommand.equalsIgnoreCase("volume")) {
             System.out.println("Enter volume level (low = 0.0 - 1.0 = high):");
             float volume = Float.parseFloat(scanner.nextLine());
             Music.setFXVolume(volume); // Set sound effects volume
@@ -309,23 +309,23 @@ public class GameLogic {
             System.out.printf(" - %-18s: %-2d%n", magenta + itemName + resetColor, itemCount);
         }
 
-        // Print location items
+        // Print location items - more clearly without strange characters
         LocationData locationData = new LocationData(player.getCurrentLocation(), mapData);
         List<String> locationItems = locationData.getLocationItems();
-        if(locationItems.isEmpty()) {
+        if (locationItems.isEmpty()) {
             locationItems.add("No Items");
             String item = locationItems.get(0);
             System.out.println("Location Items: " + item);
-        }else {
+        } else {
             System.out.println("Location Items: " + locationItems);
         }
-        // Add more information as needed
 
         System.out.println("====================");
 
 
     }
 
+    // logic to print the description of the location without strange characters
     private void printDescription(Player player) {
         String currentLocation = player.getCurrentLocation();
         GameObject locationDesc = new GameObject(currentLocation);
