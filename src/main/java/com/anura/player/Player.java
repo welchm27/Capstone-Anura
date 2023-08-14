@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Player extends Character {
     // Additional attributes specific to the player
-    private final String playerName;
+    private String playerName;
     private int exp;
     private Map<String, Integer> playerInventory;
     private EvolutionData currentEvol;
@@ -140,6 +140,10 @@ public class Player extends Character {
     }
 
     // Getter and setter methods
+
+    public String getPlayerName() {
+        return this.playerName;
+    }
 
     public String getCurrentLocation() {
         return currentLocation;

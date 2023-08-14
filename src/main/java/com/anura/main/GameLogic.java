@@ -4,24 +4,22 @@ import com.anura.GameMap;
 import com.anura.GameObject;
 import com.anura.player.Player;
 import com.anura.readjsondata.LocationData;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import org.fusesource.jansi.Ansi;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.util.*;
 
 public class GameLogic {
 
-    public static int[] helpLines = {28, 29, 30, 31};
-
     public void execute() throws IOException, URISyntaxException {
 
-        Player player;
-        String[] stat;
+        Player player = new Player("frog");
         HashSet<String> visitedLocations = new HashSet<>();
+        JsonObject mapData;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -39,25 +37,30 @@ public class GameLogic {
         String userInput = scanner.nextLine().trim().toLowerCase();
 
         if (userInput.equals("new")) {
-            stat = new String[]{};
 
             // Create a new player and prompt for their name
             String playerName = Player.promptPlayerName();
-            player = new Player(playerName);
-
+            player.setName(playerName);
             // Start the game
             player.startGame();
 
+            // get Map data
+            mapData = GameMap.getMap();
+
         } else {
             // load saved json stat file
+            Gson gson = new Gson();
+            JsonObject loadedGameStat = gson.fromJson(Helper.getExternalFile("game-stat.sav"),
+                    JsonObject.class);
 
-            // TODO: place holder TO BE replaced and deleted
-            String playerName = Player.promptPlayerName();
-            player = new Player(playerName);
+            mapData = gson.fromJson(loadedGameStat.get("mapData").getAsString(), JsonObject.class);
+            visitedLocations = gson.fromJson(loadedGameStat.get("visitedLocations").getAsString(), HashSet.class);
+            player.setCurrentLocation(loadedGameStat.get("currentLocation").getAsString());
+            player.setName(loadedGameStat.get("playerName").getAsString());
+
+            Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
+            player.setInventory(gson.fromJson(loadedGameStat.get("inventory").getAsString(), type));
         }
-
-        // get Map data
-        JsonObject mapData = GameMap.getMap();
 
         while (!userInput.equals("quit")) {
 
@@ -133,7 +136,21 @@ public class GameLogic {
                         handleMusicControls(scanner);
                     } else if (userInput.equals("fx")) {
                         handleFXControls(scanner);
-                    } else {
+                    } else if (userInput.equals("save")) {
+                        // Data needed to be saved:
+                        // mapData, visitedLocations, Inventory, currentLocation
+                        HashMap<String, String> savedData = new HashMap<>();
+                        Gson gson = new GsonBuilder().setPrettyPrinting().create(); // pretty print JSON
+
+                        savedData.put("mapData", gson.toJson(mapData));
+                        savedData.put("visitedLocations", gson.toJson(visitedLocations));
+                        savedData.put("currentLocation", player.getCurrentLocation());
+                        savedData.put("playerName", player.getName());
+                        savedData.put("inventory", gson.toJson(player.getInventory()));
+
+                        Helper.writeToExternalFile(gson.toJson(savedData), "game-stat.sav");
+
+                    }else {
                         Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
                                 Ansi.Color.RED);
                     }
