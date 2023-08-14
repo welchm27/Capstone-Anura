@@ -56,6 +56,7 @@ public class GameLogic {
             mapData = gson.fromJson(loadedGameStat.get("mapData").getAsString(), JsonObject.class);
             visitedLocations = gson.fromJson(loadedGameStat.get("visitedLocations").getAsString(), HashSet.class);
             player.setCurrentLocation(loadedGameStat.get("currentLocation").getAsString());
+            player.setName(loadedGameStat.get("playerName").getAsString());
 
             Type type = new TypeToken<HashMap<String, Integer>>(){}.getType();
             player.setInventory(gson.fromJson(loadedGameStat.get("inventory").getAsString(), type));
@@ -144,6 +145,7 @@ public class GameLogic {
                         savedData.put("mapData", gson.toJson(mapData));
                         savedData.put("visitedLocations", gson.toJson(visitedLocations));
                         savedData.put("currentLocation", player.getCurrentLocation());
+                        savedData.put("playerName", player.getName());
                         savedData.put("inventory", gson.toJson(player.getInventory()));
 
                         Helper.writeToExternalFile(gson.toJson(savedData), "game-stat.sav");
