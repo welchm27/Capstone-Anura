@@ -2,10 +2,10 @@ package com.anura.main;
 
 import org.fusesource.jansi.Ansi;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Helper {
 
@@ -100,5 +100,31 @@ public class Helper {
 //        }
 
         return fileContent + "\n";
+    }
+
+    public static void writeToExternalFile(String jsonObj, String fileName) {
+        String jarFilePath = Helper.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        jarFilePath = new File(jarFilePath).getParent();
+
+        File externalFile = new File(jarFilePath, fileName);
+
+        try (FileWriter writer = new FileWriter(externalFile)) {
+            writer.write(jsonObj);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String getExternalFile(String fileName) throws IOException {
+        String jarFilePath = Helper.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        jarFilePath = new File(jarFilePath).getParent();
+
+        String filePath = jarFilePath + "/" + fileName;
+
+        Path path = Paths.get(filePath);
+        byte[] bytes = Files.readAllBytes(path);
+
+        // Convert bytes to a String
+        return new String(bytes);
     }
 }
