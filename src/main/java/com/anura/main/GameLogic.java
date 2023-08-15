@@ -19,7 +19,7 @@ public class GameLogic {
 
         Player player = new Player("frog");
         HashSet<String> visitedLocations = new HashSet<>();
-        JsonObject mapData;
+        JsonObject mapData = null;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -28,13 +28,20 @@ public class GameLogic {
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
         //Background music starts here
-        Music.playBGMusic("ShumbaTest.wav");
+//        Music.playBGMusic("ShumbaTest.wav");
         Music.setBGMVolume(0.3f);
 
         // ask for new game or saved game
+        boolean newScreen=true;
+        String userInput = null;
+        while(newScreen){
         System.out.println("Enter " + Ansi.ansi().fgBrightGreen().a("[New]").reset() + " for new game or "
                 + Ansi.ansi().fgBlue().a("[Save]").reset() + " to load saved game:");
-        String userInput = scanner.nextLine().trim().toLowerCase();
+        userInput = scanner.nextLine().trim().toLowerCase();
+            if(userInput.equals("new") || userInput.equals("save") || userInput.equals("load")){
+                newScreen=false;
+            }
+        }
 
         if (userInput.equals("new")) {
 
