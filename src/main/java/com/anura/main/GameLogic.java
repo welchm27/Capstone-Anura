@@ -102,7 +102,7 @@ public class GameLogic {
                 printDescription(player);
 
                 // move in the map
-                System.out.println("\n\nPlease provide a direction to go >");
+                System.out.println("\n\nPlease provide a command >");
                 userInput = scanner.nextLine().toLowerCase();  // Prompt the player for their next move
 
                 // Split the input into a command and an argument
@@ -168,13 +168,13 @@ public class GameLogic {
                             Helper.printColor("\nInvalid input! Please enter one action and one direction(i.e. go south).\n",
                                     Ansi.Color.RED);
                         }
-                        System.out.println("Enter to continue..");
+                        System.out.println("\u001B[32mEnter to continue..\u001B[0m");
                         scanner.nextLine();
                     } else if (userInput.toLowerCase().startsWith("look")) {
                         String[] inputParts = userInput.split(" ");
                         String itemType = inputParts[1];
                         player.look(itemType);
-                        System.out.println("Enter to continue..");
+                        System.out.println("\u001B[32mEnter to continue..\u001B[0m");
                         scanner.nextLine();
                     } else if (userInput.startsWith("get")) {
                         String[] inputParts = userInput.split(" ", 2);
@@ -204,7 +204,7 @@ public class GameLogic {
                                 Helper.printColor("Violet seems to want a gift from you to prove that you love her...", Ansi.Color.YELLOW);
                             }
                         }
-                        System.out.println("Enter to continue...");
+                        System.out.println("\u001B[32mEnter to continue...\u001B[0m");
                         scanner.nextLine();
                     } else {
                         player.move(moveInput[1].toLowerCase(), mapData);
