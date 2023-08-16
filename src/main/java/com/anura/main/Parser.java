@@ -9,93 +9,63 @@ package com.anura.main;
 // there is also a chunk of code below that i attempted to adapt to this file but i cannot confirm functionalitiy..
 
 
+import com.anura.player.Player;
 import com.google.gson.JsonObject;
-import com.google.gson.stream.JsonToken;
+import org.fusesource.jansi.Ansi;
 
-import java.io.InputStream;
-import java.util.Set;
+import java.util.*;
 
 public class Parser {
-//        public static void main(String[] args) {
-//            // read the parse file
-//            JsonObject jData = loadJSONData("Parse.json");
-//            // "Check if it's there/null" -paraphrasing Nadra
-//            if (jData == null) {
-//                System.out.println("NOTE: An error occurred while loading required .json file(s), please try again.");
-//                return;
-//            }
-//
-//            // extracting command/synonyms for each array
-//            Set<String> verbs = extractItems(jData.getJSONArray("get"));
-//            verbs.addAll(extractItems(jData.getJSONArray("go")));
-//            verbs.addAll(extractItems(jData.getJSONArray("talk")));
-//            verbs.addAll(extractItems(jData.getJSONArray("use")));
-//            verbs.addAll(extractItems(jData.getJSONArray("help")));
-//            verbs.addAll(extractItems(jData.getJSONArray("quit")));
-//            //extracting the map locations & items user can interact with
-//            Set<String> locations = extractItems(jData.getJSONArray("locations"));
-//            Set<String> items = extractItems(jData.getJSONArray("items"));
-//
-//            // Get user input
-//            Scanner scanner = new Scanner(System.in);
-//            System.out.print("What would you like to do?\n  ");
-//            String userInput = scanner.nextLine().toLowerCase();
-//
-//            // Parse user input
-//            String[] input = userInput.split("\\s+");
-//            String verb = null;
-//            String item = null;
-//            String location = null;
-//
-//            for (String word : input) {
-//                if (verbs.contains(word)) {
-//                    verb = word;
-//                } else if (locations.contains(word)) {
-//                    location = word;
-//                } else if (items.contains(word)) {
-//                    item = word;
-//                }
-//            }
-//
-//            // Display parsed results
-//            if (verb != null) {
-//                System.out.println("Verb: " + verb);
-//            } else {
-//                System.out.println("That is not an action Freg can do. If you need a reminder of available commands"
-//                + " type 'help'");
-//            }
-//
-//            if (location != null) {
-//                System.out.println("Location: " + location);
-//            } else {
-//                System.out.println("That location is not a destination that Freg can go to right now");
-//            }
-//            if (item != null) {
-//                System.out.println("Item: " + item);
-//            } else {
-//                System.out.println("You do not currently have that item");
-//            }
-//        }
+
+    public static String getInput(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter a command: ");
+        return scanner.nextLine().toLowerCase();
+    }
+
+    public static String[] parseInput(){
+        String[] words = getInput().split(" ");
+        String verb = "";
+        String noun = "";
+        verb = words[0];
+        noun = words.length > 1 ? words[1] : "";
+
+        if (words.length >= 2){
+            noun = String.join(" ", Arrays.copyOfRange(words, 1, words.length));
+        }
+        return new String[]{verb, noun};
+    }
+
+    public static void handleInput(String verb, String noun, Player player, JsonObject mapData, HashSet<String> visitedLocations){
+        GameLogic gameLogic = new GameLogic();
 
 
-//        private static JsonObject loadJSONData(String fileName) {
-//            try {
-//                InputStream inputStream = Parser.class.getResourceAsStream(fileName);
-//                JsonToken token = new JsonToken();
-//                return new JsonObject(token);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//        }
-//
-//        private static Set<String> extractItems(JSONArray category) {
-//            Set<String> items = new HashSet<>();
-//            for (int i = 0; i < category.length(); i++) {
-//                items.add(category.getString(i).toLowerCase());
-//            }
-//            return items;
-//        }
-//
+        switch (verb) {
+            case "quit":
+                break;
+            case "help":
+                Helper.printFile("Help.txt", Ansi.Color.GREEN);
+                break;
+            case "map":
+                Helper.printFile("VisualMap.txt", Ansi.Color.GREEN);
+                break;
+            case "inventory":
+                player.displayInventory();
+                break;
+            case "music":
+//                handleMusicControls(scanner);  // TODO Move music commands out of GameLogic class and have music off/on
+                break;
+            case "fx":
+//                handleFXControls(scanner);  // TODO move fx commands out of GameLogic class and have both commands in 1 line
+            case "save":
+                LogicFunction.saveGame(mapData, visitedLocations, player);
+                break;
+            default:
+                System.out.println("Invalid command, try again.");
+                verb = "";
+                noun = "";
+                break;
+        }
+    }
 
 }
