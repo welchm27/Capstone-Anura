@@ -59,43 +59,49 @@ public class Player extends Character {
         return playerName.trim().isEmpty() ? "Frog" : playerName;
     }
 
-    public void talk(String npcName){
+    public void talk(String npcName) {
         NPC character = new NPC(npcName);
         String[] dialogOptions = character.getDialog();
 
-        if (dialogOptions.length > 0){
+        if (dialogOptions.length > 0) {
             Random random = new Random();
             int randomIndex = random.nextInt(dialogOptions.length);
             String selectedDialog = dialogOptions[randomIndex];
 
             System.out.println(selectedDialog);
-        }else{
+        } else {
             System.out.println("The character can't talk!");
         }
     }
 
     public void look(String itemType) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the " + itemType + " you want to look at: ");
-        String itemName = scanner.nextLine().trim().toLowerCase();
+        if (itemType.equals("item") || itemType.equals("location") || itemType.equals("food")) {
+            System.out.print("Enter the " + itemType + " you want to look at: ");
+            String itemName = scanner.nextLine().trim().toLowerCase();
 
-        GameObject gameObject = new GameObject(itemType,itemName);
-        String description = gameObject.getDescription();
+            GameObject gameObject = new GameObject(itemType, itemName);
+            String description = gameObject.getDescription();
 
-        System.out.println("Description: " + description);
+            System.out.println("Description: " + description);
+        }else{
+            System.out.println("\u001B[31mTo correctly use look, please type look item, look location or look food first\u001B[0m");
+        }
     }
-    public boolean hasItem(String itemName){
+
+    public boolean hasItem(String itemName) {
         return playerInventory.containsKey(itemName);
     }
 
-    public boolean hide(String enemyName){
-        if(playerInventory.containsKey("leaf")){
+    public boolean hide(String enemyName) {
+        if (playerInventory.containsKey("leaf")) {
             return true;
-        }else{
+        } else {
             System.out.println("You need the leaf to hide!");
             return false;
         }
     }
+
     // Display's player's inventory
     public void displayInventory() {
         System.out.println("\n\n========================");
@@ -127,10 +133,10 @@ public class Player extends Character {
 
         JsonObject currentLocationJson = mapData.get(currentLocation).getAsJsonObject();
 
-        if(currentLocationJson.has(direction)){
+        if (currentLocationJson.has(direction)) {
             this.currentLocation = currentLocationJson.get(direction).getAsString();
             return currentLocation;
-        }else{
+        } else {
             Helper.printColor("\nInvalid action, please try another one.\n" +
                     "Enter to continue..\n", Ansi.Color.RED);
             Scanner scanner = new Scanner(System.in);
