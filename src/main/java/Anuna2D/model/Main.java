@@ -8,7 +8,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("Anuna 2D game");
+        window.setTitle("Anura 2D game");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
