@@ -118,6 +118,7 @@ public class GameLogic {
                 if (moveInput.length != 2) {
                     switch (userInput) {
                         case "quit":
+                        case "stop":
                             break label;
                         case "help":
                             Helper.printFile("Help.txt", Ansi.Color.GREEN);
@@ -150,7 +151,7 @@ public class GameLogic {
                     player.look(itemType);
                     System.out.println("\u001B[32mEnter to continue..\u001B[0m");
                     scanner.nextLine();
-                } else if (userInput.startsWith("get")) {
+                } else if (userInput.startsWith("get") || userInput.startsWith("pickup") || userInput.startsWith("take")) {
                     String[] inputParts = userInput.split(" ", 2);
                     if (inputParts.length == 2) {
                         String itemName = inputParts[1];
@@ -158,11 +159,11 @@ public class GameLogic {
                     } else {
                         System.out.println("Please provided an item name after 'get'.");
                     }
-                } else if (userInput.startsWith("drop")) {
+                } else if (userInput.startsWith("drop") || userInput.startsWith("leave")) {
                     String[] inputParts = userInput.split(" ", 2);
                     String itemName = inputParts[1];
                     LogicFunction.drop(player, itemName, mapData);
-                } else if (userInput.toLowerCase().startsWith("talk")) {
+                } else if (userInput.toLowerCase().startsWith("talk") || userInput.toLowerCase().startsWith("speak")) {
                     String[] inputParts = userInput.split(" ");
                     String npcName = inputParts[1];
                     player.talk(npcName);
