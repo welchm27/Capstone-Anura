@@ -4,6 +4,7 @@ import com.anura.main.Helper;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.fusesource.jansi.Ansi;
 
 import java.io.*;
 
@@ -23,20 +24,20 @@ public class NPC {
 
     private String[] readDialogFromJsonFile(){
         Gson gson = new Gson();
-//            InputStream inputStream = new FileInputStream(name);
         String content = Helper.readFromResourceFile(name);
         JsonObject jsonObject = gson.fromJson(content, JsonObject.class);
+
+        if (!jsonObject.has(npc)){
+            return new String[]{"\u001B[31mThat npc doesn't exist\u001B[0m"};
+        }
 
         JsonArray dialogArray =  jsonObject.get(npc).getAsJsonObject().getAsJsonArray("dialog");
         String[] dialogOptions = new String[dialogArray.size()];
         for(int i = 0; i < dialogArray.size(); i++){
             dialogOptions[i] = dialogArray.get(i).getAsString();
         }
-
         return dialogOptions;
-
     }
-
 
     // Getter for the npc's
     public String getNpc() {

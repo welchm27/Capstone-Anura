@@ -58,7 +58,7 @@ public class GameObject {
 
     private String getJsonFilePath(String objectType) {
         // String basePath = "src/main/resources/";
-        String itemName;
+        String itemName = null;
 
         switch (objectType.toLowerCase()) {
             case "item":
@@ -71,7 +71,8 @@ public class GameObject {
                 itemName = "food.json";
                 break;
             default:
-                throw new IllegalArgumentException("Invalid object type: " + objectType);
+                System.out.println("To correctly use look, please type look item, look location or look food first");
+//                throw new IllegalArgumentException("Invalid object type: " + objectType);
         }
 
         return itemName;
