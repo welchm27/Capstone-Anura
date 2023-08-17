@@ -29,7 +29,7 @@ public class GameLogic {
         Helper.printFile("SplashPage.txt", Ansi.Color.GREEN);
 
         //Background music starts here
-//        Music.playBGMusic("ShumbaTest.wav");
+        Music.playBGMusic("ShumbaTest.wav");
         Music.setBGMVolume(0.3f);
 
         // ask for new game or saved game
