@@ -10,14 +10,16 @@ import java.io.IOException;
 
 public class Player extends Entity{
 
-    GamePanel gp;
+
     KeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
 
     public Player(GamePanel gp, KeyHandler keyH){
-        this.gp = gp;
+        // I removed your calls to GamePanel as this supersedes that
+        // also the npc video states we need to make the super call for later npc's
+        super(gp);
         this.keyH = keyH;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
