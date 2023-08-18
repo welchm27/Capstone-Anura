@@ -19,6 +19,8 @@ public class GuiMain {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
+        gamePanel.setUpGame(); //load object into the game
+
         gamePanel.startGameThread();
     }
 }
