@@ -40,21 +40,41 @@ public class GameFrame {
             }
         });
 
-        // Create a JPanel for the map image (replace "map.png" with your map image file)
+        // Create a JPanel for map (need to get this to work)
         mapPanel = new JPanel();
-        ImageIcon mapIcon = new ImageIcon("map.png");
+        ImageIcon mapIcon = new ImageIcon("resources/AnuraGameVisual3.png");
         JLabel mapLabel = new JLabel(mapIcon);
         mapPanel.add(mapLabel);
 
-        // Create a main panel to hold the subpanels
+        // Create a "Game Start" button
+        JButton startButton = new JButton("Game Start");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Clear the text area and reset player status when the game starts
+                textArea.setText("");
+                statusArea.setText("Name: Player\nLocation: Start\nItems: None");
+            }
+        });
+
+        // Create a control panel to hold the start button
+        JPanel controlPanel = new JPanel();
+        controlPanel.add(startButton);
+
+        // Create a main panel to hold the subpanels and the control panel
         JPanel mainPanel = new JPanel(new GridLayout(2, 2));
         mainPanel.add(new JScrollPane(textArea));
         mainPanel.add(statusArea);
         mainPanel.add(inputField);
         mainPanel.add(mapPanel);
 
-        // Add the main panel to the JFrame
-        frame.add(mainPanel);
+        // Create a container panel to hold the main panel and the control panel
+        JPanel containerPanel = new JPanel(new BorderLayout());
+        containerPanel.add(mainPanel, BorderLayout.CENTER);
+        containerPanel.add(controlPanel, BorderLayout.SOUTH);
+
+        // Add the container panel to the JFrame
+        frame.add(containerPanel);
 
         // Set the frame visible
         frame.setVisible(true);
@@ -62,16 +82,11 @@ public class GameFrame {
         // Initialize the game and display introduction
         textArea.append("Welcome to Anuna, an epic adventure awaits!\n");
         textArea.append("You are a brave adventurer. Your journey begins...\n");
-
-        // Initialize player status
-        statusArea.setText("Name: Player\nLocation: Start\nItems: None");
     }
 
     // Method to handle player input and update textArea
     private void handlePlayerInput(String input) {
-        // Add your game logic here
         // Update textArea with game responses and descriptions
-
 
         // EXXON *****
         // nicks handle input and append to textarea code
