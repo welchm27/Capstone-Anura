@@ -45,6 +45,7 @@ public class TileManager {
             setTile(11, "/tiles/log_trail_bottom.png", false);
             setTile(12, "/tiles/log_grass_top.png", true);
             setTile(13, "/tiles/log_trail_top.png", true);
+            setTile(14, "/tiles/water2.png", true);
 
 
         } catch (IOException e) {
