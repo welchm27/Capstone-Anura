@@ -34,8 +34,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 18;
-        worldY = gp.tileSize * 14;
+        worldX = gp.tileSize * 18;  // starting x (original 18)
+        worldY = gp.tileSize * 14; // starting y (original 14)
         speed = 4;
         direction = "down";
     }
@@ -46,10 +46,10 @@ public class Player extends Entity{
             up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png")); // swap with left1 image
-            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png")); // swap with left2 image
-            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png")); // swap with right1 image
-            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png")); // swap with right2 image
+            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png"));
         }catch(IOException e){
             e.printStackTrace();
         }

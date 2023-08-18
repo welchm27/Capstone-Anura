@@ -18,7 +18,7 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
-        tile = new Tile[10];
+        tile = new Tile[20];
         mapTileNum = new int[gp.maxWorldColumns][gp.maxWorldRows];
 
         getTileImage();
@@ -39,6 +39,14 @@ public class TileManager {
             setTile(3, "/tiles/sgrass.png", false);
             setTile(4, "/tiles/trail.png", false);
             setTile(5, "/tiles/wetland.png", false);
+            setTile(6, "/tiles/concrete.png", false);
+            setTile(7, "/tiles/grassland.png", false);
+            setTile(8, "/tiles/dock.png", false);
+            setTile(9, "/tiles/log1.png", true);
+            setTile(10, "/tiles/log_grass_bottom.png", false);
+            setTile(11, "/tiles/log_trail_bottom.png", false);
+            setTile(12, "/tiles/log_grass_top.png", true);
+            setTile(13, "/tiles/log_trail_top.png", true);
 
 
         } catch (IOException e) {
