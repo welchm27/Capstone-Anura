@@ -1,9 +1,12 @@
 package com.anura;
 
+import com.anura.main.BridgeOutput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.PrintStream;
 
 public class GameFrame {
     private final JFrame frame;
@@ -68,6 +71,12 @@ public class GameFrame {
     private void handlePlayerInput(String input) {
         // Add your game logic here
         // Update textArea with game responses and descriptions
+
+
+        // EXXON *****
+        // nicks handle input and append to textarea code
+        // this should replace the calls to text area below by passing parameters to BridgeOutput class
+        System.setOut(new PrintStream(new BridgeOutput(), true));
 
         // Example: Echo the player input as a response
         textArea.append("You: " + input + "\n");

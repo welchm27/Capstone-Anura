@@ -2,6 +2,7 @@ package Anuna2D.model;
 
 import Anuna2D.controller.KeyHandler;
 import Anuna2D.entity.Player;
+import Anuna2D.tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,36 +11,42 @@ public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
     private final int originalTileSize = 16; // 16x16 tile
-    private final int scale = 3;
+    private final int scale = 3;  // multiplier scale for tiles
 
     public final int tileSize = originalTileSize * scale; // 48x48 tile
-    private final int maxScreenColumns = 20;
+    // visible area on screen
+    private final int maxScreenColumns = 16;
     private final int maxScreenRows = 12;
 
     // Window mode
-    private final int screenWidth = tileSize * maxScreenColumns; // 960 px
-    private final int screenHeight = tileSize * maxScreenRows; // 576 px
+    public final int screenWidth = tileSize * maxScreenColumns; // 768 px
+    public final int screenHeight = tileSize * maxScreenRows; // 576 px
 
-    private final int FPS = 60;
+    // FPS (adjust as needed)
+    int FPS = 60;
 
     // WORLD SETTINGS
-    private final int maxWorldColumns = 50;
-    private final int maxWorldRows = 50;
-    private final int worldWidth = tileSize * maxWorldColumns;
-    private final int worldHeight = tileSize * maxWorldRows;
+    public final int maxWorldColumns = 64;
+    public final int maxWorldRows = 50;
+    public final int worldWidth = tileSize * maxWorldColumns;
+    public final int worldHeight = tileSize * maxWorldRows;
+
+    // Tile manager
+    TileManager tileM = new TileManager(this);
+    public CollisionChecker cChecker = new CollisionChecker(this);
 
     // GAME THREAD
-    private Thread gameThread;
+    public Thread gameThread;
 
     //KEY HANDLER
     KeyHandler keyH = new KeyHandler();
 
     //PLAYER instantiation
-    Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH);
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.black);
         this.setDoubleBuffered(true);   //improves the game rendering performance
         this.addKeyListener(keyH);
         this.setFocusable(true);
@@ -53,20 +60,27 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
+
         double drawInterval = 1_000_000_000 / FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
+        long timer = 0;
+        int drawCount = 0;
 
+        // create core game loop
         while (gameThread != null) {
+
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
+            timer += (currentTime - lastTime);
             lastTime = currentTime;
 
             if (delta >= 1) {
                 update();
                 repaint();
                 delta--;
+                drawCount++;
             }
         }
     }
@@ -77,8 +91,12 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+
         Graphics2D g2 = (Graphics2D)g;
+
+        tileM.draw(g2);  // make sure this is above player
         player.draw(g2);
+        g2.dispose();  // keeps from building up memory usage
     }
 
 }
