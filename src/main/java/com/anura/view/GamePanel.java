@@ -4,6 +4,7 @@ import com.anura.controller.KeyHandler;
 import com.anura.model.CollisionChecker;
 import com.anura.model.guientity.Player;
 import com.anura.view.TileManager;
+import object.SuperObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,12 +46,20 @@ public class GamePanel extends JPanel implements Runnable{
     //PLAYER instantiation
     public Player player = new Player(this, keyH);
 
+    //OBJECT Instantiation
+    public SuperObject obj[] = new SuperObject[4];
+    public AssetSetter setter = new AssetSetter(this);
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);   //improves the game rendering performance
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    public void setUpGame(){
+        setter.setObject();
     }
 
     public void startGameThread() {
@@ -95,8 +104,19 @@ public class GamePanel extends JPanel implements Runnable{
 
         Graphics2D g2 = (Graphics2D)g;
 
+        //TILE
         tileM.draw(g2);  // make sure this is above player
+
+        //OBJECT
+        for(int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+                obj[i].draw(g2, this);
+            }
+        }
+
+        //PLAYER
         player.draw(g2);
+
         g2.dispose();  // keeps from building up memory usage
     }
 
