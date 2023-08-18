@@ -46,10 +46,10 @@ public class Player extends Entity{
             up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
             down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with left1 image
-            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with left2 image
-            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with right1 image
-            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with right2 image
+            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png")); // swap with left1 image
+            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png")); // swap with left2 image
+            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png")); // swap with right1 image
+            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png")); // swap with right2 image
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -140,7 +140,7 @@ public class Player extends Entity{
                     image = right1;
                 }
                 if(spriteNum == 2){
-                    image = right1;
+                    image = right2;
                 }
                 break;
         }
