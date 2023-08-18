@@ -1,6 +1,6 @@
 package com.anura;
 
-import com.anura.main.BridgeOutput;
+import com.anura.controller.BridgeOutput;
 
 import javax.swing.*;
 import java.awt.*;
