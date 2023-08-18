@@ -42,10 +42,10 @@ public class Player extends Entity{
 
     public void getPlayerImage(){
         try{
-            up1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));  // swap with up1 image
-            up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with up1 image
+            up1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));  // swap with down2 image
+            down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
             left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with left1 image
             left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with left2 image
             right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png")); // swap with right1 image
