@@ -18,31 +18,35 @@ public class TileManager {
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
-        tile = new Tile[10];
+        tile = new Tile[20];
         mapTileNum = new int[gp.maxWorldColumns][gp.maxWorldRows];
 
         getTileImage();
         loadMap("/maps/world01.txt");
     }
 
+    private void setTile(int index, String filepath, boolean collision) throws IOException {
+        tile[index] = new Tile();
+        tile[index].image = ImageIO.read(getClass().getResourceAsStream(filepath));
+        tile[index].collision = collision;
+    }
+
     public void getTileImage() {
         try {
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/pgrass.png"));
-
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
-            tile[1].collision = true;
-
-            tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/pwater.png"));
-            tile[2].collision = true;
-
-            tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sgrass.png"));
-
-            tile[4] = new Tile();
-            tile[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/trail.png"));
+            setTile(0, "/tiles/pgrass.png", false);
+            setTile(1, "/tiles/tree.png", true);
+            setTile(2, "/tiles/pwater.png", true);
+            setTile(3, "/tiles/sgrass.png", false);
+            setTile(4, "/tiles/trail.png", false);
+            setTile(5, "/tiles/wetland.png", false);
+            setTile(6, "/tiles/concrete.png", false);
+            setTile(7, "/tiles/grassland.png", false);
+            setTile(8, "/tiles/dock.png", false);
+            setTile(9, "/tiles/log1.png", true);
+            setTile(10, "/tiles/log_grass_bottom.png", false);
+            setTile(11, "/tiles/log_trail_bottom.png", false);
+            setTile(12, "/tiles/log_grass_top.png", true);
+            setTile(13, "/tiles/log_trail_top.png", true);
 
 
         } catch (IOException e) {
