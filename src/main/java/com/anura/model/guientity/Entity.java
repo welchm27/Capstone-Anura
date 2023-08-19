@@ -18,6 +18,9 @@ public class Entity {
     public Rectangle solidArea;
     public boolean collisionOn = false;
 
+    //For item interactions
+    public int solidAreaDefaultX, solidAreaDefaultY;
+
     public Entity (GamePanel gp) {
         this.gp = gp;
     }
