@@ -15,6 +15,7 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
+    int hashKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
         // I removed your calls to GamePanel as this supersedes that
@@ -81,6 +82,7 @@ public class Player extends Entity{
 
         //CHECK object collision
         int objIndex = gp.cChecker.checkObject(this, true);
+        pickUpObject(objIndex);
 
 
         // if collision is false, player can move
@@ -109,6 +111,24 @@ public class Player extends Entity{
                 spriteNum = 1;
             }
             spriteCounter = 0;
+        }
+    }
+
+    public void pickUpObject(int i){
+
+        if(i != 999) {
+
+            String objectName = gp.obj[i].name;
+
+            switch(objectName) {
+                case "backpack":
+                case "bottlecap":
+                case "glassbead":
+                case "leaf":
+                    hashKey++;
+                    gp.obj[i] = null;
+                    break;
+            }
         }
     }
 
