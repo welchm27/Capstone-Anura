@@ -15,6 +15,7 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
+    int hashKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
         // I removed your calls to GamePanel as this supersedes that
@@ -30,6 +31,8 @@ public class Player extends Entity{
         solidArea.y = 16;
         solidArea.width = 32;
         solidArea.height = 32;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         setDefaultValues();
         getPlayerImage();
@@ -77,8 +80,13 @@ public class Player extends Entity{
             collisionOn = false;
         gp.cChecker.checkTile(this);
 
+        //CHECK object collision
+        int objIndex = gp.cChecker.checkObject(this, true);
+        pickUpObject(objIndex);
+
+
         // if collision is false, player can move
-            if(collisionOn == false){
+            if(!collisionOn){
                 switch(direction){
                     case "up":
                         worldY -= speed;
@@ -106,7 +114,25 @@ public class Player extends Entity{
         }
     }
 
-    public void draw(Graphics2D g2){
+    public void pickUpObject(int i){
+
+        if(i != 999) {
+
+            String objectName = gp.obj[i].name;
+
+            switch(objectName) {
+                case "backpack":
+                case "bottlecap":
+                case "glassbead":
+                case "leaf":
+                    hashKey++;
+                    gp.obj[i] = null;
+                    break;
+            }
+        }
+    }
+
+    public void draw(Graphics2D g2, GamePanel gamePanel){
 //        g2.setColor(Color.white);
 //        g2.fillRect(x,y, gp.tileSize, gp.tileSize);
 
