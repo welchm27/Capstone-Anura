@@ -1,5 +1,6 @@
 package com.anura.view;
 
+import com.anura.model.guientity.NPC_Ladies;
 import object.OBJ_Backpack;
 import object.OBJ_BottleCap;
 import object.OBJ_Leaf;
@@ -34,5 +35,11 @@ public class AssetSetter {
         gp.obj[3].worldX = 54 * gp.tileSize;
         gp.obj[3].worldY = 23 * gp.tileSize;
 
+    }
+
+    public void setNPC(){
+        gp.npc[0] = new NPC_Ladies(gp);
+        gp.npc[0].worldX = 50 * gp.tileSize;
+        gp.npc[0].worldY = 4 * gp.tileSize;
     }
 }

@@ -1,9 +1,10 @@
 package com.anura.view;
 
+import com.anura.UI;
 import com.anura.controller.KeyHandler;
 import com.anura.model.CollisionChecker;
+import com.anura.model.guientity.Entity;
 import com.anura.model.guientity.Player;
-import com.anura.view.TileManager;
 import object.SuperObject;
 
 import javax.swing.*;
@@ -40,6 +41,9 @@ public class GamePanel extends JPanel implements Runnable{
     // GAME THREAD
     public Thread gameThread;
 
+    //UI
+    public UI ui = new UI(this);
+
     //KEY HANDLER
     KeyHandler keyH = new KeyHandler();
 
@@ -50,6 +54,9 @@ public class GamePanel extends JPanel implements Runnable{
     public SuperObject obj[] = new SuperObject[4];
     public AssetSetter setter = new AssetSetter(this);
 
+    //NPC
+    public Entity npc[] = new Entity[10];
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -59,7 +66,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void setUpGame(){
-        setter.setObject();
+        setter.setObject();setter.setNPC();
     }
 
     public void startGameThread() {
@@ -113,9 +120,18 @@ public class GamePanel extends JPanel implements Runnable{
                 obj[i].draw(g2, this);
             }
         }
+        //NPC
+        for(int i = 0; i < obj.length; i++) {
+            if (npc[i] != null) {
+                npc[i].draw(g2, this);
+            }
+        }
 
         //PLAYER
-        player.draw(g2);
+        player.draw(g2, this);
+
+        //UI
+        ui.draw(g2);
 
         g2.dispose();  // keeps from building up memory usage
     }

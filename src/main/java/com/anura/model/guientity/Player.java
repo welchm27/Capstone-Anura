@@ -86,7 +86,7 @@ public class Player extends Entity{
 
 
         // if collision is false, player can move
-            if(collisionOn == false){
+            if(!collisionOn){
                 switch(direction){
                     case "up":
                         worldY -= speed;
@@ -132,7 +132,7 @@ public class Player extends Entity{
         }
     }
 
-    public void draw(Graphics2D g2){
+    public void draw(Graphics2D g2, GamePanel gamePanel){
 //        g2.setColor(Color.white);
 //        g2.fillRect(x,y, gp.tileSize, gp.tileSize);
 
