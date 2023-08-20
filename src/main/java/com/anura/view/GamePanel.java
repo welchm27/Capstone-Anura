@@ -103,7 +103,14 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
+        //PLAYER
         player.update();
+        //NPC
+        for (int i =0; i < npc.length; i++){
+            if (npc[i] != null){
+                npc[i].update();
+            }
+        }
     }
 
     public void paintComponent(Graphics g){
@@ -123,7 +130,7 @@ public class GamePanel extends JPanel implements Runnable{
         //NPC
         for(int i = 0; i < obj.length; i++) {
             if (npc[i] != null) {
-                npc[i].draw(g2, this);
+                npc[i].draw(g2);
             }
         }
 
