@@ -5,33 +5,35 @@ import com.anura.view.GamePanel;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class NPC_Ladies extends Entity{
+public class NPC_Ladies extends Entity {
 
     public NPC_Ladies(GamePanel gp) {
         super(gp);
         direction = "down";
         speed = 0;
         getImage();
+        setDialogue();
     }
 
-    public void getImage(){
-        try{
-                up1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up1.png"));
-                up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
-                down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
-                down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
-                left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png"));
-                left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png"));
-                right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png"));
-                right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png"));
+    public void getImage() {
+        try {
+            up1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png"));
 
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void setAction(){
+
+    public void setAction() {
         actionLockCounter++;
-        if (actionLockCounter == 120){
+        if (actionLockCounter == 120) {
             //set the characters behavior
 //        Random random = new Random();
 //        int i = random.nextInt(100)+1;
@@ -50,6 +52,15 @@ public class NPC_Ladies extends Entity{
 //        }
         }
         actionLockCounter = 0;
+    }
 
+    public void setDialogue() {
+
+        dialogues[0] = "Hello, there good looking";
+        dialogues[1] = "Frog, Pink and, Handsome";
+    }
+
+    public void speak() {
+        super.speak();
     }
 }
