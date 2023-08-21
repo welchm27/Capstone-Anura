@@ -15,7 +15,7 @@ public class Player extends Character {
     // Additional attributes specific to the player
     private String playerName;
     private int exp;
-    private Map<String, Integer> playerInventory;
+    public Map<String, Integer> playerInventory;
     private EvolutionData currentEvol;
     private int currentHealth;
     private String currentLocation;
