@@ -16,7 +16,14 @@ public class NPC_Ladies extends Entity{
 
     public void getImage(){
         try{
-            down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
+                up1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up1.png"));
+                up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
+                down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
+                down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
+                left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png"));
+                left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png"));
+                right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png"));
+                right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png"));
 
         }catch(IOException e){
             e.printStackTrace();
