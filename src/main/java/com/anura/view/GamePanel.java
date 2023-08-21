@@ -10,7 +10,7 @@ import object.SuperObject;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
     private final int originalTileSize = 16; // 16x16 tile
@@ -34,6 +34,11 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldWidth = tileSize * maxWorldColumns;
     public final int worldHeight = tileSize * maxWorldRows;
 
+    // Game State
+    public int gameState;
+    public final int playState = 1;
+    public final int pauseState = 2;
+
     // Tile manager
     public TileManager tileM = new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -45,7 +50,7 @@ public class GamePanel extends JPanel implements Runnable{
     public UI ui = new UI(this);
 
     //KEY HANDLER
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
 
     //PLAYER instantiation
     public Player player = new Player(this, keyH);
@@ -65,8 +70,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
     }
 
-    public void setUpGame(){
-        setter.setObject();setter.setNPC();
+    public void setUpGame() {
+        setter.setObject();
+        setter.setNPC();
+        gameState = playState;
     }
 
     public void startGameThread() {
@@ -102,33 +109,38 @@ public class GamePanel extends JPanel implements Runnable{
         }
     }
 
-    public void update(){
-        //PLAYER
-        player.update();
-        //NPC
-        for (int i =0; i < npc.length; i++){
-            if (npc[i] != null){
-                npc[i].update();
+    public void update() {
+        if (gameState == playState) {
+            //PLAYER
+            player.update();
+            //NPC
+            for (int i = 0; i < npc.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].update();
+                }
             }
+        }
+        if(gameState == pauseState){
+            // nothing for now
         }
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         //TILE
         tileM.draw(g2);  // make sure this is above player
 
         //OBJECT
-        for(int i = 0; i < obj.length; i++) {
+        for (int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
                 obj[i].draw(g2, this);
             }
         }
         //NPC
-        for(int i = 0; i < obj.length; i++) {
+        for (int i = 0; i < obj.length; i++) {
             if (npc[i] != null) {
                 npc[i].draw(g2);
             }
