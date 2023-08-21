@@ -10,7 +10,7 @@ import object.SuperObject;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends JPanel implements Runnable{
 
     // SCREEN SETTINGS
     private final int originalTileSize = 16; // 16x16 tile
@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int gameState;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int dialogueState = 3;
 
     // Tile manager
     public TileManager tileM = new TileManager(this);
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements Runnable {
     public UI ui = new UI(this);
 
     //KEY HANDLER
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
 
     //PLAYER instantiation
     public Player player = new Player(this, keyH);
@@ -125,22 +126,22 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
 
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D)g;
 
         //TILE
         tileM.draw(g2);  // make sure this is above player
 
         //OBJECT
-        for (int i = 0; i < obj.length; i++) {
+        for(int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
                 obj[i].draw(g2, this);
             }
         }
         //NPC
-        for (int i = 0; i < obj.length; i++) {
+        for(int i = 0; i < obj.length; i++) {
             if (npc[i] != null) {
                 npc[i].draw(g2);
             }

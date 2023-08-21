@@ -10,7 +10,7 @@ public class AssetSetter {
 
     GamePanel gp;
 
-    public AssetSetter(GamePanel gp){
+    public AssetSetter(GamePanel gp) {
         this.gp = gp;
     }
 
@@ -18,7 +18,7 @@ public class AssetSetter {
 //
 //    }
 
-    public void setObject(){
+    public void setObject() {
         gp.obj[0] = new OBJ_Backpack();
         gp.obj[0].worldX = 18 * gp.tileSize;
         gp.obj[0].worldY = 20 * gp.tileSize;
@@ -37,9 +37,13 @@ public class AssetSetter {
 
     }
 
-    public void setNPC(){
+    public void setNPC() {
         gp.npc[0] = new NPC_Ladies(gp);
         gp.npc[0].worldX = 50 * gp.tileSize;
         gp.npc[0].worldY = 4 * gp.tileSize;
+
+        gp.npc[0] = new NPC_Ladies(gp);
+        gp.npc[0].worldX = 18 * gp.tileSize;
+        gp.npc[0].worldY = 15 * gp.tileSize;
     }
 }
