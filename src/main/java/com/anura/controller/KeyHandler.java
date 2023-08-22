@@ -1,6 +1,7 @@
 package com.anura.controller;
 
 import com.anura.view.GamePanel;
+import com.anura.view.Music;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -43,6 +44,7 @@ public class KeyHandler implements KeyListener {
                 switch (gp.ui.menuNum) {
                     case 0:
                         gp.gameState = gp.playState;
+//                        Music.playBGMusic("ShumbaTest.wav");
                         break;
                     case 1:
                         // not implemented yet
