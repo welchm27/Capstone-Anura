@@ -4,6 +4,7 @@ import com.anura.view.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.Objects;
 
 public class NPC_Toad extends Entity {
 
@@ -13,18 +14,19 @@ public class NPC_Toad extends Entity {
         speed = 0;
         getImage();
         setDialogue();
+        name = "toad";
     }
 
     public void getImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/toad.png"));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/toad.png")));
 
         } catch (IOException e) {
             e.printStackTrace();

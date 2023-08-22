@@ -7,6 +7,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 public class Player extends Entity {
 
@@ -15,7 +18,7 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    int hashKey = 0;
+    public final List<String> inventory = new LinkedList<>();
 
     public Player(GamePanel gp, KeyHandler keyH) {
         // I removed your calls to GamePanel as this supersedes that
@@ -47,14 +50,14 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_up2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_down2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/frog_right2.png"));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_up1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_up2.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_down1.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_down2.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_left1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_left2.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_right1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_right2.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -141,7 +144,7 @@ public class Player extends Entity {
                 case "bottlecap":
                 case "glassbead":
                 case "leaf":
-                    hashKey++;
+                    inventory.add(objectName);
                     gp.obj[i] = null;
                     break;
             }
