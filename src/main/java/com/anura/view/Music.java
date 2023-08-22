@@ -11,7 +11,7 @@ import java.io.BufferedInputStream;
 public class Music {
 
     private static Clip backgroundClip;
-    private static Float volume = 1.0f; // Default max volume min is 0.0/stop
+    private static Float volume = .3f; // Default max volume min is 0.0/stop
     private static Clip FXClip;
     private static Float FXVolume = 1.0f;
 

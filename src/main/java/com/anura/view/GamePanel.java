@@ -41,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
     public final int dialogueState = 3;
     public final int helpState = 4;
+    public final int soundState = 5;
 
     // Tile manager
     public TileManager tileM = new TileManager(this);
