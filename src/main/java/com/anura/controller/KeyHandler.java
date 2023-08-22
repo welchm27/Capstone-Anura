@@ -22,21 +22,21 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode(); // returns the number of the key that was pressed
         // Title State
-        if(gp.gameState == gp.titleState){
+        if (gp.gameState == gp.titleState) {
             if (code == KeyEvent.VK_W) {
                 gp.ui.menuNum--;
-                if(gp.ui.menuNum < 0){
+                if (gp.ui.menuNum < 0) {
                     gp.ui.menuNum = 2;
                 }
             }
             if (code == KeyEvent.VK_S) {
                 gp.ui.menuNum++;
-                if(gp.ui.menuNum > 2){
+                if (gp.ui.menuNum > 2) {
                     gp.ui.menuNum = 0;
                 }
             }
-            if(code == KeyEvent.VK_ENTER){
-                switch(gp.ui.menuNum) {
+            if (code == KeyEvent.VK_ENTER) {
+                switch (gp.ui.menuNum) {
                     case 0:
                         gp.gameState = gp.playState;
                         break;
@@ -68,14 +68,43 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 enterPressed = true;
             }
-            if (code == KeyEvent.VK_SPACE) {
+            if (code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.pauseState;
             }
         }
         // PAUSE STATE
         else if (gp.gameState == gp.pauseState) {
-            if (code == KeyEvent.VK_SPACE ) {
-                gp.gameState = gp.playState;
+            switch (code) {
+                case KeyEvent.VK_ESCAPE:
+                    gp.gameState = gp.playState;
+                    break;
+                case KeyEvent.VK_W:
+                    gp.ui.pauseNum--;
+                    if (gp.ui.pauseNum < 0) {
+                        gp.ui.pauseNum = 2;
+                    }
+                    break;
+                case KeyEvent.VK_S:
+                    gp.ui.pauseNum++;
+                    if (gp.ui.pauseNum > 2) {
+                        gp.ui.pauseNum = 0;
+                    }
+                    break;
+                case KeyEvent.VK_ENTER:
+                    switch (gp.ui.pauseNum) {
+                        case 0:
+                            // help function
+                            gp.gameState = gp.helpState;
+                            break;
+                        case 1:
+                            // save game option
+                            break;
+                        case 2:
+                            // quit game
+                            System.exit(0);
+                            break;
+                    }
+                    break;
             }
         }
         //DIALOGUE STATE
@@ -85,6 +114,12 @@ public class KeyHandler implements KeyListener {
                     code == KeyEvent.VK_D ||
                     code == KeyEvent.VK_A ||
                     code == KeyEvent.VK_S) {
+                gp.gameState = gp.playState;
+            }
+            // Help State
+        } else if (gp.gameState == gp.helpState) {
+            if (code == KeyEvent.VK_ENTER ||
+                    code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.playState;
             }
         }
