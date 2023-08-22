@@ -4,6 +4,8 @@ import com.anura.view.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
@@ -26,14 +28,16 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
                 gp.ui.menuNum--;
                 if (gp.ui.menuNum < 0) {
-                    gp.ui.menuNum = 2;
+                    gp.ui.menuNum = 3;
                 }
+                gp.ui.drawTitleScreen();
             }
             if (code == KeyEvent.VK_S) {
                 gp.ui.menuNum++;
-                if (gp.ui.menuNum > 2) {
+                if (gp.ui.menuNum > 3) {
                     gp.ui.menuNum = 0;
                 }
+                gp.ui.drawTitleScreen();
             }
             if (code == KeyEvent.VK_ENTER) {
                 switch (gp.ui.menuNum) {
@@ -44,6 +48,20 @@ public class KeyHandler implements KeyListener {
                         // not implemented yet
                         break;
                     case 2:
+                        // play console game
+                        /*  Not working in JAR yet
+                        GameLogic gameLogic = new GameLogic();
+                        try {
+                            gameLogic.execute();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        } catch (URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+
+                         */
+                        break;
+                    case 3:
                         System.exit(0);
                         break;
                 }
