@@ -4,6 +4,7 @@ import com.anura.view.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.util.Objects;
 
 public class NPC_Karen extends Entity{
 
@@ -13,18 +14,19 @@ public class NPC_Karen extends Entity{
         speed = 0;
         getImage();
         setDialogue();
+        name = "karen";
     }
 
     public void getImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/entities/karen.png"));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/karen.png")));
 
         } catch (IOException e) {
             e.printStackTrace();

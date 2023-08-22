@@ -20,6 +20,7 @@ public class Entity {
     public int actionLockCounter;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
+    String name;
 
     public Entity(GamePanel gp) {
         this.gp = gp;

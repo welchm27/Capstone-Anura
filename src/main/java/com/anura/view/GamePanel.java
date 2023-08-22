@@ -77,7 +77,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame() {
         setter.setObject();
         setter.setNPC();
-//        gameState = playState; // remove when titleState complete
         gameState = titleState;
     }
 
