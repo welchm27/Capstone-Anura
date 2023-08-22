@@ -25,8 +25,8 @@ public class UI {
     public UI(GamePanel gp) {
         this.gp = gp;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
-        OBJ_Backpack backpack = new OBJ_Backpack();
-        backpackImage = backpack.image;
+//        OBJ_Backpack backpack = new OBJ_Backpack();
+//        backpackImage = backpack.image;
     }
 
     public void draw(Graphics2D g2) {
@@ -79,12 +79,19 @@ public class UI {
         if(menuNum == 1){
             g2.drawString(">", x-gp.tileSize, y);
         }
+        text = "Console Game";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(menuNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
 
         text = "QUIT GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(menuNum == 2){
+        if(menuNum == 3){
             g2.drawString(">", x-gp.tileSize, y);
         }
         // Menu Instructions
