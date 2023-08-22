@@ -1,4 +1,4 @@
-package object;
+package com.anura.model.object;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
@@ -8,7 +8,7 @@ public class OBJ_BottleCap extends SuperObject {
 
         name = "bottleCap";
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("../objects/bottlecap.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/objects/bottlecap.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

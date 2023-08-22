@@ -1,8 +1,8 @@
 package com.anura.model.player;
 
 import com.anura.model.GameObject;
-import com.anura.view.Helper;
 import com.anura.model.readjsondata.EvolutionData;
+import com.anura.view.Helper;
 import com.google.gson.JsonObject;
 import org.fusesource.jansi.Ansi;
 

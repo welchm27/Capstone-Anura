@@ -5,7 +5,7 @@ import com.anura.controller.KeyHandler;
 import com.anura.model.CollisionChecker;
 import com.anura.model.guientity.Entity;
 import com.anura.model.guientity.Player;
-import object.SuperObject;
+import com.anura.model.object.SuperObject;
 
 import javax.swing.*;
 import java.awt.*;

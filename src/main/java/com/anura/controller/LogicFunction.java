@@ -1,10 +1,10 @@
 package com.anura.controller;
 
 import com.anura.model.GameObject;
-import com.anura.view.Helper;
-import com.anura.view.Music;
 import com.anura.model.player.Player;
 import com.anura.model.readjsondata.LocationData;
+import com.anura.view.Helper;
+import com.anura.view.Music;
 import com.google.gson.*;
 import org.fusesource.jansi.Ansi;
 
