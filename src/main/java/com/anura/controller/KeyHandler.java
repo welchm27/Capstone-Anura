@@ -1,5 +1,6 @@
 package com.anura.controller;
 
+import com.anura.main.GuiMain;
 import com.anura.view.GamePanel;
 import com.anura.view.Music;
 
@@ -43,6 +44,7 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 switch (gp.ui.menuNum) {
                     case 0:
+                        gp.setUpGame();
                         gp.gameState = gp.playState;
                         Music.playBGMusic("ShumbaTest.wav");
                         gp.ui.musicPlaying = true;
@@ -141,8 +143,9 @@ public class KeyHandler implements KeyListener {
                     code == KeyEvent.VK_S) {
                 gp.gameState = gp.playState;
             }
-            // Help State
-        } else if (gp.gameState == gp.helpState) {
+        }
+        // Help State
+        else if (gp.gameState == gp.helpState) {
             if (code == KeyEvent.VK_ENTER ||
                     code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.playState;
@@ -211,6 +214,18 @@ public class KeyHandler implements KeyListener {
                     }
             }
         }
+        // Win state
+        else if (gp.gameState == gp.winState){
+            switch(code){
+                case KeyEvent.VK_ENTER:
+                case KeyEvent.VK_ESCAPE:
+                    gp.resetGame();
+                    gp.gameState = gp.titleState;
+
+                    break;
+            }
+        }
+
     }
 
     @Override
