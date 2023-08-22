@@ -1,6 +1,6 @@
 package com.anura.controller;
+
 import java.io.ByteArrayOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 
     public class BridgeOutput extends ByteArrayOutputStream {

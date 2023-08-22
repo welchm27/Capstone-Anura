@@ -1,10 +1,12 @@
 package com.anura.view;
 
-import com.anura.model.guientity.NPC_Ladies;
-import object.OBJ_Backpack;
-import object.OBJ_BottleCap;
-import object.OBJ_Leaf;
-import object.OBJ_GlassBead;
+import com.anura.model.guientity.NPC_Karen;
+import com.anura.model.guientity.NPC_Toad;
+import com.anura.model.guientity.NPC_violet;
+import com.anura.model.object.OBJ_Backpack;
+import com.anura.model.object.OBJ_BottleCap;
+import com.anura.model.object.OBJ_GlassBead;
+import com.anura.model.object.OBJ_Leaf;
 
 public class AssetSetter {
 
@@ -28,7 +30,7 @@ public class AssetSetter {
         gp.obj[1].worldY = 29 * gp.tileSize;
 
         gp.obj[2] = new OBJ_GlassBead();
-        gp.obj[2].worldX = 6 * gp.tileSize;
+        gp.obj[2].worldX = 7 * gp.tileSize;
         gp.obj[2].worldY = 29 * gp.tileSize;
 
         gp.obj[3] = new OBJ_BottleCap();
@@ -38,12 +40,16 @@ public class AssetSetter {
     }
 
     public void setNPC() {
-        gp.npc[0] = new NPC_Ladies(gp);
+        gp.npc[0] = new NPC_Toad(gp);
         gp.npc[0].worldX = 50 * gp.tileSize;
         gp.npc[0].worldY = 4 * gp.tileSize;
 
-        gp.npc[1] = new NPC_Ladies(gp);
-        gp.npc[1].worldX = 18 * gp.tileSize;
-        gp.npc[1].worldY = 15 * gp.tileSize;
+        gp.npc[1] = new NPC_violet(gp);
+        gp.npc[1].worldX = 55 * gp.tileSize;
+        gp.npc[1].worldY = 4 * gp.tileSize;
+
+        gp.npc[2] = new NPC_Karen(gp);
+        gp.npc[2].worldX = 60 * gp.tileSize;
+        gp.npc[2].worldY = 4 * gp.tileSize;
     }
 }

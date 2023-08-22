@@ -1,11 +1,11 @@
 package com.anura.controller;
 
-import com.anura.controller.LogicFunction;
 import com.anura.model.GameMap;
+import com.anura.model.player.Player;
 import com.anura.view.Helper;
 import com.anura.view.Music;
-import com.anura.model.player.Player;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import org.fusesource.jansi.Ansi;
 
@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Scanner;
 
 public class GameLogic {
 

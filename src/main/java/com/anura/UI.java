@@ -1,7 +1,7 @@
 package com.anura;
 
+import com.anura.model.object.OBJ_Backpack;
 import com.anura.view.GamePanel;
-import object.OBJ_Backpack;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
