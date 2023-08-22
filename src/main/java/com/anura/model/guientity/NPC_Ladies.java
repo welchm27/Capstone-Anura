@@ -58,6 +58,7 @@ public class NPC_Ladies extends Entity {
 
         dialogues[0] = "Hello, there good looking";
         dialogues[1] = "Frog, Pink and, Handsome";
+        dialogues[2] = "Frog, Pink and, Handsome";
     }
 
     public void speak() {

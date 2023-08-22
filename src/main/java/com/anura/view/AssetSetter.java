@@ -42,8 +42,8 @@ public class AssetSetter {
         gp.npc[0].worldX = 50 * gp.tileSize;
         gp.npc[0].worldY = 4 * gp.tileSize;
 
-        gp.npc[0] = new NPC_Ladies(gp);
-        gp.npc[0].worldX = 18 * gp.tileSize;
-        gp.npc[0].worldY = 15 * gp.tileSize;
+        gp.npc[1] = new NPC_Ladies(gp);
+        gp.npc[1].worldX = 18 * gp.tileSize;
+        gp.npc[1].worldY = 15 * gp.tileSize;
     }
 }
