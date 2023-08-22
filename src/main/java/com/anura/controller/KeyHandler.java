@@ -117,9 +117,12 @@ public class KeyHandler implements KeyListener {
                             gp.gameState = gp.helpState;
                             break;
                         case 1:
-                            // save game option
+                            // music options
                             break;
                         case 2:
+                            // save game option
+                            break;
+                        case 3:
                             // quit game
                             System.exit(0);
                             break;
