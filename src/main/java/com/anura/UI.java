@@ -79,7 +79,7 @@ public class UI {
         if(menuNum == 1){
             g2.drawString(">", x-gp.tileSize, y);
         }
-        text = "Console Game";
+        text = "Console Game(under development)";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);

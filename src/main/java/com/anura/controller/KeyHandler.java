@@ -49,6 +49,17 @@ public class KeyHandler implements KeyListener {
                         break;
                     case 2:
                         // play console game
+                        /*  Not working in JAR yet
+                        GameLogic gameLogic = new GameLogic();
+                        try {
+                            gameLogic.execute();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        } catch (URISyntaxException ex) {
+                            ex.printStackTrace();
+                        }
+
+                         */
                         break;
                     case 3:
                         System.exit(0);
