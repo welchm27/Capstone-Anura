@@ -1,7 +1,7 @@
 package com.anura;
 
+import com.anura.model.object.OBJ_Backpack;
 import com.anura.view.GamePanel;
-import object.OBJ_Backpack;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -41,7 +41,7 @@ public class UI {
         if (gp.gameState == gp.playState) {
             // do playState logic
             g2.drawString("Inventory: ", 10, 20);
-            // g2.drawImage(backpackImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
+             g2.drawImage(backpackImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
         }
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();

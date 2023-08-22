@@ -1,4 +1,4 @@
-package object;
+package com.anura.model.object;
 
 import com.anura.view.GamePanel;
 
