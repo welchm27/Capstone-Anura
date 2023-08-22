@@ -20,8 +20,36 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
         int code = e.getKeyCode(); // returns the number of the key that was pressed
+        // Title State
+        if(gp.gameState == gp.titleState){
+            if (code == KeyEvent.VK_W) {
+                gp.ui.menuNum--;
+                if(gp.ui.menuNum < 0){
+                    gp.ui.menuNum = 2;
+                }
+            }
+            if (code == KeyEvent.VK_S) {
+                gp.ui.menuNum++;
+                if(gp.ui.menuNum > 2){
+                    gp.ui.menuNum = 0;
+                }
+            }
+            if(code == KeyEvent.VK_ENTER){
+                switch(gp.ui.menuNum) {
+                    case 0:
+                        gp.gameState = gp.playState;
+                        break;
+                    case 1:
+                        // not implemented yet
+                        break;
+                    case 2:
+                        System.exit(0);
+                        break;
+                }
+            }
+        }
+
         //PLAY STATE
         if (gp.gameState == gp.playState) {
             // if key is pressed, set to true
