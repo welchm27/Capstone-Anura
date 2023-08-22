@@ -44,7 +44,8 @@ public class KeyHandler implements KeyListener {
                 switch (gp.ui.menuNum) {
                     case 0:
                         gp.gameState = gp.playState;
-//                        Music.playBGMusic("ShumbaTest.wav");
+                        Music.playBGMusic("ShumbaTest.wav");
+                        gp.ui.musicPlaying = true;
                         break;
                     case 1:
                         // not implemented yet
@@ -185,24 +186,28 @@ public class KeyHandler implements KeyListener {
                             break;
                         case 2:
                             // volume up
-                            if(Music.getVolume() <= 1.0f){
-                                Music.stopBackgroundMusic();
-                                Music.increaseVolume();
-                                Music.playBGMusic(bgFilepath);
-                            }else{
-                                Music.setBGMVolume(1.0F);
+                            if (gp.ui.musicPlaying) {
+                                if (Music.getVolume() <= 1.0f) {
+                                    Music.stopBackgroundMusic();
+                                    Music.increaseVolume();
+                                    Music.playBGMusic(bgFilepath);
+                                } else {
+                                    Music.setBGMVolume(1.0F);
+                                }
                             }
                             break;
                         case 3:
                             // volume down
-                            if (Music.getVolume() >= 0.1f) {
-                                Music.stopBackgroundMusic();
-                                Music.decreaseVolume();
-                                Music.playBGMusic(bgFilepath);
-                            }else{
-                                Music.setBGMVolume(0.1F);
+                            if (gp.ui.musicPlaying) {
+                                if (Music.getVolume() >= 0.1f) {
+                                    Music.stopBackgroundMusic();
+                                    Music.decreaseVolume();
+                                    Music.playBGMusic(bgFilepath);
+                                } else {
+                                    Music.setBGMVolume(0.1F);
+                                }
                             }
-                                break;
+                            break;
                     }
             }
         }
