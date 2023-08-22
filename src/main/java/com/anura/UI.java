@@ -22,6 +22,7 @@ public class UI {
     public int menuNum = 0;
     public int pauseNum = 0;
     public int soundNum = 0;
+    public boolean musicPlaying = false;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -157,7 +158,7 @@ public class UI {
 
         // Sound Options
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
-        text = "Music Off";
+        text = "Music off";
         x = getXForCenteredText(text);
         y += gp.tileSize * 2;
         g2.drawString(text, x, y);

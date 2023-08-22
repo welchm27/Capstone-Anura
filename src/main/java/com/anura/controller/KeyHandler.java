@@ -169,9 +169,17 @@ public class KeyHandler implements KeyListener {
                     switch (gp.ui.soundNum) {
                         case 0:
                             // music off function (only if already on)
+                            if(gp.ui.musicPlaying){
+                                Music.stopBackgroundMusic();
+                                gp.ui.musicPlaying = false;
+                            }
                             break;
                         case 1:
                             // music on (only if already off)
+                            if(!gp.ui.musicPlaying){
+                                Music.playBGMusic("ShumbaTest.wav");
+                                gp.ui.musicPlaying = true;
+                            }
                             break;
                         case 2:
                             // volume up
