@@ -20,6 +20,7 @@ public class UI {
     int messageCounter = 0;
     public String currentDialogue;
     public int menuNum = 0;
+    public int pauseNum = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -47,6 +48,9 @@ public class UI {
         }
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
+        }
+        if(gp.gameState == gp.helpState){
+            drawHelpScreen();
         }
     }
 
@@ -96,9 +100,34 @@ public class UI {
     public void drawPauseScreen() {
         String text = "PAUSED";
         int x = getXForCenteredText(text);
-        int y = gp.screenHeight / 2;
-
+        int y = gp.tileSize *2;
         g2.drawString(text, x, y);
+
+        // Menu options
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
+        text = "HELP";
+        x = getXForCenteredText(text);
+        y += gp.tileSize * 2;
+        g2.drawString(text, x, y);
+        if(pauseNum == 0){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "SAVE GAME(under development)";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(pauseNum == 1){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "QUIT GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(pauseNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
     }
 
     // helper method to get center of screen x to display text centered
@@ -117,12 +146,39 @@ public class UI {
 
         x += gp.tileSize;
         y += gp.tileSize;
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
 
         for (String line : currentDialogue.split("\n")){
         g2.drawString(currentDialogue, x, y);
         y += 40;
         }
+    }
+
+    private void drawHelpScreen() {
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 4;
+        drawSubWindow(x, y, width, height);
+        String line1 = "Use WSAD to move";
+        String line2 = "Hit Enter to speak to NPCs";
+        String line3 = "If it doesn't work, try again while walking toward the NPC";
+        String line4 = "Hit Escape to pause and for options";
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
+        x = getXForCenteredText(line1);
+        y += gp.tileSize;
+        g2.drawString(line1, x, y);
+        x = getXForCenteredText(line2);
+        y += gp.tileSize;
+        g2.drawString(line2, x, y);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 18F));
+        x = getXForCenteredText(line3);
+        y += 30;
+        g2.drawString(line3, x, y);
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
+        x = getXForCenteredText(line4);
+        y += gp.tileSize;
+        g2.drawString(line4, x, y);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
