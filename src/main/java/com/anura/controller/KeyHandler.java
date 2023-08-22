@@ -166,29 +166,44 @@ public class KeyHandler implements KeyListener {
                     }
                     break;
                 case KeyEvent.VK_ENTER:
+                    String bgFilepath = "ShumbaTest.wav";
                     switch (gp.ui.soundNum) {
                         case 0:
                             // music off function (only if already on)
-                            if(gp.ui.musicPlaying){
+                            if (gp.ui.musicPlaying) {
                                 Music.stopBackgroundMusic();
                                 gp.ui.musicPlaying = false;
                             }
                             break;
                         case 1:
                             // music on (only if already off)
-                            if(!gp.ui.musicPlaying){
-                                Music.playBGMusic("ShumbaTest.wav");
+                            if (!gp.ui.musicPlaying) {
+                                Music.playBGMusic(bgFilepath);
+
                                 gp.ui.musicPlaying = true;
                             }
                             break;
                         case 2:
                             // volume up
+                            if(Music.getVolume() <= 1.0f){
+                                Music.stopBackgroundMusic();
+                                Music.increaseVolume();
+                                Music.playBGMusic(bgFilepath);
+                            }else{
+                                Music.setBGMVolume(1.0F);
+                            }
                             break;
                         case 3:
                             // volume down
-                            break;
+                            if (Music.getVolume() >= 0.1f) {
+                                Music.stopBackgroundMusic();
+                                Music.decreaseVolume();
+                                Music.playBGMusic(bgFilepath);
+                            }else{
+                                Music.setBGMVolume(0.1F);
+                            }
+                                break;
                     }
-                    break;
             }
         }
     }

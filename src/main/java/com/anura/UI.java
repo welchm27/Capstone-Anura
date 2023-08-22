@@ -2,6 +2,7 @@ package com.anura;
 
 import com.anura.model.object.OBJ_Backpack;
 import com.anura.view.GamePanel;
+import com.anura.view.Music;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
