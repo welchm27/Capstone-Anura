@@ -101,12 +101,12 @@ public class KeyHandler implements KeyListener {
                 case KeyEvent.VK_W:
                     gp.ui.pauseNum--;
                     if (gp.ui.pauseNum < 0) {
-                        gp.ui.pauseNum = 2;
+                        gp.ui.pauseNum = 3;
                     }
                     break;
                 case KeyEvent.VK_S:
                     gp.ui.pauseNum++;
-                    if (gp.ui.pauseNum > 2) {
+                    if (gp.ui.pauseNum > 3) {
                         gp.ui.pauseNum = 0;
                     }
                     break;
@@ -118,6 +118,7 @@ public class KeyHandler implements KeyListener {
                             break;
                         case 1:
                             // music options
+                            gp.gameState = gp.soundState;
                             break;
                         case 2:
                             // save game option
@@ -144,6 +145,42 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER ||
                     code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.playState;
+            }
+        }
+        // SOUND STATE
+        else if (gp.gameState == gp.soundState) {
+            switch (code) {
+                case KeyEvent.VK_ESCAPE:
+                    gp.gameState = gp.playState;
+                    break;
+                case KeyEvent.VK_W:
+                    gp.ui.soundNum--;
+                    if (gp.ui.soundNum < 0) {
+                        gp.ui.soundNum = 3;
+                    }
+                    break;
+                case KeyEvent.VK_S:
+                    gp.ui.soundNum++;
+                    if (gp.ui.soundNum > 3) {
+                        gp.ui.soundNum = 0;
+                    }
+                    break;
+                case KeyEvent.VK_ENTER:
+                    switch (gp.ui.soundNum) {
+                        case 0:
+                            // music off function (only if already on)
+                            break;
+                        case 1:
+                            // music on (only if already off)
+                            break;
+                        case 2:
+                            // volume up
+                            break;
+                        case 3:
+                            // volume down
+                            break;
+                    }
+                    break;
             }
         }
     }

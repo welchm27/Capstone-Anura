@@ -21,6 +21,7 @@ public class UI {
     public String currentDialogue;
     public int menuNum = 0;
     public int pauseNum = 0;
+    public int soundNum = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -51,6 +52,9 @@ public class UI {
         }
         if(gp.gameState == gp.helpState){
             drawHelpScreen();
+        }
+        if(gp.gameState == gp.soundState){
+            drawSoundScreen();
         }
     }
 
@@ -107,7 +111,7 @@ public class UI {
     public void drawPauseScreen() {
         String text = "PAUSED";
         int x = getXForCenteredText(text);
-        int y = gp.tileSize *2;
+        int y = gp.tileSize * 2;
         g2.drawString(text, x, y);
 
         // Menu options
@@ -120,7 +124,7 @@ public class UI {
             g2.drawString(">", x-gp.tileSize, y);
         }
 
-        text = "SAVE GAME(under development)";
+        text = "Sound Controls";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
@@ -128,11 +132,60 @@ public class UI {
             g2.drawString(">", x-gp.tileSize, y);
         }
 
-        text = "QUIT GAME";
+        text = "SAVE GAME(under development)";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
         if(pauseNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "QUIT GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(pauseNum == 3){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+    }
+    public void drawSoundScreen() {
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
+        String text = "SOUND OPTIONS";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize * 2;
+        g2.drawString(text, x, y);
+
+        // Sound Options
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
+        text = "Music Off";
+        x = getXForCenteredText(text);
+        y += gp.tileSize * 2;
+        g2.drawString(text, x, y);
+        if(soundNum == 0){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "Music on";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(soundNum == 1){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "Volume Up";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(soundNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        text = "Volume Down";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(soundNum == 3){
             g2.drawString(">", x-gp.tileSize, y);
         }
     }
