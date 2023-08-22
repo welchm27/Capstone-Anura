@@ -126,6 +126,11 @@ public class Player extends Entity {
         if (i != 999) {
             if (gp.keyH.enterPressed) {
                 gp.gameState = gp.dialogueState;
+                if (gp.npc[i].name == "violet"){
+                    if(gp.player.inventory.contains("glassbead")){
+                        gp.gameState = gp.titleState;
+                    }
+                }
                 gp.npc[i].speak();
             }
         }
