@@ -3,15 +3,18 @@ package com.anura;
 import com.anura.view.GamePanel;
 import object.OBJ_Backpack;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class UI {
 
     GamePanel gp;
+    Graphics2D g2;
+    BufferedImage background;
     Font arial_40;
     BufferedImage backpackImage;
-    Graphics2D g2;
     public Boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
@@ -30,6 +33,9 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
+        if(gp.gameState == gp.titleState){
+            drawTitleScreen();
+        }
         if (gp.gameState == gp.playState) {
             // do playState logic
             g2.drawString("Inventory: ", 10, 20);
@@ -41,6 +47,33 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+    }
+
+    public void drawTitleScreen(){
+
+        try{
+            background = ImageIO.read(getClass().getResourceAsStream("/GuiTitleScreen.png"));
+            g2.drawImage(background, 0, 0, null);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        // Menu
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
+        String text = "NEW GAME";
+        int x = getXForCenteredText(text);
+        int y = gp.screenHeight / 2 + (gp.tileSize * 2);
+        g2.drawString(text, x, y);
+
+        text = "LOAD GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+
+        text = "QUIT GAME";
+        x = getXForCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
     }
 
     public void drawPauseScreen() {

@@ -10,7 +10,7 @@ import object.SuperObject;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable{
+public class GamePanel extends JPanel implements Runnable {
 
     // SCREEN SETTINGS
     private final int originalTileSize = 16; // 16x16 tile
@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     // Game State
     public int gameState;
+    public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
     public final int dialogueState = 3;
@@ -74,7 +75,8 @@ public class GamePanel extends JPanel implements Runnable{
     public void setUpGame() {
         setter.setObject();
         setter.setNPC();
-        gameState = playState;
+        gameState = playState; // remove when titleState complete
+//        gameState = titleState;
     }
 
     public void startGameThread() {
@@ -121,37 +123,44 @@ public class GamePanel extends JPanel implements Runnable{
                 }
             }
         }
-        if(gameState == pauseState){
+        if (gameState == pauseState) {
             // nothing for now
         }
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
-        //TILE
-        tileM.draw(g2);  // make sure this is above player
-
-        //OBJECT
-        for(int i = 0; i < obj.length; i++) {
-            if (obj[i] != null) {
-                obj[i].draw(g2, this);
-            }
+        // Title Screen
+        if (gameState == titleState) {
+            ui.draw(g2);
         }
-        //NPC
-        for(int i = 0; i < obj.length; i++) {
-            if (npc[i] != null) {
-                npc[i].draw(g2);
+        // everything else
+        else {
+            //TILE
+            tileM.draw(g2);  // make sure this is above player
+
+            //OBJECT
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].draw(g2, this);
+                }
             }
+            //NPC
+            for (int i = 0; i < obj.length; i++) {
+                if (npc[i] != null) {
+                    npc[i].draw(g2);
+                }
+            }
+
+            //PLAYER
+            player.draw(g2, this);
+
+            //UI
+            ui.draw(g2);
         }
-
-        //PLAYER
-        player.draw(g2, this);
-
-        //UI
-        ui.draw(g2);
 
         g2.dispose();  // keeps from building up memory usage
     }
