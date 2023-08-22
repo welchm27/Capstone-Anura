@@ -155,30 +155,51 @@ public class UI {
     }
 
     private void drawHelpScreen() {
-        int x = gp.tileSize * 2;
-        int y = gp.tileSize / 2;
+        int windowX = gp.tileSize * 2;
+        int windowY = gp.tileSize / 2;
         int width = gp.screenWidth - (gp.tileSize * 4);
-        int height = gp.tileSize * 4;
-        drawSubWindow(x, y, width, height);
+        int height = gp.tileSize * 10;
+        drawSubWindow(windowX, windowY, width, height);
         String line1 = "Use WSAD to move";
         String line2 = "Hit Enter to speak to NPCs";
         String line3 = "If it doesn't work, try again while walking toward the NPC";
         String line4 = "Hit Escape to pause and for options";
+        String line5 = "Instructions:";
+        String line6 = "You're born into this dangerous world as a tiny pink tadpole.\n" +
+                "You need to eat, evolve, and survive long enough to find a mate.\n" +
+                "Navigate around friends and foes to find someone to love!";
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
-        x = getXForCenteredText(line1);
-        y += gp.tileSize;
+        int x = getXForCenteredText(line1);
+        int y = windowY += gp.tileSize;
         g2.drawString(line1, x, y);
+
         x = getXForCenteredText(line2);
         y += gp.tileSize;
         g2.drawString(line2, x, y);
+
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 18F));
         x = getXForCenteredText(line3);
         y += 30;
         g2.drawString(line3, x, y);
+
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
         x = getXForCenteredText(line4);
         y += gp.tileSize;
         g2.drawString(line4, x, y);
+
+        x = getXForCenteredText(line5);
+        y += gp.tileSize * 3;
+        g2.drawString(line5, x, y);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 18F));
+        x = windowX += gp.tileSize ;
+        y +=gp.tileSize;
+        for(String line : line6.split("\n")){  // split the text at \n to get the line break
+            g2.drawString(line, x, y);
+            y += 40;  // after splitting the line, increase the Y so the next line is down 40 px
+        }
+//        g2.drawString(line6, x, y);
+
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {
