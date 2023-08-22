@@ -58,7 +58,6 @@ public class UI {
         }catch(IOException e){
             e.printStackTrace();
         }
-
         // Menu
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
         String text = "NEW GAME";
@@ -84,6 +83,14 @@ public class UI {
         if(menuNum == 2){
             g2.drawString(">", x-gp.tileSize, y);
         }
+        // Menu Instructions
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
+        String text1 = "Use W/S to change Selection";
+        String text2 = "then Enter to make your choice";
+        x = 10;
+        y += gp.tileSize;
+        g2.drawString(text1, x, y);
+        g2.drawString(text2, x, y + gp.tileSize/2);
     }
 
     public void drawPauseScreen() {
