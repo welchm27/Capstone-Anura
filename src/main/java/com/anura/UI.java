@@ -38,14 +38,14 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
-        if(gp.gameState == gp.titleState){
+        if (gp.gameState == gp.titleState) {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
             // do playState logic
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
             g2.drawString("Inventory: " + gp.player.inventory, 10, 20);
-             g2.drawImage(backpackImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(backpackImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
         }
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
@@ -53,20 +53,23 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
-        if(gp.gameState == gp.helpState){
+        if (gp.gameState == gp.helpState) {
             drawHelpScreen();
         }
-        if(gp.gameState == gp.soundState){
+        if (gp.gameState == gp.soundState) {
             drawSoundScreen();
+        }
+        if(gp.gameState == gp.winState){
+            drawWinScreen();
         }
     }
 
-    public void drawTitleScreen(){
+    public void drawTitleScreen() {
 
-        try{
+        try {
             background = ImageIO.read(getClass().getResourceAsStream("/GuiTitleScreen.png"));
             g2.drawImage(background, 0, 0, null);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         // Menu
@@ -75,31 +78,31 @@ public class UI {
         int x = getXForCenteredText(text);
         int y = gp.screenHeight / 2 + (gp.tileSize * 2);
         g2.drawString(text, x, y);
-        if(menuNum == 0){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (menuNum == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "LOAD GAME(under development)";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(menuNum == 1){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (menuNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
         text = "Console Game(under development)";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(menuNum == 2){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (menuNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "QUIT GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(menuNum == 3){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (menuNum == 3) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
         // Menu Instructions
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
@@ -108,7 +111,7 @@ public class UI {
         x = 10;
         y += gp.tileSize;
         g2.drawString(text1, x, y);
-        g2.drawString(text2, x, y + gp.tileSize/2);
+        g2.drawString(text2, x, y + gp.tileSize / 2);
     }
 
     public void drawPauseScreen() {
@@ -123,34 +126,35 @@ public class UI {
         x = getXForCenteredText(text);
         y += gp.tileSize * 2;
         g2.drawString(text, x, y);
-        if(pauseNum == 0){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (pauseNum == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Sound Controls";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(pauseNum == 1){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (pauseNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "SAVE GAME(under development)";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(pauseNum == 2){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (pauseNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "QUIT GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(pauseNum == 3){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (pauseNum == 3) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
     }
+
     public void drawSoundScreen() {
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 35F));
         String text = "SOUND OPTIONS";
@@ -164,32 +168,32 @@ public class UI {
         x = getXForCenteredText(text);
         y += gp.tileSize * 2;
         g2.drawString(text, x, y);
-        if(soundNum == 0){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (soundNum == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Music on";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(soundNum == 1){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (soundNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Volume Up";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(soundNum == 2){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (soundNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
 
         text = "Volume Down";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if(soundNum == 3){
-            g2.drawString(">", x-gp.tileSize, y);
+        if (soundNum == 3) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
     }
 
@@ -211,9 +215,9 @@ public class UI {
         y += gp.tileSize;
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
 
-        for (String line : currentDialogue.split("\n")){
-        g2.drawString(currentDialogue, x, y);
-        y += 40;
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(currentDialogue, x, y);
+            y += 40;
         }
     }
 
@@ -255,15 +259,43 @@ public class UI {
         g2.drawString(line5, x, y);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 18F));
-        x = windowX += gp.tileSize ;
-        y +=gp.tileSize;
-        for(String line : line6.split("\n")){  // split the text at \n to get the line break
+        x = windowX += gp.tileSize;
+        y += gp.tileSize;
+        for (String line : line6.split("\n")) {  // split the text at \n to get the line break
             g2.drawString(line, x, y);
             y += 40;  // after splitting the line, increase the Y so the next line is down 40 px
         }
-//        g2.drawString(line6, x, y);
-
     }
+
+    private void drawWinScreen(){
+        int windowX = gp.tileSize * 2;
+        int windowY = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 10;
+        drawSubWindow(windowX, windowY, width, height);
+        String line1 = "CONGRATULATIONS!!!!";
+        String line2 = "You've found a mate who doesn\'t";
+        String line3 = "mind your pink skin";
+        String line4 = "Hit enter to return to the title screen";
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
+        int x = getXForCenteredText(line1);
+        int y = windowY += gp.tileSize;
+        g2.drawString(line1, x, y);
+
+        x = getXForCenteredText(line2);
+        y += gp.tileSize;
+        g2.drawString(line2, x, y);
+
+        x = getXForCenteredText(line3);
+        y += gp.tileSize;
+        g2.drawString(line3, x, y);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
+        x = getXForCenteredText(line4);
+        y += gp.tileSize;
+        g2.drawString(line4, x, y);
+    }
+
 
     public void drawSubWindow(int x, int y, int width, int height) {
         Color c = new Color(0, 0, 0, 200);

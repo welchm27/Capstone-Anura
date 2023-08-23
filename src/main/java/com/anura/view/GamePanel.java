@@ -5,7 +5,7 @@ import com.anura.controller.KeyHandler;
 import com.anura.model.CollisionChecker;
 import com.anura.model.guientity.Entity;
 import com.anura.model.guientity.Player;
-import com.anura.model.object.SuperObject;
+import com.anura.model.object.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,6 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int dialogueState = 3;
     public final int helpState = 4;
     public final int soundState = 5;
+    public final int winState = 6;
 
     // Tile manager
     public TileManager tileM = new TileManager(this);
@@ -83,6 +84,36 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread() {
         gameThread = new Thread(this);
         gameThread.start();
+    }
+
+    public void resetGame(){
+        GamePanel gp = setter.gp;
+        // reset item locations
+        gp.obj[0] = new OBJ_Backpack();
+        gp.obj[0].worldX = 18 * gp.tileSize;
+        gp.obj[0].worldY = 20 * gp.tileSize;
+        gp.obj[1] = new OBJ_Leaf();
+        gp.obj[1].worldX = 40 * gp.tileSize;
+        gp.obj[1].worldY = 29 * gp.tileSize;
+        gp.obj[2] = new OBJ_GlassBead();
+        gp.obj[2].worldX = 7 * gp.tileSize;
+        gp.obj[2].worldY = 29 * gp.tileSize;
+        gp.obj[3] = new OBJ_BottleCap();
+        gp.obj[3].worldX = 54 * gp.tileSize;
+        gp.obj[3].worldY = 23 * gp.tileSize;
+        // Clear player inventory and reset location
+        gp.player.inventory.clear();
+        gp.player.worldX = gp.tileSize * 18;
+        gp.player.worldY = gp.tileSize * 14;
+        gp.player.speed = 4;
+        gp.player.direction = "down";
+        // Reset entity locations
+        gp.npc[0].worldX = 50 * gp.tileSize;
+        gp.npc[0].worldY = 4 * gp.tileSize;
+        gp.npc[1].worldX = 55 * gp.tileSize;
+        gp.npc[1].worldY = 4 * gp.tileSize;
+        gp.npc[2].worldX = 60 * gp.tileSize;
+        gp.npc[2].worldY = 4 * gp.tileSize;
     }
 
 

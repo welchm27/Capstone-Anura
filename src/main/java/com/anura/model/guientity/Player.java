@@ -2,6 +2,7 @@ package com.anura.model.guientity;
 
 import com.anura.controller.KeyHandler;
 import com.anura.view.GamePanel;
+import com.anura.view.Music;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -128,7 +129,9 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 if (gp.npc[i].name == "violet"){
                     if(gp.player.inventory.contains("glassbead")){
-                        gp.gameState = gp.titleState;
+                        Music.stopBackgroundMusic();
+                        gp.ui.musicPlaying = false;
+                        gp.gameState = gp.winState;
                     }
                 }
                 gp.npc[i].speak();
