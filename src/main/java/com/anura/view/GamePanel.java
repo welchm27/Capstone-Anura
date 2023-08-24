@@ -55,7 +55,6 @@ public class GamePanel extends JPanel implements Runnable {
     public Thread gameThread;
 
 
-
     //KEY HANDLER
     public KeyHandler keyH = new KeyHandler(this);
 
@@ -68,6 +67,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     //NPC
     public Entity npc[] = new Entity[20];
+
+    //MONSTER
+    public Entity monster[] = new Entity[10];
+
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -84,6 +87,7 @@ public class GamePanel extends JPanel implements Runnable {
         setter.setObject();
         setter.setNPC();
         gameState = titleState;
+        setter.setMonster();
     }
 
     public void startGameThread() {
@@ -159,6 +163,11 @@ public class GamePanel extends JPanel implements Runnable {
                     npc[i].update();
                 }
             }
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    monster[i].update();
+                }
+            }
         }
         if (gameState == pauseState) {
             // nothing for now
@@ -189,6 +198,11 @@ public class GamePanel extends JPanel implements Runnable {
             for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
                     npc[i].draw(g2);
+                }
+            }
+            for (int i = 0; i < monster.length; i++) {
+                if (monster[i] != null) {
+                    monster[i].draw(g2);
                 }
             }
 

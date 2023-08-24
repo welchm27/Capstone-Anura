@@ -1,7 +1,6 @@
 package com.anura.model.guientity;
 
 import com.anura.view.GamePanel;
-import com.anura.view.TopPanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,7 +20,9 @@ public class Entity {
     public int actionLockCounter;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
-    String name;
+    public String name;
+    public int maxLife;
+    public int life;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -57,7 +58,11 @@ public class Entity {
     public void update() {
         setAction();
         collisionOn = false;
+        gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkEntity(this, gp.npc);
+        gp.cChecker.checkEntity(this, gp.monster);
         gp.cChecker.checkTile(this);
+        gp.cChecker.checkPlayer(this);
         if (!collisionOn) {
             switch (direction) {
                 case "up":

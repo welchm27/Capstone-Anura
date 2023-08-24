@@ -1,6 +1,9 @@
 package com.anura.view;
 
 import com.anura.model.guientity.*;
+import com.anura.model.monster.MON_crow;
+import com.anura.model.monster.MON_snake;
+import com.anura.model.monster.MON_sting;
 import com.anura.model.object.OBJ_Backpack;
 import com.anura.model.object.OBJ_BottleCap;
 import com.anura.model.object.OBJ_GlassBead;
@@ -41,6 +44,10 @@ public class AssetSetter {
         gp.npc[index].worldX = x * gp.tileSize;
         gp.npc[index].worldY = y * gp.tileSize;
     }
+    public void monsterSetting(int index, int x, int y){
+        gp.monster[index].worldX = x * gp.tileSize;
+        gp.monster[index].worldY = y * gp.tileSize;
+    }
 
     public void setNPC() {
         gp.npc[0] = new NPC_Toad(gp);
@@ -70,5 +77,15 @@ public class AssetSetter {
         gp.npc[8] = new NPC_Destiny(gp);
         npcSettings(8, 50, 4);
 
+    }
+    public void setMonster() {
+        gp.monster[0] = new MON_crow(gp);
+        monsterSetting(0, 20, 26);
+
+        gp.monster[1] = new MON_snake(gp);
+        monsterSetting(1, 31, 30);
+
+        gp.monster[2] = new MON_sting(gp);
+        monsterSetting(2, 25, 34);
     }
 }
