@@ -80,12 +80,12 @@ public class AssetSetter {
     }
     public void setMonster() {
         gp.monster[0] = new MON_crow(gp);
-        monsterSetting(0, 20, 26);
+        monsterSetting(0, 55, 7);
 
         gp.monster[1] = new MON_snake(gp);
-        monsterSetting(1, 31, 30);
+        monsterSetting(1, 24, 25);
 
         gp.monster[2] = new MON_sting(gp);
-        monsterSetting(2, 25, 34);
+        monsterSetting(2, 35, 40);
     }
 }
