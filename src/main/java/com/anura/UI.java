@@ -27,6 +27,7 @@ public class UI {
     public int pauseNum = 0;
     public int soundNum = 0;
     public boolean musicPlaying = false;
+    private boolean isFirstPlayState = true;
 
 
     public UI(GamePanel gp, TopPanel topPanel, BottomPanel bottomPanel) {
@@ -46,6 +47,10 @@ public class UI {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
+            if(isFirstPlayState){
+                gp.gameState = gp.helpState;
+                isFirstPlayState = false;
+            }
             // do playState logic
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
 //            g2.drawString("Inventory: " + gp.player.inventory, 10, 20);
@@ -92,19 +97,12 @@ public class UI {
         if (menuNum == 1) {
             g2.drawString(">", x - gp.tileSize, y);
         }
-        text = "Console Game(under development)";
-        x = getXForCenteredText(text);
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if (menuNum == 2) {
-            g2.drawString(">", x - gp.tileSize, y);
-        }
 
         text = "QUIT GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if (menuNum == 3) {
+        if (menuNum == 2) {
             g2.drawString(">", x - gp.tileSize, y);
         }
         // Menu Instructions

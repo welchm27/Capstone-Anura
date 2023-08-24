@@ -8,9 +8,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Timer;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
+    private boolean isFirstPlayState = true;
+    private boolean transitionToHelp = false;
 
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
 
@@ -30,13 +33,13 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_W) {
                 gp.ui.menuNum--;
                 if (gp.ui.menuNum < 0) {
-                    gp.ui.menuNum = 3;
+                    gp.ui.menuNum = 2;
                 }
                 gp.ui.drawTitleScreen();
             }
             if (code == KeyEvent.VK_S) {
                 gp.ui.menuNum++;
-                if (gp.ui.menuNum > 3) {
+                if (gp.ui.menuNum > 2) {
                     gp.ui.menuNum = 0;
                 }
                 gp.ui.drawTitleScreen();
@@ -44,8 +47,8 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_ENTER) {
                 switch (gp.ui.menuNum) {
                     case 0:
-                        gp.setUpGame();
-                        gp.gameState = gp.playState;
+//                        gp.setUpGame();
+                        gp.gameState = gp.helpState;
                         Music.playBGMusic("ShumbaTest.wav");
                         gp.ui.musicPlaying = true;
                         break;
@@ -53,8 +56,6 @@ public class KeyHandler implements KeyListener {
                         // not implemented yet
                         break;
                     case 2:
-                        break;
-                    case 3:
                         System.exit(0);
                         break;
                 }
@@ -63,6 +64,7 @@ public class KeyHandler implements KeyListener {
 
         //PLAY STATE
         if (gp.gameState == gp.playState) {
+
             // if key is pressed, set to true
             if (code == KeyEvent.VK_W) {
                 upPressed = true;
@@ -219,6 +221,7 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
+
         // when key released, set to false
         if (code == KeyEvent.VK_W) {
             upPressed = false;
@@ -231,6 +234,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_S) {
             downPressed = false;
+        }
+        if(code == KeyEvent.VK_ENTER){
+            enterPressed = false;
         }
     }
 }
