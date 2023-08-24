@@ -93,7 +93,7 @@ public class Player extends Entity {
 
             //CHECK MONSTER COLLISION
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
-
+            contactMonster(monsterIndex);
 
             //CHECK NPC Collision
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
@@ -102,18 +102,10 @@ public class Player extends Entity {
             // if collision is false, player can move
             if (!collisionOn) {
                 switch (direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
                 }
             }
         }
@@ -126,7 +118,15 @@ public class Player extends Entity {
             }
             spriteCounter = 0;
         }
+        if (invincible == true) {
+            invincibleCounter++;
+            if (invincibleCounter > 60) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
+        }
     }
+
 
     public void interactNPC(int i) {
 
@@ -160,6 +160,16 @@ public class Player extends Entity {
                     TopPanel.updateInventory(inventory);
                     gp.obj[i] = null;
                     break;
+            }
+        }
+    }
+
+    public void contactMonster(int i){
+
+        if (i != 999){
+            if(!invincible){
+                life -=1;
+                invincible = true;
             }
         }
     }
@@ -201,6 +211,11 @@ public class Player extends Entity {
                 }
                 break;
         }
+        if (invincible){
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3F));
+        }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        //reset opacity level
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1F));
     }
 }
