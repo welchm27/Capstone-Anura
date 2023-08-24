@@ -18,6 +18,7 @@ public class MON_crow extends Entity {
         maxLife = 4;
         life = maxLife;
         direction = "down";
+        type = 2;
 
         solidArea.x = 3;
         solidArea.y = 18;

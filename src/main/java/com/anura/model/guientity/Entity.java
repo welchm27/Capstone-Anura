@@ -19,10 +19,13 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY; //For item interactions
     public int actionLockCounter;
     String dialogues[] = new String[20];
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
     int dialogueIndex = 0;
     public String name;
     public int maxLife;
     public int life;
+    public int type; //0 = player, 1 = npc, 2 = monster
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -58,11 +61,18 @@ public class Entity {
     public void update() {
         setAction();
         collisionOn = false;
+        gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
         gp.cChecker.checkEntity(this, gp.npc);
         gp.cChecker.checkEntity(this, gp.monster);
-        gp.cChecker.checkTile(this);
-        gp.cChecker.checkPlayer(this);
+        boolean contactPlayer = gp.cChecker.checkPlayer(this);
+
+        if (this.type == 2 && contactPlayer){
+            if (!gp.player.invincible) {
+                gp.player.life -= 1;
+                gp.player.invincible = true;
+            }
+        }
         if (!collisionOn) {
             switch (direction) {
                 case "up":
