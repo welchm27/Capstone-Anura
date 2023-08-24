@@ -1,17 +1,20 @@
 package com.anura;
 
 import com.anura.model.object.OBJ_Backpack;
-import com.anura.view.GamePanel;
-import com.anura.view.Music;
+import com.anura.view.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 public class UI {
 
     GamePanel gp;
+    TopPanel topPanel;
+    BottomPanel bottomPanel;
     Graphics2D g2;
     BufferedImage background;
     Font arial_40;
@@ -25,11 +28,12 @@ public class UI {
     public int soundNum = 0;
     public boolean musicPlaying = false;
 
-    public UI(GamePanel gp) {
+
+    public UI(GamePanel gp, TopPanel topPanel, BottomPanel bottomPanel) {
         this.gp = gp;
+        this.topPanel = topPanel;
+        this.bottomPanel = bottomPanel;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
-//        OBJ_Backpack backpack = new OBJ_Backpack();
-//        backpackImage = backpack.image;
     }
 
     public void draw(Graphics2D g2) {
@@ -44,8 +48,8 @@ public class UI {
         if (gp.gameState == gp.playState) {
             // do playState logic
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
-            g2.drawString("Inventory: " + gp.player.inventory, 10, 20);
-            g2.drawImage(backpackImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
+//            g2.drawString("Inventory: " + gp.player.inventory, 10, 20);
+//            g2.drawImage(backpackImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
         }
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
@@ -65,7 +69,6 @@ public class UI {
     }
 
     public void drawTitleScreen() {
-
         try {
             background = ImageIO.read(getClass().getResourceAsStream("/GuiTitleScreen.png"));
             g2.drawImage(background, 0, 0, null);

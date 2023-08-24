@@ -15,6 +15,8 @@ public class GamePanel extends JPanel implements Runnable {
     // SCREEN SETTINGS
     private final int originalTileSize = 16; // 16x16 tile
     private final int scale = 3;  // multiplier scale for tiles
+    TopPanel topPanel;
+    BottomPanel bottomPanel;
 
     public final int tileSize = originalTileSize * scale; // 48x48 tile
     // visible area on screen
@@ -47,18 +49,18 @@ public class GamePanel extends JPanel implements Runnable {
     // Tile manager
     public TileManager tileM = new TileManager(this);
     public CollisionChecker cChecker = new CollisionChecker(this);
+    ExtendedGamePanel eGP;
 
     // GAME THREAD
     public Thread gameThread;
 
-    //UI
-    public UI ui = new UI(this);
+
 
     //KEY HANDLER
     public KeyHandler keyH = new KeyHandler(this);
 
     //PLAYER instantiation
-    public Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH, topPanel);
 
     //OBJECT Instantiation
     public SuperObject obj[] = new SuperObject[4];
@@ -75,9 +77,13 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    //UI
+    public UI ui; //= new UI(this, topPanel, bottomPanel);
+
     public void setUpGame() {
         setter.setObject();
         setter.setNPC();
+        ui = new UI(this, topPanel, bottomPanel);
         gameState = titleState;
     }
 
