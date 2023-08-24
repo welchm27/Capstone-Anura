@@ -127,7 +127,6 @@ public class Player extends Entity {
     public void interactNPC(int i) {
 
         if (i != 999) {
-            if (gp.keyH.enterPressed) {
                 gp.gameState = gp.dialogueState;
                 if (gp.npc[i].name == "violet"){
                     if(gp.player.inventory.contains("glassbead")){
@@ -137,7 +136,6 @@ public class Player extends Entity {
                     }
                 }
                 gp.npc[i].speak();
-            }
         }
         gp.keyH.enterPressed = false;
     }
