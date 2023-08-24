@@ -1,6 +1,7 @@
 package com.anura.model.guientity;
 
 import com.anura.view.GamePanel;
+import com.anura.view.TopPanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

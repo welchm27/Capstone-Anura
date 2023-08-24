@@ -3,6 +3,7 @@ package com.anura.model.guientity;
 import com.anura.controller.KeyHandler;
 import com.anura.view.GamePanel;
 import com.anura.view.Music;
+import com.anura.view.TopPanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,8 +21,9 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public final List<String> inventory = new LinkedList<>();
+    private TopPanel topPanel;
 
-    public Player(GamePanel gp, KeyHandler keyH) {
+    public Player(GamePanel gp, KeyHandler keyH, TopPanel topPanel) {
         // I removed your calls to GamePanel as this supersedes that
         // also the npc video states we need to make the super call for later npc's
         super(gp);
@@ -125,7 +127,6 @@ public class Player extends Entity {
     public void interactNPC(int i) {
 
         if (i != 999) {
-            if (gp.keyH.enterPressed) {
                 gp.gameState = gp.dialogueState;
                 if (gp.npc[i].name == "violet"){
                     if(gp.player.inventory.contains("glassbead")){
@@ -135,7 +136,6 @@ public class Player extends Entity {
                     }
                 }
                 gp.npc[i].speak();
-            }
         }
         gp.keyH.enterPressed = false;
     }
@@ -153,6 +153,7 @@ public class Player extends Entity {
                 case "glassbead":
                 case "leaf":
                     inventory.add(objectName);
+                    TopPanel.updateInventory(inventory);
                     gp.obj[i] = null;
                     break;
             }

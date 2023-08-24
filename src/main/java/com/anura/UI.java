@@ -1,17 +1,20 @@
 package com.anura;
 
 import com.anura.model.object.OBJ_Backpack;
-import com.anura.view.GamePanel;
-import com.anura.view.Music;
+import com.anura.view.*;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 public class UI {
 
     GamePanel gp;
+    TopPanel topPanel;
+    BottomPanel bottomPanel;
     Graphics2D g2;
     BufferedImage background;
     Font arial_40;
@@ -24,12 +27,14 @@ public class UI {
     public int pauseNum = 0;
     public int soundNum = 0;
     public boolean musicPlaying = false;
+    private boolean isFirstPlayState = true;
 
-    public UI(GamePanel gp) {
+
+    public UI(GamePanel gp, TopPanel topPanel, BottomPanel bottomPanel) {
         this.gp = gp;
+        this.topPanel = topPanel;
+        this.bottomPanel = bottomPanel;
         arial_40 = new Font("Arial", Font.PLAIN, 40);
-//        OBJ_Backpack backpack = new OBJ_Backpack();
-//        backpackImage = backpack.image;
     }
 
     public void draw(Graphics2D g2) {
@@ -42,10 +47,14 @@ public class UI {
             drawTitleScreen();
         }
         if (gp.gameState == gp.playState) {
+            if(isFirstPlayState){
+                gp.gameState = gp.helpState;
+                isFirstPlayState = false;
+            }
             // do playState logic
             g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
-            g2.drawString("Inventory: " + gp.player.inventory, 10, 20);
-            g2.drawImage(backpackImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
+//            g2.drawString("Inventory: " + gp.player.inventory, 10, 20);
+//            g2.drawImage(backpackImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
         }
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
@@ -65,7 +74,6 @@ public class UI {
     }
 
     public void drawTitleScreen() {
-
         try {
             background = ImageIO.read(getClass().getResourceAsStream("/GuiTitleScreen.png"));
             g2.drawImage(background, 0, 0, null);
@@ -89,19 +97,12 @@ public class UI {
         if (menuNum == 1) {
             g2.drawString(">", x - gp.tileSize, y);
         }
-        text = "Console Game(under development)";
-        x = getXForCenteredText(text);
-        y += gp.tileSize;
-        g2.drawString(text, x, y);
-        if (menuNum == 2) {
-            g2.drawString(">", x - gp.tileSize, y);
-        }
 
         text = "QUIT GAME";
         x = getXForCenteredText(text);
         y += gp.tileSize;
         g2.drawString(text, x, y);
-        if (menuNum == 3) {
+        if (menuNum == 2) {
             g2.drawString(">", x - gp.tileSize, y);
         }
         // Menu Instructions
