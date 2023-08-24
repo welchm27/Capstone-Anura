@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Runnable {
     public AssetSetter setter = new AssetSetter(this);
 
     //NPC
-    public Entity npc[] = new Entity[10];
+    public Entity npc[] = new Entity[20];
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -78,12 +78,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     //UI
-    public UI ui; //= new UI(this, topPanel, bottomPanel);
+    public UI ui= new UI(this, topPanel, bottomPanel);
 
     public void setUpGame() {
         setter.setObject();
         setter.setNPC();
-        ui = new UI(this, topPanel, bottomPanel);
         gameState = titleState;
     }
 
@@ -114,12 +113,12 @@ public class GamePanel extends JPanel implements Runnable {
         gp.player.speed = 4;
         gp.player.direction = "down";
         // Reset entity locations
-        gp.npc[0].worldX = 50 * gp.tileSize;
-        gp.npc[0].worldY = 4 * gp.tileSize;
-        gp.npc[1].worldX = 55 * gp.tileSize;
-        gp.npc[1].worldY = 4 * gp.tileSize;
-        gp.npc[2].worldX = 60 * gp.tileSize;
-        gp.npc[2].worldY = 4 * gp.tileSize;
+        setter.npcSettings(0, 50, 4);
+        setter.npcSettings(1, 55, 4);
+        setter.npcSettings(2, 60, 4);
+        setter.npcSettings(3, 21, 16);
+        setter.npcSettings(4, 20, 17);
+        setter.npcSettings(5, 19, 15);
     }
 
 
@@ -187,7 +186,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
             //NPC
-            for (int i = 0; i < obj.length; i++) {
+            for (int i = 0; i < npc.length; i++) {
                 if (npc[i] != null) {
                     npc[i].draw(g2);
                 }
