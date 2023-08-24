@@ -37,7 +37,7 @@ public class AssetSetter {
         objectSettings(2, 7, 29);
 
         gp.obj[3] = new OBJ_BottleCap();
-        objectSettings(3, 54, 23);
+        objectSettings(3, 54, 25);
     }
 
     public void npcSettings(int index, int x, int y){
@@ -76,6 +76,9 @@ public class AssetSetter {
 
         gp.npc[8] = new NPC_Destiny(gp);
         npcSettings(8, 50, 4);
+
+        gp.npc[9] = new NPC_Trevin(gp);
+        npcSettings(9, 57, 26);
 
     }
     public void setMonster() {
