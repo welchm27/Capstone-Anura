@@ -133,10 +133,18 @@ public class Player extends Entity {
             // if collision is false, player can move
             if (!collisionOn) {
                 switch (direction) {
-                    case "up": worldY -= speed; break;
-                    case "down": worldY += speed; break;
-                    case "left": worldX -= speed; break;
-                    case "right": worldX += speed; break;
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
                 }
             }
         }
@@ -202,22 +210,28 @@ public class Player extends Entity {
                     BottomPanel.addQuest(findMate);
                     break;
                 case "bottlecap":
-                    inventory.add(objectName);
-                    TopPanel.updateInventory(inventory);
-                    gp.obj[i] = null;
+                    if (inventory.contains("backpack")) {
+                        inventory.add(objectName);
+                        TopPanel.updateInventory(inventory);
+                        gp.obj[i] = null;
+                    }
                     break;
                 case "leaf":
-                    inventory.add(objectName);
-                    TopPanel.updateInventory(inventory);
-                    BottomPanel.removeQuest(findLeaf);
-                    BottomPanel.addQuest(foundLeaf);
-                    gp.obj[i] = null;
+                    if (inventory.contains("backpack")) {
+                        inventory.add(objectName);
+                        TopPanel.updateInventory(inventory);
+                        BottomPanel.removeQuest(findLeaf);
+                        BottomPanel.addQuest(foundLeaf);
+                        gp.obj[i] = null;
+                    }
                     break;
                 case "glassbead":
-                    inventory.add(objectName);
-                    TopPanel.updateInventory(inventory);
-                    gp.obj[i] = null;
-                    BottomPanel.addQuest(foundBead);
+                    if(inventory.contains("backpack")){
+                        inventory.add(objectName);
+                        TopPanel.updateInventory(inventory);
+                        gp.obj[i] = null;
+                        BottomPanel.addQuest(foundBead);
+                    }
                     break;
             }
         }

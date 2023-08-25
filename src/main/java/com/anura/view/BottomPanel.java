@@ -51,9 +51,13 @@ public class BottomPanel extends JPanel {
         // update UI to reflect removed quest
         updateQuestListUI();
     }
+    public static void resetQuests(){
+        quests.clear();
+        updateQuestListUI();
+    }
+
 
     private static void updateQuestListUI(){
-//        questListPanel.removeAll();
         StringBuilder sb = new StringBuilder();
 
         for(Quest quest : quests) {

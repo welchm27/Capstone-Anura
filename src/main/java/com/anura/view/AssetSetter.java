@@ -3,7 +3,7 @@ package com.anura.view;
 import com.anura.model.guientity.*;
 import com.anura.model.monster.MON_crow;
 import com.anura.model.monster.MON_snake;
-import com.anura.model.monster.MON_sting;
+import com.anura.model.monster.MON_bass;
 import com.anura.model.object.OBJ_Backpack;
 import com.anura.model.object.OBJ_BottleCap;
 import com.anura.model.object.OBJ_GlassBead;
@@ -94,7 +94,7 @@ public class AssetSetter {
         gp.monster[1] = new MON_snake(gp);
         monsterSetting(1, 24, 25);
 
-        gp.monster[2] = new MON_sting(gp);
+        gp.monster[2] = new MON_bass(gp);
         monsterSetting(2, 35, 40);
     }
 }
