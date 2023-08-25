@@ -35,8 +35,6 @@ public class TopPanel extends JPanel {
         inventoryList.setOpaque(true);
 
         JScrollPane scrollPane = new JScrollPane(inventoryList);
-//        scrollPane.getViewport().setBackground(Color.BLACK);
-//        scrollPane.setBackground(Color.BLACK);
         add(scrollPane, BorderLayout.CENTER);
         scrollPane.setOpaque(true);
 
@@ -45,16 +43,11 @@ public class TopPanel extends JPanel {
                 ((JComponent) c).setOpaque(true);
             }
         }
-
-//        if(player.inventory.contains("backpack")){
-//            add(inventoryLabel, BorderLayout.NORTH);
-//        }
-
     }
 
     public static void updateInventory(List<String> inventory){
         // clear current inventory
-//        inventoryLabel.setText("Inventory");
+        inventoryLabel.setText("Inventory");
         inventoryListModel.clear();
 
         if(inventory.contains("backpack")){

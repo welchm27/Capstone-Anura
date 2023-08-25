@@ -124,7 +124,9 @@ public class GamePanel extends JPanel implements Runnable {
         setter.npcSettings(8, 50, 4);
         setter.npcSettings(9, 57, 26);
         // reset monsters
-
+        TopPanel.updateInventory(player.inventory);
+        BottomPanel.resetQuests();
+        BottomPanel.addQuest(player.findBackpack);
     }
 
 
