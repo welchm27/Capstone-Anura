@@ -157,6 +157,7 @@ public class Player extends Entity {
             }
         }
         if (hiding) {
+            invincible = true;
             invincibleCounter = 0;
             hideTime++;
             if (hideTime > 160) {
