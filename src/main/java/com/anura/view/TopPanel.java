@@ -8,23 +8,25 @@ import java.util.List;
 
 public class TopPanel extends JPanel {
 
-    static JLabel inventoryLabel;
-    Player player;
-    static DefaultListModel<String> inventoryListModel;
-    JList<String> inventoryList;
+    private static JLabel inventoryLabel;
+    private Player player;
+    private static DefaultListModel<String> inventoryListModel;
+    private static JList<String> inventoryList;
+
+    static{
+        inventoryLabel = new JLabel("Inventory");
+        inventoryLabel.setVisible(false);
+        //Add the inventory to a scroll pane
+        inventoryListModel = new DefaultListModel<>();
+        inventoryList = new JList<>(inventoryListModel);
+    }
 
     public TopPanel(Player player){
         this.player = player;
         // Set the layout, bg color and properties
         setLayout(new BorderLayout());
         setBackground(Color.orange);
-
-        inventoryLabel = new JLabel("Inventory");
         add(inventoryLabel, BorderLayout.NORTH);
-
-        // Add the inventory to a scroll pane
-        inventoryListModel = new DefaultListModel<>();
-        inventoryList = new JList<>(inventoryListModel);
 
         // Create custom cell renderer
         inventoryList.setCellRenderer(new CustomListCellRenderer());
@@ -43,6 +45,11 @@ public class TopPanel extends JPanel {
                 ((JComponent) c).setOpaque(true);
             }
         }
+
+//        if(player.inventory.contains("backpack")){
+//            add(inventoryLabel, BorderLayout.NORTH);
+//        }
+
     }
 
     public static void updateInventory(List<String> inventory){
@@ -50,10 +57,48 @@ public class TopPanel extends JPanel {
 //        inventoryLabel.setText("Inventory");
         inventoryListModel.clear();
 
+        if(inventory.contains("backpack")){
+            inventoryLabel.setVisible(true);
+        }else if (inventory.isEmpty()){
+            inventoryLabel.setVisible(false);
+        }
+
         for(String item : inventory){
 //            inventoryLabel.setText(inventoryLabel.getText() + ", " + item);
             inventoryListModel.addElement(item);
         }
+    }
+
+    public static JLabel getInventoryLabel() {
+        return inventoryLabel;
+    }
+
+    public static void setInventoryLabel(JLabel inventoryLabel) {
+        TopPanel.inventoryLabel = inventoryLabel;
+    }
+
+    public static DefaultListModel<String> getInventoryListModel() {
+        return inventoryListModel;
+    }
+
+    public static void setInventoryListModel(DefaultListModel<String> inventoryListModel) {
+        TopPanel.inventoryListModel = inventoryListModel;
+    }
+
+    public static JList<String> getInventoryList() {
+        return inventoryList;
+    }
+
+    public static void setInventoryList(JList<String> inventoryList) {
+        TopPanel.inventoryList = inventoryList;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
 

@@ -99,17 +99,13 @@ public class GamePanel extends JPanel implements Runnable {
         GamePanel gp = setter.gp;
         // reset item locations
         gp.obj[0] = new OBJ_Backpack();
-        gp.obj[0].worldX = 18 * gp.tileSize;
-        gp.obj[0].worldY = 20 * gp.tileSize;
+        setter.objectSettings(0, 18, 20);
         gp.obj[1] = new OBJ_Leaf();
-        gp.obj[1].worldX = 40 * gp.tileSize;
-        gp.obj[1].worldY = 29 * gp.tileSize;
+        setter.objectSettings(1, 18, 19);
         gp.obj[2] = new OBJ_GlassBead();
-        gp.obj[2].worldX = 7 * gp.tileSize;
-        gp.obj[2].worldY = 29 * gp.tileSize;
+        setter.objectSettings(2, 7, 29);
         gp.obj[3] = new OBJ_BottleCap();
-        gp.obj[3].worldX = 54 * gp.tileSize;
-        gp.obj[3].worldY = 23 * gp.tileSize;
+        setter.objectSettings(3, 54, 25);
         // Clear player inventory and reset location
         gp.player.inventory.clear();
         gp.player.worldX = gp.tileSize * 18;
@@ -117,12 +113,18 @@ public class GamePanel extends JPanel implements Runnable {
         gp.player.speed = 4;
         gp.player.direction = "down";
         // Reset entity locations
-        setter.npcSettings(0, 50, 4);
+        setter.npcSettings(0, 18, 26);
         setter.npcSettings(1, 55, 4);
         setter.npcSettings(2, 60, 4);
         setter.npcSettings(3, 21, 16);
-        setter.npcSettings(4, 20, 17);
-        setter.npcSettings(5, 19, 15);
+        setter.npcSettings(4, 42, 20);
+        setter.npcSettings(5, 10, 26);
+        setter.npcSettings(6, 21, 42);
+        setter.npcSettings(7, 35, 38);
+        setter.npcSettings(8, 50, 4);
+        setter.npcSettings(9, 57, 26);
+        // reset monsters
+
     }
 
 
