@@ -22,16 +22,17 @@ public class Player extends Entity {
     public final int screenY;
     public final List<String> inventory = new LinkedList<>();
     private TopPanel topPanel;
+    int hideTime = 2;
+
 
     public Player(GamePanel gp, KeyHandler keyH, TopPanel topPanel) {
         // I removed your calls to GamePanel as this supersedes that
         // also the npc video states we need to make the super call for later npc's
         super(gp);
         this.keyH = keyH;
-
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
-
+        hiding = false;
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -51,18 +52,40 @@ public class Player extends Entity {
         direction = "down";
     }
 
+    public void hidePlayer() {
+        if (inventory.contains("leaf")) {
+            hiding = true;
+            getPlayerImage();
+        }
+    }
+
     public void getPlayerImage() {
-        try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_up2.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_down1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_down2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_left2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_right1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_right2.png")));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!hiding) {
+            try {
+                up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_up1.png")));
+                up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_up2.png")));
+                down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_down1.png")));
+                down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_down2.png")));
+                left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_left1.png")));
+                left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_left2.png")));
+                right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_right1.png")));
+                right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/frog_right2.png")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+                right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/FrogUnderLeaf.png")));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -102,10 +125,18 @@ public class Player extends Entity {
             // if collision is false, player can move
             if (!collisionOn) {
                 switch (direction) {
-                    case "up": worldY -= speed; break;
-                    case "down": worldY += speed; break;
-                    case "left": worldX -= speed; break;
-                    case "right": worldX += speed; break;
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
                 }
             }
         }
@@ -125,21 +156,30 @@ public class Player extends Entity {
                 invincibleCounter = 0;
             }
         }
+        if (hiding) {
+            invincibleCounter = 0;
+            hideTime++;
+            if (hideTime > 160) {
+                hiding = false;
+                getPlayerImage();
+                hideTime = 0;
+            }
+        }
     }
 
 
     public void interactNPC(int i) {
 
         if (i != 999) {
-                gp.gameState = gp.dialogueState;
-                if (gp.npc[i].name == "violet"){
-                    if(gp.player.inventory.contains("glassbead")){
-                        Music.stopBackgroundMusic();
-                        gp.ui.musicPlaying = false;
-                        gp.gameState = gp.winState;
-                    }
+            gp.gameState = gp.dialogueState;
+            if (gp.npc[i].name == "violet") {
+                if (gp.player.inventory.contains("glassbead")) {
+                    Music.stopBackgroundMusic();
+                    gp.ui.musicPlaying = false;
+                    gp.gameState = gp.winState;
                 }
-                gp.npc[i].speak();
+            }
+            gp.npc[i].speak();
         }
         gp.keyH.enterPressed = false;
     }
@@ -164,11 +204,11 @@ public class Player extends Entity {
         }
     }
 
-    public void contactMonster(int i){
+    public void contactMonster(int i) {
 
-        if (i != 999){
-            if(!invincible){
-                life -=1;
+        if (i != 999) {
+            if (!invincible) {
+                life -= 1;
                 invincible = true;
             }
         }
@@ -211,7 +251,7 @@ public class Player extends Entity {
                 }
                 break;
         }
-        if (invincible){
+        if (invincible) {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3F));
         }
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
