@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class MON_sting extends Entity {
+public class MON_bass extends Entity {
 
-    public MON_sting(GamePanel gp) {
+    public MON_bass(GamePanel gp) {
         super(gp);
 
         name = "sting";
@@ -32,14 +32,14 @@ public class MON_sting extends Entity {
 
     public void getImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/sting.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/entities/bass.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
