@@ -1,5 +1,6 @@
 package com.anura;
 
+import com.anura.controller.Quest;
 import com.anura.model.object.OBJ_Backpack;
 import com.anura.view.*;
 
@@ -49,6 +50,7 @@ public class UI {
         if (gp.gameState == gp.playState) {
             if(isFirstPlayState){
                 gp.gameState = gp.helpState;
+                BottomPanel.addQuest(gp.player.findBackpack);
                 isFirstPlayState = false;
             }
             // do playState logic
