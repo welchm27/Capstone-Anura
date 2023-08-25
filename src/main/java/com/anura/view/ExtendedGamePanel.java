@@ -34,7 +34,7 @@ public class ExtendedGamePanel extends JFrame {
 
         // Create top and bottom partitions
         topPanel.setPreferredSize(new Dimension(200, gamePanel.screenHeight/4));
-        bottomPanel.setPreferredSize(new Dimension(200, gamePanel.screenHeight/2));
+        bottomPanel.setPreferredSize(new Dimension(200, (gamePanel.screenHeight/4)*3));
 
         // Add top and bottom panels to the additional panel
         additionalPanel.add(topPanel, BorderLayout.NORTH);

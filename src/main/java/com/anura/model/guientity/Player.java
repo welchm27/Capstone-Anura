@@ -1,6 +1,8 @@
 package com.anura.model.guientity;
 
 import com.anura.controller.KeyHandler;
+import com.anura.controller.Quest;
+import com.anura.view.BottomPanel;
 import com.anura.view.GamePanel;
 import com.anura.view.Music;
 import com.anura.view.TopPanel;
@@ -24,12 +26,18 @@ public class Player extends Entity {
     private TopPanel topPanel;
     int hideTime = 2;
 
+    public Quest findBackpack = new Quest("Get Backpack\n");
+    public Quest findLeaf = new Quest("Find something to hide under\n");
+    public Quest foundLeaf = new Quest("\nYou found something to hide. This should help with predators\n");
+    public Quest findMate = new Quest("Find a mate (you might need a gift)\n");
+    public Quest foundBead = new Quest("You found something nice, \nthis might be a good gift\n");
 
     public Player(GamePanel gp, KeyHandler keyH, TopPanel topPanel) {
         // I removed your calls to GamePanel as this supersedes that
         // also the npc video states we need to make the super call for later npc's
         super(gp);
         this.keyH = keyH;
+
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
         hiding = false;
@@ -125,18 +133,10 @@ public class Player extends Entity {
             // if collision is false, player can move
             if (!collisionOn) {
                 switch (direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
                 }
             }
         }
@@ -194,12 +194,30 @@ public class Player extends Entity {
 
             switch (objectName) {
                 case "backpack":
-                case "bottlecap":
-                case "glassbead":
-                case "leaf":
                     inventory.add(objectName);
                     TopPanel.updateInventory(inventory);
                     gp.obj[i] = null;
+                    BottomPanel.removeQuest(findBackpack);
+                    BottomPanel.addQuest(findLeaf);
+                    BottomPanel.addQuest(findMate);
+                    break;
+                case "bottlecap":
+                    inventory.add(objectName);
+                    TopPanel.updateInventory(inventory);
+                    gp.obj[i] = null;
+                    break;
+                case "leaf":
+                    inventory.add(objectName);
+                    TopPanel.updateInventory(inventory);
+                    BottomPanel.removeQuest(findLeaf);
+                    BottomPanel.addQuest(foundLeaf);
+                    gp.obj[i] = null;
+                    break;
+                case "glassbead":
+                    inventory.add(objectName);
+                    TopPanel.updateInventory(inventory);
+                    gp.obj[i] = null;
+                    BottomPanel.addQuest(foundBead);
                     break;
             }
         }
