@@ -22,6 +22,7 @@ public class Entity {
     String dialogues[] = new String[3];
     public boolean invincible = false;
     public int invincibleCounter = 0;
+    public boolean hiding;
     int dialogueIndex = 0;
     public String name;
     public int maxLife;
