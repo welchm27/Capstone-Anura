@@ -1,14 +1,10 @@
 package com.anura.controller;
 
-import com.anura.main.GuiMain;
 import com.anura.view.GamePanel;
 import com.anura.view.Music;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Timer;
 
 public class KeyHandler implements KeyListener {
     GamePanel gp;
@@ -83,6 +79,9 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ESCAPE) {
                 gp.gameState = gp.pauseState;
+            }
+            if (code == KeyEvent.VK_H) {
+                gp.player.hidePlayer();
             }
         }
         // PAUSE STATE

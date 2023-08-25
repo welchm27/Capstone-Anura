@@ -27,7 +27,8 @@ public class AssetSetter {
         objectSettings(0, 18, 20);
 
         gp.obj[1] = new OBJ_Leaf();
-        objectSettings(1, 40, 29);
+//        objectSettings(1, 40, 29);
+        objectSettings(1, 18, 19);
 
         gp.obj[2] = new OBJ_GlassBead();
         objectSettings(2, 7, 29);
