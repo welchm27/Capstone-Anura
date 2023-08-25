@@ -24,11 +24,11 @@ public class AssetSetter {
 
     public void setObject() {
         gp.obj[0] = new OBJ_Backpack();
-        objectSettings(0, 18, 20);
+        objectSettings(0, 18, 32);
 
         gp.obj[1] = new OBJ_Leaf();
-//        objectSettings(1, 40, 29);
-        objectSettings(1, 18, 19);
+        objectSettings(1, 25, 27);
+//        objectSettings(1, 18, 19);
 
         gp.obj[2] = new OBJ_GlassBead();
         objectSettings(2, 7, 29);
@@ -92,9 +92,9 @@ public class AssetSetter {
         monsterSetting(0, 55, 7);
 
         gp.monster[1] = new MON_snake(gp);
-        monsterSetting(1, 24, 25);
+        monsterSetting(1, 36, 27);
 
         gp.monster[2] = new MON_bass(gp);
-        monsterSetting(2, 35, 40);
+        monsterSetting(2, 52, 28);
     }
 }

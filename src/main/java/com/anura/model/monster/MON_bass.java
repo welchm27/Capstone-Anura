@@ -13,7 +13,7 @@ public class MON_bass extends Entity {
     public MON_bass(GamePanel gp) {
         super(gp);
 
-        name = "sting";
+        name = "bass";
         speed = 1;
         maxLife = 4;
         life = maxLife;

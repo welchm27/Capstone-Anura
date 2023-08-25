@@ -99,9 +99,9 @@ public class GamePanel extends JPanel implements Runnable {
         GamePanel gp = setter.gp;
         // reset item locations
         gp.obj[0] = new OBJ_Backpack();
-        setter.objectSettings(0, 18, 20);
+        setter.objectSettings(0, 18, 32);
         gp.obj[1] = new OBJ_Leaf();
-        setter.objectSettings(1, 18, 19);
+        setter.objectSettings(1, 25, 27);
         gp.obj[2] = new OBJ_GlassBead();
         setter.objectSettings(2, 7, 29);
         gp.obj[3] = new OBJ_BottleCap();
@@ -117,13 +117,19 @@ public class GamePanel extends JPanel implements Runnable {
         setter.npcSettings(1, 55, 4);
         setter.npcSettings(2, 60, 4);
         setter.npcSettings(3, 21, 16);
-        setter.npcSettings(4, 42, 20);
+        setter.npcSettings(4, 41, 20);
         setter.npcSettings(5, 10, 26);
         setter.npcSettings(6, 21, 42);
         setter.npcSettings(7, 35, 38);
         setter.npcSettings(8, 50, 4);
         setter.npcSettings(9, 57, 26);
         // reset monsters
+        setter.monsterSetting(0, 55, 7);
+        setter.monsterSetting(1, 36, 27);
+        setter.monsterSetting(2, 52, 28);
+
+
+        // Reset inventory
         TopPanel.updateInventory(player.inventory);
         BottomPanel.resetQuests();
         BottomPanel.addQuest(player.findBackpack);
