@@ -1,5 +1,6 @@
 package com.anura.model.guientity;
 
+import com.anura.model.player.Player;
 import com.anura.view.GamePanel;
 
 import javax.imageio.ImageIO;
@@ -35,10 +36,9 @@ public class NPC_Dawei extends Entity{
     public void setAction () {}
 
     public void setDialogue () {
-
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "I don't know how you expect me \nto take you seriously \nwhen you're so pink.";
+        dialogues[1] = "Ew is your tongue...purple?  \nAre you sick or something?";
+        dialogues[2] = "Don't expect to find a mate \nlooking like a all sunburned like that.";
     }
 
     public void speak () {

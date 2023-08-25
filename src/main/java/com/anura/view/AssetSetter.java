@@ -17,10 +17,6 @@ public class AssetSetter {
         this.gp = gp;
     }
 
-//    public void createObject(int index, int x, int y, Class class){
-//
-//    }
-
     public void objectSettings(int index, int x, int y){
         gp.obj[index].worldX = x * gp.tileSize;
         gp.obj[index].worldY = y * gp.tileSize;
@@ -52,33 +48,42 @@ public class AssetSetter {
     public void setNPC() {
         gp.npc[0] = new NPC_Toad(gp);
         npcSettings(0, 18, 26);
+//        npcSettings(0, 21, 15);  // for testing purposes
 
         gp.npc[1] = new NPC_violet(gp);
         npcSettings(1, 55, 4);
+//        npcSettings(1, 21, 14);  // for testing purposes
 
         gp.npc[2] = new NPC_Karen(gp);
         npcSettings(2, 60, 4);
+//        npcSettings(2, 21, 13);  // for testing purposes
 
         gp.npc[3] = new NPC_Dawei(gp);
         npcSettings(3, 21, 16);
 
         gp.npc[4] = new NPC_Tallulah(gp);
         npcSettings(4, 41, 20);
+//        npcSettings(4, 20, 17);  // for testing purposes
 
         gp.npc[5] = new NPC_Buckley(gp);
         npcSettings(5, 10, 26);
+//        npcSettings(5, 19, 17);  // for testing purposes
 
         gp.npc[6] = new NPC_Triton(gp);
         npcSettings(6, 21, 42);
+//        npcSettings(6, 18, 17);  // for testing purposes
 
         gp.npc[7] = new NPC_Sting(gp);
         npcSettings(7, 35, 38);
+//        npcSettings(7, 17, 17);  // for testing purposes
 
         gp.npc[8] = new NPC_Destiny(gp);
         npcSettings(8, 50, 4);
+//        npcSettings(8, 17, 15);  // for testing purposes
 
         gp.npc[9] = new NPC_Trevin(gp);
         npcSettings(9, 57, 26);
+//        npcSettings(9, 17, 14);  // for testing purposes
 
     }
     public void setMonster() {

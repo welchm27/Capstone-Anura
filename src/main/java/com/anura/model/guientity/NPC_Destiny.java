@@ -36,9 +36,9 @@ public class NPC_Destiny extends Entity{
 
     public void setDialogue () {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "I don't think we'd be a good match.  \nWe're both aquarius, \nbut you're honestly gross.";
+        dialogues[1] = "Pink is my least favorite color.  \nBy, like, a significant margin.";
+        dialogues[2] = "Your tongue makes you look \nlike some gross kid's toy.";
     }
 
     public void speak () {

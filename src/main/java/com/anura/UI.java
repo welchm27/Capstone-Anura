@@ -217,7 +217,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
 
         for (String line : currentDialogue.split("\n")) {
-            g2.drawString(currentDialogue, x, y);
+            g2.drawString(line, x, y);
             y += 40;
         }
     }

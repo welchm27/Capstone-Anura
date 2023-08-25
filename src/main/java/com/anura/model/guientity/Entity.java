@@ -4,6 +4,7 @@ import com.anura.view.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Entity {
 
@@ -18,7 +19,7 @@ public class Entity {
     public boolean collisionOn = false;
     public int solidAreaDefaultX, solidAreaDefaultY; //For item interactions
     public int actionLockCounter;
-    String dialogues[] = new String[20];
+    String dialogues[] = new String[3];
     public boolean invincible = false;
     public int invincibleCounter = 0;
     int dialogueIndex = 0;
@@ -39,8 +40,11 @@ public class Entity {
         if (dialogues[dialogueIndex] == null){
             dialogueIndex = 0;
         }
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
+        Random random = new Random();
+        int randomIndex = random.nextInt(dialogues.length);
+        gp.ui.currentDialogue = dialogues[randomIndex];  // returns a random dialog index from 0-2
+//        gp.ui.currentDialogue = dialogues[dialogueIndex];
+//        dialogueIndex++;
 
         switch(gp.player.direction) {
             case "up":

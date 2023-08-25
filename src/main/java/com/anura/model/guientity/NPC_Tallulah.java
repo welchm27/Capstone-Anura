@@ -36,9 +36,9 @@ public class NPC_Tallulah extends Entity{
 
     public void setDialogue () {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "Hey there, shorty!  \nIt looks like there's a lake to the East, \nbut you can't get there from here.";
+        dialogues[1] = "My blood has to get from \nmy heart to my brain just like yours.  \nIsn't it crazy that I don't pass out randomly?";
+        dialogues[2] = "Everyone asks me how tall I am, \nbut nobody asks me how tall I FEEL...";
     }
 
     public void speak () {

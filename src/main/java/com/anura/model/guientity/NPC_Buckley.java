@@ -36,9 +36,9 @@ public class NPC_Buckley extends Entity{
 
     public void setDialogue () {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "Oh thank goodness, \ncould you go get help for me?  \nI'm lost and I'm pretty sure you \ncouldn't get me out of this mud";
+        dialogues[1] = "My antlers are coming \nin pretty well this year, \nbut they ITCH SO BADLY!";
+        dialogues[2] = "If you see any doe, \ncould you tell them I'm over here?";
     }
 
     public void speak () {

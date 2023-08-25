@@ -37,9 +37,9 @@ public class NPC_Toad extends Entity {
 
     public void setDialogue() {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "This backpack might be helpful \nif you find anything that you can't eat.";
+        dialogues[1] = "You should try using the leaf.  \nI don't think any predators could \nsee you if you cover up with that bad boy.";
+        dialogues[2] = "I got a gym membership, \nbut I think I'm just lying to myself...";
     }
 
     public void speak() {
