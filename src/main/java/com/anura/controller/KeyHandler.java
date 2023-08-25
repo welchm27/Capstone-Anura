@@ -45,7 +45,7 @@ public class KeyHandler implements KeyListener {
                     case 0:
 //                        gp.setUpGame();
                         gp.gameState = gp.helpState;
-//                        Music.playBGMusic("ShumbaTest.wav");
+                        Music.playBGMusic("ShumbaTest.wav");
                         gp.ui.musicPlaying = true;
                         break;
                     case 1:
