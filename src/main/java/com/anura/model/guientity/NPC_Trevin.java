@@ -36,9 +36,9 @@ public class NPC_Trevin extends Entity{
 
     public void setDialogue () {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "I can't seem to find the dock \nand some gross old toad told me \nthat's where I can find a mate!";
+        dialogues[1] = "I'm NOT crying!  \nI'm just croaking a lot \nand it sounds like I'm sad.  \nI'm fine.";
+        dialogues[2] = "At this rate, \nI'll never find a mate!";
     }
 
     public void speak () {

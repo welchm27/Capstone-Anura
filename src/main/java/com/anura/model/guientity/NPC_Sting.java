@@ -36,9 +36,9 @@ public class NPC_Sting extends Entity{
 
     public void setDialogue () {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "Look, I'll be honest... \nI'm just here to eat smaller frogs.  \nThey're delicious.";
+        dialogues[1] = "You're definitely going \nto have to jump over that \nlog to get to the stream.";
+        dialogues[2] = "I feel like I should sting you, \nbut maybe I'm just hangry...";
     }
 
     public void speak () {

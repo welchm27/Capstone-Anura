@@ -36,9 +36,9 @@ public class NPC_Triton extends Entity{
 
     public void setDialogue () {
 
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "I can't stress enough how much \nI genuinely don't want to eat you.  \nYou're slimy and gross.";
+        dialogues[1] = "People think I'm always late \nbecause I'm a turtle.  \nIt's true, but I still don't appreciate it.";
+        dialogues[2] = "You've seen a painted turtle, \nbut have you ever seen a turtle paint?";
     }
 
     public void speak () {

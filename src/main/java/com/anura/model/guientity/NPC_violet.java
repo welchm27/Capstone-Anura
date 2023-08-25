@@ -37,9 +37,9 @@ public class NPC_violet extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0] = "Hello, there good looking";
-        dialogues[1] = "Frog, Pink and, Handsome";
-        dialogues[2] = "Frog, Pink and, Handsome";
+        dialogues[0] = "I know this sounds crazy, \nbut don't you think we're a perfect match?  \nYou're a frog... I'm a frog...it makes sense!";
+        dialogues[1] = "Were all the regular, \ngreen frogs mean to you too?";
+        dialogues[2] = "Oh is your tongue PURPLE?  \nThat's so cool!!!";
     }
 
     public void speak() {
