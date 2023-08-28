@@ -282,7 +282,7 @@ public class UI {
         String line2 = "You've found a mate who doesn\'t";
         String line3 = "mind your pink skin";
         String line4 = "Hit enter to return to the title screen";
-        String line5 = duration.toString();
+        String line5 = String.format("You found your mate in %s seconds!", duration);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
         int x = getXForCenteredText(line1);
         int y = windowY += gp.tileSize;
