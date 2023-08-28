@@ -1,6 +1,7 @@
 package com.anura;
 
 import com.anura.controller.Quest;
+import com.anura.controller.Score;
 import com.anura.model.object.OBJ_Backpack;
 import com.anura.view.*;
 
@@ -275,11 +276,13 @@ public class UI {
         int windowY = gp.tileSize / 2;
         int width = gp.screenWidth - (gp.tileSize * 4);
         int height = gp.tileSize * 10;
+        Long duration = Score.calcDuration(gp.startTime,gp.endTime);
         drawSubWindow(windowX, windowY, width, height);
         String line1 = "CONGRATULATIONS!!!!";
         String line2 = "You've found a mate who doesn\'t";
         String line3 = "mind your pink skin";
         String line4 = "Hit enter to return to the title screen";
+        String line5 = String.format("You found your mate in %s seconds!", duration);
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 26F));
         int x = getXForCenteredText(line1);
         int y = windowY += gp.tileSize;
@@ -297,6 +300,10 @@ public class UI {
         x = getXForCenteredText(line4);
         y += gp.tileSize;
         g2.drawString(line4, x, y);
+
+        x = getXForCenteredText(line5);
+        y += gp.tileSize;
+        g2.drawString(line5, x, y);
     }
 
 
