@@ -27,10 +27,6 @@ public class BottomPanel extends JPanel {
         questLog.setFont(new Font("Arial", Font.BOLD, 20));
         add(questLog, BorderLayout.NORTH);
 
-//        questListPanel = new JPanel();
-//        questListPanel.setLayout(new BoxLayout(questListPanel, BoxLayout.Y_AXIS));
-//        add(new JScrollPane(questListPanel), BorderLayout.CENTER);
-
         questTextArea = new JTextArea();
         questTextArea.setEditable(false);
         questTextArea.setLineWrap(true);
@@ -56,19 +52,14 @@ public class BottomPanel extends JPanel {
         updateQuestListUI();
     }
 
-
     private static void updateQuestListUI(){
         StringBuilder sb = new StringBuilder();
 
         for(Quest quest : quests) {
-//            JLabel questLabel = new JLabel(quest.getTitle());
-//            questListPanel.add(questLabel);
             sb.append(quest.getTitle()).append("\n");
         }
 
         // repaint the panel to reflect changes
-//        questListPanel.revalidate();
-//        questListPanel.repaint();
         questTextArea.setText(sb.toString());
     }
 }
